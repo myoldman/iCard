@@ -1,0 +1,13 @@
+<!--create.wxml-->
+<form bindsubmit='onSubmit'>
+<view class="{{showMain?'main':'main_hide'}}">
+    <textarea class="content" name='content' placeholder="这里输入卡片内容">
+    </textarea>
+ </view>
+<button id="genButton"  bindtap='beforeGen' form-type='submit' class="{{showGen?'gen_show':'gen_hide'}}" >生成</button> 
+
+<button id="saveButton" bindtap='saveCard' class="{{showSave?'save_show':'save_hide'}}">保存</button>
+<button id="shareButton" open-type='share' class="{{showShare?'share_show':'share_hide'}}">分享</button> 
+</form>
+<canvas canvas-id='cardCanvas' id="cardCanvas" class="{{showView?'canvas_show':'canvas_hide'}}" style="width: 300px; height: 375px;" >
+</canvas>

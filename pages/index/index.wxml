@@ -1,0 +1,5 @@
+<!--index.wxml-->
+<view class="container">
+  <button class='buttonCreate' id='buttonCreate' bindtap='createCard' size='default'>
+   +创建卡片</button>
+</view>
