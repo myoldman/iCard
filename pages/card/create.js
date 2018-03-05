@@ -9,6 +9,9 @@ Page({
     showShare: false,
     showSave : false,
     sharePath: '',
+    bgCss :'main0',
+    currentBg:0,
+    maxBg : 3,
     lastX: 0,
     lastY: 0,
     text: "没有滑动",
@@ -100,7 +103,6 @@ Page({
     
   },
    handletouchmove: function (event) {
-    console.log(event)
     if (this.data.currentGesture != 0) {
       return
     }
@@ -144,12 +146,46 @@ Page({
   },
 
   handletouchtart: function (event) {
-    console.log(event)
     this.data.lastX = event.touches[0].pageX
     this.data.lastY = event.touches[0].pageY
   },
   handletouchend: function (event) {
-    console.log(event)
+    console.log(this.data.currentGesture )
+    console.log(this.data.currentBg)
+    if (this.data.currentGesture == 1)
+    {
+      if (this.data.currentBg >= (this.data.maxBg-1)) {
+        this.setData(
+          {
+            currentBg: 0,
+            bgCss: 'main0'
+          }
+        )
+      }  else {
+        this.setData(
+          {
+            currentBg: this.data.currentBg + 1,
+            bgCss: 'main' + (this.data.currentBg + 1)
+          }
+        )
+      }
+    } else if(this.data.currentGesture == 2) {
+      if (this.data.currentBg <= 0) {
+        this.setData(
+          {
+            currentBg: (this.data.maxBg-1),
+            bgCss: 'main' + (this.data.maxBg-1)
+          }
+        )
+      } else {
+        this.setData(
+          {
+            currentBg: this.data.currentBg - 1,
+            bgCss: 'main' + (this.data.currentBg - 1)
+          }
+        )
+      }
+    }
     this.data.currentGesture = 0
     this.setData({
       text: "没有滑动",

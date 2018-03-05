@@ -1,6 +1,6 @@
 <!--create.wxml-->
 <form bindsubmit='onSubmit'>
-<view class="{{showMain?'main':'main_hide'}}" bindtouchmove='handletouchmove' bindtouchstart='handletouchtart' bindtouchend='handletouchend'>
+<view class="{{showMain?bgCss:'main_hide'}}" bindtouchmove='handletouchmove' bindtouchstart='handletouchtart' bindtouchend='handletouchend'>
     <textarea class="content" name='content' placeholder="这里输入卡片内容">
     </textarea>
  </view>
