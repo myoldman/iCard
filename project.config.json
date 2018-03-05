@@ -10,7 +10,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "1.9.91",
 	"appid": "wx6136481aa72e3ce3",
-	"projectname": "weixinocr",
+	"projectname": "iCard",
 	"isGameTourist": false,
 	"condition": {
 		"search": {
