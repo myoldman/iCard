@@ -1,8 +1,7 @@
 <!--create.wxml-->
 <form bindsubmit='onSubmit'>
 <view class="{{showMain?bgCss:'main_hide'}}" bindtouchmove='handletouchmove' bindtouchstart='handletouchtart' bindtouchend='handletouchend'>
-    <textarea class="content" name='content' placeholder="这里输入卡片内容">
-    </textarea>
+    <textarea class="textarea" name='content' placeholder="请输入卡片内容，左右滑动选择模板。"></textarea>
  </view>
 <button id="genButton"  bindtap='beforeGen' form-type='submit' class="{{showGen?'gen_show':'gen_hide'}}" >生成</button> 
 
