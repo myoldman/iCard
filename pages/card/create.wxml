@@ -9,5 +9,5 @@
 <button id="saveButton" bindtap='saveCard' class="{{showSave?'save_show':'save_hide'}}">保存</button>
 <button id="shareButton" open-type='share' class="{{showShare?'share_show':'share_hide'}}">分享</button> 
 </form>
-<canvas canvas-id='cardCanvas' id="cardCanvas" class="{{showView?'canvas_show':'canvas_hide'}}" style="width: 300px; height: 375px;" >
+<canvas canvas-id='cardCanvas' id="cardCanvas" class="{{showView?'canvas_show':'canvas_hide'}}" style="width: 100%; height: 375px;background-color: #fbf9f4;" >
 </canvas>

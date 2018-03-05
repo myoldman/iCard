@@ -1,3 +1,3 @@
-<view class="container">
+<view class="indexView">
   <image src='../image/createCard.png' class='imageCreate' mode='aspectFit' bindtap='createCard'></image>
 </view>

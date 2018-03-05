@@ -1,5 +1,6 @@
 /**index.wxss**/
-.userinfo {
+
+/**.userinfo {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,7 +19,16 @@
 
 .usermotto {
   margin-top: 200px;
-}
+}**/
+
+.indexView {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+} 
+
 .imageCreate{
   width: 242px;
   vertical-align: center;
