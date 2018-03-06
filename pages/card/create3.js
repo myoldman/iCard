@@ -1,5 +1,7 @@
 //logs.js
+
 const util = require('../../utils/util.js')
+
 const app = getApp()
 Page({
   data: {
@@ -7,14 +9,11 @@ Page({
     showMain: true,
     showGen: true,
     showShare: false,
-    showSave : false,
+    showSave: false,
     sharePath: '',
-    bgCss :'main0',
-    currentBg:0,
-    maxBg : 3,
+    bgCss: 'main3',
     lastX: 0,
     lastY: 0,
-    text: "没有滑动",
     currentGesture: 0,
   },
   onLoad: function () {
@@ -22,28 +21,28 @@ Page({
       showView: false,
       showMain: true,
       showGen: true,
-      showShare : false,
+      showShare: false,
       showSave: false,
-      sharePath:'',
+      sharePath: '',
     })
   },
-  onShareAppMessage:function() {
+  onShareAppMessage: function () {
     console.log(this.data.sharePath)
     return {
       title: '我的卡片',
-      //imageUrl: this.data.sharePath
     }
   },
-  beforeGen:function(e) {
+  beforeGen: function (e) {
     this.setData({
       showView: true,
       showMain: false,
       showGen: false,
       showShare: true,
       showSave: true,
+      text: '',
     });
   },
-  onSubmit:function(e){
+  onSubmit: function (e) {
     wx.showLoading({
       title: '正在生成图片',
       mask: true,
@@ -65,13 +64,13 @@ Page({
     var bgWidth = app.globalData.bgWidth
     var bgHeight = app.globalData.bgHeight
 
-    var widthMod =  parseInt(totalWidth / bgWidth) + 2
+    var widthMod = parseInt(totalWidth / bgWidth) + 2
     var heightMod = parseInt(totalHeight / bgHeight) + 2
     console.log(widthMod)
     console.log(heightMod)
-    for (var j = 0; j < heightMod; j++){
-      for(var i = 0; i< widthMod; i++){
-        ctx.drawImage(app.globalData.bgImages[0], bgWidth * i, bgHeight*j, 56, 28)
+    for (var j = 0; j < heightMod; j++) {
+      for (var i = 0; i < widthMod; i++) {
+        ctx.drawImage(app.globalData.bgImages[0], bgWidth * i, bgHeight * j, 56, 28)
       }
     }
     ctx.draw(true)
@@ -82,12 +81,11 @@ Page({
     wx.hideLoading()
   },
 
-  saveCard : function(e){
+  saveCard: function (e) {
     var that = this
     wx.canvasToTempFilePath({
       canvasId: 'cardCanvas',
       complete: function (res) {
-        //console.log(res);
       },
       success: function (res) {
         var filepath = res.tempFilePath
@@ -96,13 +94,13 @@ Page({
         })
       }
     })
-   
-  
+
+
   },
-  drawImage: function(content) {
-    
+  drawImage: function (content) {
+
   },
-   handletouchmove: function (event) {
+  handletouchmove: function (event) {
     if (this.data.currentGesture != 0) {
       return
     }
@@ -150,40 +148,32 @@ Page({
     this.data.lastY = event.touches[0].pageY
   },
   handletouchend: function (event) {
-    console.log(this.data.currentGesture )
-    console.log(this.data.currentBg)
-    if (this.data.currentGesture == 1)
-    {
-      if (this.data.currentBg >= (this.data.maxBg-1)) {
-        this.setData(
-          {
-            currentBg: 0,
-            bgCss: 'main0'
-          }
-        )
-      }  else {
-        this.setData(
-          {
-            currentBg: this.data.currentBg + 1,
-            bgCss: 'main' + (this.data.currentBg + 1)
-          }
-        )
-      }
-    } else if(this.data.currentGesture == 2) {
-      if (this.data.currentBg <= 0) {
-        this.setData(
-          {
-            currentBg: (this.data.maxBg-1),
-            bgCss: 'main' + (this.data.maxBg-1)
-          }
-        )
+    console.log(this.data.currentGesture)
+    console.log(app.globalData.currentBg)
+    if (this.data.currentGesture == 1) {
+      if (app.globalData.currentBg >= app.globalData.maxBg) {
+        console.log(app.globalData.currentBg)
+        app.globalData.currentBg = 1
+        wx.redirectTo({
+          url: 'create1',
+        })
       } else {
-        this.setData(
-          {
-            currentBg: this.data.currentBg - 1,
-            bgCss: 'main' + (this.data.currentBg - 1)
-          }
-        )
+        app.globalData.currentBg++
+        wx.redirectTo({
+          url: 'create' + app.globalData.currentBg,
+        })
+      }
+    } else if (this.data.currentGesture == 2) {
+      if (app.globalData.currentBg <= 1) {
+        app.globalData.currentBg = app.globalData.maxBg
+        wx.redirectTo({
+          url: 'create' + app.globalData.maxBg,
+        })
+      } else {
+        app.globalData.currentBg--
+        wx.redirectTo({
+          url: 'create' + app.globalData.currentBg,
+        })
       }
     }
     this.data.currentGesture = 0

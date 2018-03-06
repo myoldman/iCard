@@ -2,7 +2,9 @@
   "pages":[
     "pages/index/index",
     "pages/logs/logs",
-    "pages/card/create"
+    "pages/card/create1",
+    "pages/card/create2",
+    "pages/card/create3"
   ],
   "window":{
     "backgroundTextStyle":"light",

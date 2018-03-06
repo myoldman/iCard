@@ -9,15 +9,9 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
-  },
   createCard: function() {
-    wx.navigateTo({
-      url: '../card/create'
+    wx.redirectTo({
+      url: '../card/create2'
     })
   },
   onLoad: function () {
