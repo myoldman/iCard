@@ -1,15 +1,14 @@
 <form bindsubmit='onSubmit'>
 
-<view id="current" animation="{{currentAnimationData}}" bindtouchmove='handletouchmove' bindtouchstart='handletouchtart' bindtouchend='handletouchend'  class="{{showMain?currentBgCss:'main_hide'}} {{currentCss}}" style="{{currentStyle}}"></view>
-<view id="next"  animation="{{nextAnimationData}}" bindtouchmove='handletouchmove' bindtouchstart='handletouchtart' bindtouchend='handletouchend'  class="{{showMain?nextBgCss:'main_hide'}} {{nextCss}}" style="{{nextStyle}}"></view>
+<view id="current"  class="{{showMain?currentBgCss:'main_hide'}} {{currentCss}}" style="{{currentStyle}}"></view>
+<view id="next"  class="{{showMain?nextBgCss:'main_hide'}} {{nextCss}}" style="{{nextStyle}}"></view>
 
- <textarea class="content" name='content' placeholder="这里输入卡片内容">
-    </textarea>
+ <textarea bindtouchmove='handletouchmove' bindtouchstart='handletouchtart' bindtouchend='handletouchend' style='height:{{height-40-50}}px' class="{{showMain?'content':'main_hide'}}" name='content' placeholder="这里输入卡片内容"></textarea>
 
 <button id="genButton"  bindtap='beforeGen' form-type='submit' class="{{showGen?'gen_show':'gen_hide'}}" >生成</button> 
 
 <button id="saveButton" bindtap='saveCard' class="{{showSave?'save_show':'save_hide'}}">保存</button>
 <button id="shareButton" open-type='share' class="{{showShare?'share_show':'share_hide'}}">分享</button> 
 </form>
-<canvas canvas-id='cardCanvas' id="cardCanvas" class="{{showView?'canvas_show':'canvas_hide'}}" style="width: 300px; height: 375px;" >
+<canvas canvas-id='cardCanvas' id="cardCanvas" class="{{showView?'canvas_show':'canvas_hide'}}" >
 </canvas>

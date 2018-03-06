@@ -18,8 +18,6 @@ Page({
     currentStyle:'',
     nextStyle:'',
     currentBg: 'current',
-    currentAnimationData:'',
-    nextAnimationData: '',
     width: app.globalData.width,
     height: app.globalData.height,
     lastX: 0,
@@ -37,17 +35,8 @@ Page({
     })
   },
   onShow:function() {
-    var currentAnimation = wx.createAnimation({
-    })
-
-    var nextAnimation = wx.createAnimation({
-    })
-
-    this.currentAnimation = currentAnimation
-    this.nextAnimation = nextAnimation
   },
   onShareAppMessage: function () {
-    console.log(this.data.sharePath)
     return {
       title: '我的卡片',
     }
@@ -77,20 +66,20 @@ Page({
     });
 
     const ctx = wx.createCanvasContext('cardCanvas')
-    const CANVAS_W = 300
-    const CANVAS_H = 375
+    var currentBgObj = app.globalData.bgImages[app.globalData.currentBg - 1]
     var totalWidth = app.globalData.width
     var totalHeight = app.globalData.height
-    var bgWidth = app.globalData.bgWidth
-    var bgHeight = app.globalData.bgHeight
+    var bgWidth = currentBgObj.width
+    var bgHeight = currentBgObj.height
 
-    var widthMod = parseInt(totalWidth / bgWidth) + 2
-    var heightMod = parseInt(totalHeight / bgHeight) + 2
+    var widthMod = parseInt(totalWidth / bgWidth) + 1
+    var heightMod = parseInt(totalHeight / bgHeight) + 1
+
     console.log(widthMod)
     console.log(heightMod)
     for (var j = 0; j < heightMod; j++) {
       for (var i = 0; i < widthMod; i++) {
-        ctx.drawImage(app.globalData.bgImages[0], bgWidth * i, bgHeight * j, 56, 28)
+        ctx.drawImage(currentBgObj.data, bgWidth * i, bgHeight * j, bgWidth, bgHeight)
       }
     }
     ctx.draw(true)
@@ -114,12 +103,8 @@ Page({
         })
       }
     })
-
-
   },
-  drawImage: function (content) {
 
-  },
   handletouchmove: function (event) {
     if (this.data.currentGesture != 0) {
       return
@@ -139,20 +124,17 @@ Page({
         text = "向右滑动"
         this.data.currentGesture = 2
       }
-
     }
     //上下方向滑动
     else {
       if (ty < 0) {
         text = "向上滑动"
         this.data.currentGesture = 3
-
       }
       else if (ty > 0) {
         text = "向下滑动"
         this.data.currentGesture = 4
       }
-
     }
 
     //将当前坐标进行保存以进行下一次计算
@@ -196,6 +178,7 @@ Page({
       }.bind(this), 100);
     }
   },
+
   rightScroll:function() {
     var rightScrollStyle = 'transition: transform 500ms linear 0ms; transform: translateX(-' + this.data.width + 'px); transform-origin: 50% 50% 0px;'
     if (this.data.currentBg == 'current') {
@@ -230,16 +213,15 @@ Page({
       }.bind(this), 100);
     }
   },
+
   handletouchtart: function (event) {
     this.data.lastX = event.touches[0].pageX
     this.data.lastY = event.touches[0].pageY
   },
+
   handletouchend: function (event) {
-    console.log(this.data.currentGesture)
-    console.log(app.globalData.currentBg)
     if (this.data.currentGesture == 1) {
       if (app.globalData.currentBg >= app.globalData.maxBg) {
-        console.log(app.globalData.currentBg)
         app.globalData.currentBg = 1
         this.rightScroll();
       } else {
