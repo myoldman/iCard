@@ -11,7 +11,7 @@ Page({
   },
   createCard: function() {
     wx.redirectTo({
-      url: '../card/create2'
+      url: '../card/create'
     })
   },
   onLoad: function () {
