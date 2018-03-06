@@ -4,10 +4,8 @@ const app = getApp()
 
 Page({
   data: {
-    motto: '你好世界',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    width: app.globalData.width,
+    height: app.globalData.height,
   },
   createCard: function() {
     wx.redirectTo({

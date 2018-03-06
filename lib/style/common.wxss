@@ -26,6 +26,7 @@
 .pre_left {
   left:-100%;
 }
+
 .next_right{
   left:100%;
 }

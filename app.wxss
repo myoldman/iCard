@@ -1,8 +1,10 @@
 /**app.wxss**/
+page{
+  font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+  font-size: 32rpx;
+  line-height: 64rpx;
+  color: #282A2D;
+}
+
 .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  box-sizing: border-box;
-} 
+}
