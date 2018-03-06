@@ -65,29 +65,48 @@ Page({
       showSave: true,
     });
 
-    const ctx = wx.createCanvasContext('cardCanvas')
+    setTimeout(function () {
+    var ctx = wx.createCanvasContext('cardCanvas')
     var currentBgObj = app.globalData.bgImages[app.globalData.currentBg - 1]
     var totalWidth = app.globalData.width
-    var totalHeight = app.globalData.height
+    var totalHeight = app.globalData.height - 90
     var bgWidth = currentBgObj.width
     var bgHeight = currentBgObj.height
-
-    var widthMod = parseInt(totalWidth / bgWidth) + 1
-    var heightMod = parseInt(totalHeight / bgHeight) + 1
-
-    console.log(widthMod)
-    console.log(heightMod)
-    for (var j = 0; j < heightMod; j++) {
-      for (var i = 0; i < widthMod; i++) {
-        ctx.drawImage(currentBgObj.data, bgWidth * i, bgHeight * j, bgWidth, bgHeight)
-      }
+    var color = currentBgObj.color
+    var data = currentBgObj.data
+    if (color.length > 0) {
+      console.log(color)
+      ctx.rect(0, 0, totalWidth,totalHeight)
+      ctx.setFillStyle(color)
+      ctx.fill()
+      ctx.draw(true)
     }
-    ctx.draw(true)
+    if (data.length > 0) {
+
+      var widthMod = parseInt(totalWidth / bgWidth) + 1
+      var heightMod = parseInt(totalHeight / bgHeight) + 1
+      for (var j = 0; j < heightMod; j++) {
+        for (var i = 0; i < widthMod; i++) {
+          console.log(i)
+          console.log(data)
+          ctx.drawImage(data, bgWidth * i, bgHeight * j, bgWidth, bgHeight)
+        }
+      }
+      console.log("aa")
+      //ctx.draw(true)
+      console.log("bbb")
+    }
+    ctx.setFillStyle('black')
     ctx.setTextAlign('center')
     ctx.setFontSize(15)
     ctx.fillText(e.detail.value.content, 50, 50)
-    ctx.draw(true)
+    console.log("ccc")
+    ctx.draw(true, function (e) {
+      console.log('draw callback')
+    })
+    console.log("ddd")
     wx.hideLoading()
+    console.log("eee")}.bind(this), 100);
   },
 
   saveCard: function (e) {
