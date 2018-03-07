@@ -1,10 +1,13 @@
 /**app.wxss**/
+@import "dist/index.wxss";
+
 page{
   font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
-  font-size: 32rpx;
-  line-height: 64rpx;
+  font-size: 16px;
+  line-height: 32px;
   color: #282A2D;
 }
 
-.container {
+.placeholder {
+  color: #B7BABF;
 }

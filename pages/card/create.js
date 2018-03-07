@@ -5,13 +5,12 @@ const util = require('../../utils/util.js')
 const app = getApp()
 Page({
   data: {
-    showView: false,
     showMain: true,
     showGen: true,
-    showShare: false,
+    showCanvas: false,
+    showEdit: false,
     showSave: false,
     showConfirm: false,
-    sharePath: '',
     currentBgCss: 'main1',
     nextBgCss: 'main1',
     currentCss:  '',
@@ -27,31 +26,65 @@ Page({
   },
   onLoad: function () {
     this.setData({
-      showView: false,
       showMain: true,
       showGen: true,
-      showShare: false,
+      showCanvas: false,
+      showEdit: false,
       showSave: false,
-      sharePath: '',
     })
   },
   onShow:function() {
   },
-  onShareAppMessage: function () {
-    return {
-      title: '我的卡片',
-    }
-  },
   beforeGen: function (e) {
     this.setData({
-      showView: true,
       showMain: false,
       showGen: false,
-      showShare: true,
+      showCanvas: true,
+      showEdit: true,
       showSave: true,
       text: '',
     });
   },
+  editCard: function (e) {
+    this.setData({
+      showMain: true,
+      showGen: true,
+      showCanvas: false,
+      showEdit: false,
+      showSave: false,
+      text: '',
+    });
+  },
+  saveCard: function (e) {
+    var that = this
+    wx.canvasToTempFilePath({
+      canvasId: 'cardCanvas',
+      complete: function (res) {
+        console.log(res)
+      },
+      success: function (res) {
+        console.log(res)
+        var filepath = res.tempFilePath
+        wx.saveImageToPhotosAlbum({
+          filePath: filepath,
+          success:
+          function (data) {
+            wx.showToast({
+              title: '保存卡片成功',
+            })
+          },
+          fail:
+          function (err) {
+            wx.showToast({
+              title: '保存卡片失败:' + err,
+            })
+            console.log(err);
+          }
+        })
+      }
+    })
+  },
+
   onSubmit: function (e) {
     wx.showLoading({
       title: '正在生成图片',
@@ -62,7 +95,7 @@ Page({
       showView: true,
       showMain: false,
       showGen: false,
-      showShare: true,
+      showEdit: true,
       showSave: true,
     });
     var content = e.detail.value.content
@@ -109,37 +142,6 @@ Page({
       //}
       }.bind(this), 100);
   },
-
-  saveCard: function (e) {
-    var that = this
-    wx.canvasToTempFilePath({
-      canvasId: 'cardCanvas',
-      complete: function (res) {
-        console.log(res)
-      },
-      success: function (res) {
-        console.log(res)
-        var filepath = res.tempFilePath
-        wx.saveImageToPhotosAlbum({
-          filePath: filepath,
-          success:
-          function (data) {
-            wx.showToast({
-              title: '保存卡片成功',
-            })
-          },
-          fail:
-          function (err) {
-            wx.showToast({
-              title: '保存卡片失败:' + err,
-            })
-            console.log(err);
-          }
-        })
-      }
-    })
-  },
-
   handletouchmove: function (event) {
     if (this.data.currentGesture != 0) {
       return
