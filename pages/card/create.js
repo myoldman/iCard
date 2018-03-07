@@ -114,8 +114,10 @@ Page({
     wx.canvasToTempFilePath({
       canvasId: 'cardCanvas',
       complete: function (res) {
+        console.log(res)
       },
       success: function (res) {
+        console.log(res)
         var filepath = res.tempFilePath
         wx.saveImageToPhotosAlbum({
           filePath: filepath,

@@ -3,7 +3,7 @@
 <view id="current"  class="{{showMain?currentBgCss:'main_hide'}} {{currentCss}}" style="{{currentStyle}}"></view>
 <view id="next"  class="{{showMain?nextBgCss:'main_hide'}} {{nextCss}}" style="{{nextStyle}}"></view>
 
- <textarea bindtouchmove='handletouchmove' bindtouchstart='handletouchtart' bindtouchend='handletouchend' style='height:{{height-40-50}}px' class="{{showMain?'content':'main_hide'}}" name='content' placeholder="输入卡片内容。左右滑动可以切换模板。"></textarea>
+ <textarea bindtouchmove='handletouchmove' bindtouchstart='handletouchtart' bindtouchend='handletouchend' style='height:{{height-40-50}}px' class="{{showMain?'content':'main_hide'}}" show-confirm-bar='false' name='content' placeholder="输入卡片内容。左右滑动可以切换模板。"></textarea>
 
 <button id="genButton"  bindtap='beforeGen' form-type='submit' class="{{showGen?'gen_show':'gen_hide'}}" >生成</button> 
 
