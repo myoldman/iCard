@@ -10,6 +10,7 @@ Page({
     showGen: true,
     showShare: false,
     showSave: false,
+    showConfirm: false,
     sharePath: '',
     currentBgCss: 'main1',
     nextBgCss: 'main1',
@@ -64,49 +65,49 @@ Page({
       showShare: true,
       showSave: true,
     });
-
+    var content = e.detail.value.content
     setTimeout(function () {
-    var ctx = wx.createCanvasContext('cardCanvas')
-    var currentBgObj = app.globalData.bgImages[app.globalData.currentBg - 1]
-    var totalWidth = app.globalData.width
-    var totalHeight = app.globalData.height - 90
-    var bgWidth = currentBgObj.width
-    var bgHeight = currentBgObj.height
-    var color = currentBgObj.color
-    var data = currentBgObj.data
-    if (color.length > 0) {
-      console.log(color)
-      ctx.rect(0, 0, totalWidth,totalHeight)
-      ctx.setFillStyle(color)
-      ctx.fill()
-      ctx.draw(true)
-    }
-    if (data.length > 0) {
-
-      var widthMod = parseInt(totalWidth / bgWidth) + 1
-      var heightMod = parseInt(totalHeight / bgHeight) + 1
-      for (var j = 0; j < heightMod; j++) {
-        for (var i = 0; i < widthMod; i++) {
-          console.log(i)
-          console.log(data)
-          ctx.drawImage(data, bgWidth * i, bgHeight * j, bgWidth, bgHeight)
+      //if (that.data.showView){
+        var ctx = wx.createCanvasContext('cardCanvas')
+        var currentBgObj = app.globalData.bgImages[app.globalData.currentBg - 1]
+        var totalWidth = app.globalData.width
+        var totalHeight = app.globalData.height - 90
+        var bgWidth = currentBgObj.width
+        var bgHeight = currentBgObj.height
+        var color = currentBgObj.color
+        var data = currentBgObj.data
+        if (color.length > 0) {
+          ctx.rect(0, 0, totalWidth,totalHeight)
+          ctx.setFillStyle(color)
+          ctx.fill()
+          ctx.draw(true)
         }
-      }
-      console.log("aa")
-      //ctx.draw(true)
-      console.log("bbb")
-    }
-    ctx.setFillStyle('black')
-    ctx.setTextAlign('center')
-    ctx.setFontSize(15)
-    ctx.fillText(e.detail.value.content, 50, 50)
-    console.log("ccc")
-    ctx.draw(true, function (e) {
-      console.log('draw callback')
-    })
-    console.log("ddd")
-    wx.hideLoading()
-    console.log("eee")}.bind(this), 100);
+        if (data.length > 0) {
+          var widthMod = parseInt(totalWidth / bgWidth) + 1
+          var heightMod = parseInt(totalHeight / bgHeight) + 1
+          for (var j = 0; j < heightMod; j++) {
+            for (var i = 0; i < widthMod; i++) {
+              ctx.drawImage(data, bgWidth * i, bgHeight * j, bgWidth, bgHeight)
+            }
+          }
+          //ctx.draw(true)
+        }
+        var contents = content.split("\n")
+        console.log(contents)
+        ctx.setFillStyle('black')
+        ctx.setTextAlign('center')
+        ctx.setFontSize(15)
+        for (var k = 0; k < contents.length; k++) {
+          ctx.fillText(contents[k], 50, 18*(k+1))
+        }
+        ctx.draw(true, function (e) {
+          console.log('draw callback')
+        })
+        wx.hideLoading()
+      //} else {
+      //  console.log("not show view")
+      //}
+      }.bind(this), 100);
   },
 
   saveCard: function (e) {
@@ -121,6 +122,19 @@ Page({
         var filepath = res.tempFilePath
         wx.saveImageToPhotosAlbum({
           filePath: filepath,
+          success:
+          function (data) {
+            wx.showToast({
+              title: '保存卡片成功',
+            })
+          },
+          fail:
+          function (err) {
+            wx.showToast({
+              title: '保存卡片失败:' + err,
+            })
+            console.log(err);
+          }
         })
       }
     })
