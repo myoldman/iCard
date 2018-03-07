@@ -4,16 +4,13 @@
 <view id="next"  class="{{showMain?nextBgCss:'main_hide'}} {{nextCss}}" style="{{nextStyle}}"></view>
 
 <textarea bindtouchmove='handletouchmove' bindtouchstart='handletouchtart' bindtouchend='handletouchend' style='height:{{height-45-45}}px;' class="{{showMain?'content':'main_hide'}}" show-confirm-bar='{{showConfirm}}' name='content' placeholder="左右滑动切换模板，点击输入卡片内容。" placeholder-class='placeholder'></textarea>
+<canvas canvas-id='cardCanvas' style='top:0;height:{{height-45-45-45}}px' id="cardCanvas" class="{{showCanvas?'canvas_show':'canvas_hide'}}" >
+</canvas>
 <view class="zan-btns">
   <button id="genButton"  bindtap='beforeGen' form-type='submit' class="{{showGen?'zan-btn zan-btn--primary':'gen_hide'}}">生成图片</button>
 </view>
-
-
-<canvas canvas-id='cardCanvas' style='height:{{height-45-45-45}}px' id="cardCanvas" class="{{showCanvas?'canvas_show':'canvas_hide'}}" >
-</canvas>
-<view class="zan-btns">
-    <button id="saveButton" bindtap='saveCard' class="{{showSave?'zan-btn  zan-btn--primary':'save_hide'}}">保存图片</button>
-    <button id="backButton" bindtap='editCard' class="{{showEdit?'zan-btn':'edit_hide'}}">修改卡片</button> 
-
+<view class="zan-btns" style='margin-top:{{height-45-45-45}}px' >
+    <button id="saveButton" bindtap='saveCard' class="{{showSave?'zan-btn  zan-btn--primary ':'save_hide'}}">保存图片</button>
+    <button id="backButton" bindtap='editCard' class="{{showEdit?'zan-btn ':'edit_hide'}}">修改卡片</button> 
 </view>
 </form>

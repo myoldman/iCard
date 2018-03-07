@@ -32,11 +32,11 @@
 }
 
 .content{
-  width:100%;
+  width:90%;
   z-index: 9999;
   margin-top: 40rpx;
-  margin-left: 40rpx;
-  margin-right: 40rpx;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 .gen_hide {
@@ -55,4 +55,9 @@
 }
 .canvas_hide{
   display:none;
+}
+.bottom
+{
+  position: fixed;
+  top:60%;
 }
