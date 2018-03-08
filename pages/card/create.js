@@ -126,12 +126,40 @@ Page({
           //ctx.draw(true)
         }
         var contents = content.split("\n")
+        var fontSpace = 18;
         console.log(contents)
         ctx.setFillStyle('black')
-        ctx.setTextAlign('center')
+        ctx.setTextAlign('start')
         ctx.setFontSize(15)
+        var initY = fontSpace;
         for (var k = 0; k < contents.length; k++) {
-          ctx.fillText(contents[k], 50, 18*(k+1))
+          var line = contents[k]
+          var lineWidth = 0;
+          var initX = fontSpace
+          var lastSubStrIndex = 0; 
+          for (var z = 0; z < line.length; z++) {
+            lineWidth += ctx.measureText(line[z]).width;
+            
+            if (lineWidth > totalWidth - 2*initX) {//减去initX,防止边界出现的问题
+              console.log(initX)
+              console.log(initY)
+                ctx.fillText(line.substring(lastSubStrIndex, z), initX, initY);
+                ctx.draw(true)
+                initY += fontSpace;
+                lineWidth = 0;
+                lastSubStrIndex = z;
+            }
+            if (z == line.length - 1) {
+              console.log(initX)
+              console.log(initY)
+              ctx.fillText(line.substring(lastSubStrIndex, z + 1), initX, initY);
+              ctx.draw(true)
+            }
+          }
+          initY += fontSpace;
+
+          //ctx.fillText(contents[k], fontSpace, fontSpace*(k+1))
+          
         }
         ctx.draw(true, function (e) {
           console.log('draw callback')
