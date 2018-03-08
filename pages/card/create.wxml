@@ -3,7 +3,8 @@
 <view id="current"  class="{{showMain?currentBgCss:'main_hide'}} {{currentCss}}" style="{{currentStyle}}"></view>
 <view id="next"  class="{{showMain?nextBgCss:'main_hide'}} {{nextCss}}" style="{{nextStyle}}"></view>
 
-<textarea bindtouchmove='handletouchmove' bindtouchstart='handletouchtart' bindtouchend='handletouchend' style='height:{{height-45-45}}px;' class="{{showMain?'content':'main_hide'}}" show-confirm-bar='{{showConfirm}}' name='content' placeholder="左右滑动切换模板，点击输入卡片内容。" placeholder-class='placeholder'></textarea>
+<textarea bindtouchmove='handletouchmove' bindtouchstart='handletouchtart' bindtouchend='handletouchend' style='height:{{height-45-45}}px;' maxlength="-1" class="{{showMain?'content':'main_hide'}}" show-confirm-bar='{{showConfirm}}' name='content' placeholder="左右滑动切换模板，点击输入卡片内容。" placeholder-class='placeholder'></textarea>
+
 <canvas canvas-id='cardCanvas' style='top:0;height:{{height-45-45-45}}px' id="cardCanvas" class="{{showCanvas?'canvas_show':'canvas_hide'}}" >
 </canvas>
 <view class="zan-btns">

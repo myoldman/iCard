@@ -1,1 +1,62 @@
-@import "../../lib/style/common.wxss" 
+.main_hide{
+  display: none;
+}
+
+.main3{  
+  position: fixed; 
+  height: 100%;
+  width: 100%;
+  background-color: #F3F2F7;
+}
+
+.main2{
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-color: #F8F2E2;
+}
+
+.main1{
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-color: #FFF;
+}
+
+.pre_left {
+  left:-100%;
+}
+
+.next_right{
+  left:100%;
+}
+
+.content{
+  width:90%;
+  margin-top: 40rpx;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.gen_hide {
+  display: none;
+}
+.edit_hide {
+  display: none;
+}
+.save_hide{
+  display: none;
+}
+.canvas_show{
+  width:100%;
+  position: fixed;
+  display: block;
+}
+.canvas_hide{
+  display:none;
+}
+.bottom
+{
+  position: fixed;
+  top:60%;
+}

@@ -126,16 +126,16 @@ Page({
           //ctx.draw(true)
         }
         var contents = content.split("\n")
-        var fontSpace = 18;
+        var fontSpace = 32;
         console.log(contents)
         ctx.setFillStyle('black')
         ctx.setTextAlign('start')
-        ctx.setFontSize(15)
+        ctx.setFontSize(16)
         var initY = fontSpace;
         for (var k = 0; k < contents.length; k++) {
           var line = contents[k]
           var lineWidth = 0;
-          var initX = fontSpace
+          var initX = 18
           var lastSubStrIndex = 0; 
           for (var z = 0; z < line.length; z++) {
             lineWidth += ctx.measureText(line[z]).width;
