@@ -2,7 +2,8 @@
   display: none;
 }
 
-.main3{  
+.main3{
+  top:0px;
   position: fixed; 
   height: 100%;
   width: 100%;
@@ -10,6 +11,7 @@
 }
 
 .main2{
+  top:0px;
   position: fixed;
   height: 100%;
   width: 100%;
@@ -17,6 +19,7 @@
 }
 
 .main1{
+  top:0px;
   position: fixed;
   height: 100%;
   width: 100%;
