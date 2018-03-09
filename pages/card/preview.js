@@ -8,7 +8,9 @@ Page({
     bgColor: app.globalData.bgImages[app.globalData.currentBg-1].color,
     width: app.globalData.width,
     height: app.globalData.height,
-    content: ''
+    canvasHeight: app.globalData.height,
+    content: '',
+    autoHeight: true
   },
   onLoad: function (options) {
     this.setData({
@@ -17,7 +19,42 @@ Page({
     })
     
   },
-
+  calcCanvasHeight : function(contents, ctx) {
+    // 先循环一次计算总高度
+    ctx.setFillStyle('black')
+    ctx.setTextAlign('start')
+    ctx.setFontSize(16)
+    var totalWidth = app.globalData.width
+    var fontSpace = 32
+    var initY = fontSpace
+    for (var k = 0; k < contents.length; k++) {
+      var line = contents[k]
+      var lineWidth = 0;
+      var initX = 18
+      var lastSubStrIndex = 0;
+      for (var z = 0; z < line.length; z++) {
+        lineWidth += ctx.measureText(line[z]).width;
+        if (lineWidth > totalWidth - 2 * initX) {//减去initX,防止边界出现的问题
+          line.substring(lastSubStrIndex, z),
+          initY += fontSpace
+          lineWidth = 0;
+          lastSubStrIndex = z;
+        }
+        if (z == line.length - 1) {
+          line.substring(lastSubStrIndex, z + 1)
+        }
+      }
+      initY += fontSpace;
+    }
+    console.log(initY)
+    initY = initY +  200;
+    console.log(initY)
+    if (initY > this.data.canvasHeight) {
+      this.setData({
+        canvasHeight: initY,
+      })
+    }
+  },
   onShow: function () {
     this.setData({
       bgColor: app.globalData.bgImages[app.globalData.currentBg-1].color,
@@ -30,13 +67,18 @@ Page({
     var ctx = wx.createCanvasContext('cardCanvas')
     var currentBgObj = app.globalData.bgImages[app.globalData.currentBg - 1]
     var totalWidth = app.globalData.width
-    var totalHeight = app.globalData.height - 90
+    var totalHeight = app.globalData.height
     var bgWidth = currentBgObj.width
     var bgHeight = currentBgObj.height
     var color = currentBgObj.color
     var data = currentBgObj.data
+    var contents = content.split("\n")
+    
+    this.calcCanvasHeight(contents, ctx)
+
+    console.log(this.data.canvasHeight)
     if (color.length > 0) {
-      ctx.rect(0, 0, totalWidth, totalHeight)
+      ctx.rect(0, 0, totalWidth, this.data.canvasHeight)
       ctx.setFillStyle(color)
       ctx.fill()
       ctx.draw(true)
@@ -52,13 +94,13 @@ Page({
       }
     }
 
-    var contents = content.split("\n")
+    
     var fontSpace = 32;
-    console.log(contents)
     ctx.setFillStyle('black')
     ctx.setTextAlign('start')
     ctx.setFontSize(16)
     var initY = fontSpace;
+    
     for (var k = 0; k < contents.length; k++) {
       var line = contents[k]
       var lineWidth = 0;
@@ -67,23 +109,22 @@ Page({
       for (var z = 0; z < line.length; z++) {
         lineWidth += ctx.measureText(line[z]).width;
         if (lineWidth > totalWidth - 2 * initX) {//减去initX,防止边界出现的问题
-          console.log(initX)
-          console.log(initY)
           ctx.fillText(line.substring(lastSubStrIndex, z), initX, initY);
           ctx.draw(true)
-          initY += fontSpace;
+          initY += fontSpace
           lineWidth = 0;
           lastSubStrIndex = z;
         }
         if (z == line.length - 1) {
-          console.log(initX)
-          console.log(initY)
           ctx.fillText(line.substring(lastSubStrIndex, z + 1), initX, initY);
           ctx.draw(true)
         }
       }
       initY += fontSpace;
     }
+    ctx.setTextAlign('center')
+    ctx.fillText("测试一下", totalWidth/2, initY);
+    
     ctx.draw(true, function (e) {
       console.log('draw callback')
     })
