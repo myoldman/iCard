@@ -1,0 +1,6 @@
+<canvas canvas-id='cardCanvas' style='top:0;height:{{height-45-45-45}}px' id="cardCanvas" class="canvas_show" >
+</canvas>
+<view class="zan-btns" style='margin-top:{{height-45-45-45}}px' >
+    <button id="saveButton" bindtap='saveCard' class="zan-btn zan-btn--primary">保存图片</button>
+    <button id="backButton" bindtap='editCard' class="'zan-btn">修改卡片</button> 
+</view>

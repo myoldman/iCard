@@ -1,0 +1,11 @@
+.canvas_show{
+  width:100%;
+  position: fixed;
+  display: block;
+}
+
+.bottom
+{
+  position: fixed;
+  top:60%;
+}

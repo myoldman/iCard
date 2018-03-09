@@ -5,12 +5,6 @@ const util = require('../../utils/util.js')
 const app = getApp()
 Page({
   data: {
-    showMain: true,
-    showGen: true,
-    showCanvas: false,
-    showEdit: false,
-    showSave: false,
-    showConfirm: false,
     currentBgCss: 'main1',
     nextBgCss: 'main1',
     currentCss:  '',
@@ -24,152 +18,19 @@ Page({
     lastY: 0,
     currentGesture: 0,
   },
+
   onLoad: function () {
-    this.setData({
-      showMain: true,
-      showGen: true,
-      showCanvas: false,
-      showEdit: false,
-      showSave: false,
-    })
   },
+
   onShow:function() {
   },
-  beforeGen: function (e) {
-    this.setData({
-      showMain: false,
-      showGen: false,
-      showCanvas: true,
-      showEdit: true,
-      showSave: true,
-      text: '',
-    });
-  },
-  editCard: function (e) {
-    this.setData({
-      showMain: true,
-      showGen: true,
-      showCanvas: false,
-      showEdit: false,
-      showSave: false,
-      text: '',
-    });
-  },
-  saveCard: function (e) {
-    var that = this
-    wx.canvasToTempFilePath({
-      canvasId: 'cardCanvas',
-      complete: function (res) {
-        console.log(res)
-      },
-      success: function (res) {
-        console.log(res)
-        var filepath = res.tempFilePath
-        wx.saveImageToPhotosAlbum({
-          filePath: filepath,
-          success:
-          function (data) {
-            wx.showToast({
-              title: '保存卡片成功',
-            })
-          },
-          fail:
-          function (err) {
-            wx.showToast({
-              title: '保存卡片失败:' + err,
-            })
-            console.log(err);
-          }
-        })
-      }
+
+  preivewCard: function (e) {
+    wx.navigateTo({
+      url: 'preview?content=' + e.detail.value.content,
     })
   },
 
-  onSubmit: function (e) {
-    wx.showLoading({
-      title: '正在生成图片',
-      mask: true,
-    })
-    var that = this
-    this.setData({
-      showView: true,
-      showMain: false,
-      showGen: false,
-      showEdit: true,
-      showSave: true,
-    });
-    var content = e.detail.value.content
-    setTimeout(function () {
-      //if (that.data.showView){
-        var ctx = wx.createCanvasContext('cardCanvas')
-        var currentBgObj = app.globalData.bgImages[app.globalData.currentBg - 1]
-        var totalWidth = app.globalData.width
-        var totalHeight = app.globalData.height - 90
-        var bgWidth = currentBgObj.width
-        var bgHeight = currentBgObj.height
-        var color = currentBgObj.color
-        var data = currentBgObj.data
-        if (color.length > 0) {
-          ctx.rect(0, 0, totalWidth,totalHeight)
-          ctx.setFillStyle(color)
-          ctx.fill()
-          ctx.draw(true)
-        }
-        if (data.length > 0) {
-          var widthMod = parseInt(totalWidth / bgWidth) + 1
-          var heightMod = parseInt(totalHeight / bgHeight) + 1
-          for (var j = 0; j < heightMod; j++) {
-            for (var i = 0; i < widthMod; i++) {
-              ctx.drawImage(data, bgWidth * i, bgHeight * j, bgWidth, bgHeight)
-            }
-          }
-          //ctx.draw(true)
-        }
-        var contents = content.split("\n")
-        var fontSpace = 32;
-        console.log(contents)
-        ctx.setFillStyle('black')
-        ctx.setTextAlign('start')
-        ctx.setFontSize(16)
-        var initY = fontSpace;
-        for (var k = 0; k < contents.length; k++) {
-          var line = contents[k]
-          var lineWidth = 0;
-          var initX = 18
-          var lastSubStrIndex = 0; 
-          for (var z = 0; z < line.length; z++) {
-            lineWidth += ctx.measureText(line[z]).width;
-            
-            if (lineWidth > totalWidth - 2*initX) {//减去initX,防止边界出现的问题
-              console.log(initX)
-              console.log(initY)
-                ctx.fillText(line.substring(lastSubStrIndex, z), initX, initY);
-                ctx.draw(true)
-                initY += fontSpace;
-                lineWidth = 0;
-                lastSubStrIndex = z;
-            }
-            if (z == line.length - 1) {
-              console.log(initX)
-              console.log(initY)
-              ctx.fillText(line.substring(lastSubStrIndex, z + 1), initX, initY);
-              ctx.draw(true)
-            }
-          }
-          initY += fontSpace;
-
-          //ctx.fillText(contents[k], fontSpace, fontSpace*(k+1))
-          
-        }
-        ctx.draw(true, function (e) {
-          console.log('draw callback')
-        })
-        wx.hideLoading()
-      //} else {
-      //  console.log("not show view")
-      //}
-      }.bind(this), 100);
-  },
   handletouchmove: function (event) {
     if (this.data.currentGesture != 0) {
       return

@@ -1,13 +1,9 @@
-.main_hide{
-  display: none;
-}
-
-.main3{
+.main1{
   top:0px;
-  position: fixed; 
+  position: fixed;
   height: 100%;
   width: 100%;
-  background-color: #F3F2F7;
+  background-color: #FFF;
 }
 
 .main2{
@@ -18,12 +14,12 @@
   background-color: #F8F2E2;
 }
 
-.main1{
+.main3{
   top:0px;
-  position: fixed;
+  position: fixed; 
   height: 100%;
   width: 100%;
-  background-color: #FFF;
+  background-color: #F3F2F7;
 }
 
 .pre_left {
@@ -39,27 +35,4 @@
   margin-top: 40rpx;
   margin-left: 5%;
   margin-right: 5%;
-}
-
-.gen_hide {
-  display: none;
-}
-.edit_hide {
-  display: none;
-}
-.save_hide{
-  display: none;
-}
-.canvas_show{
-  width:100%;
-  position: fixed;
-  display: block;
-}
-.canvas_hide{
-  display:none;
-}
-.bottom
-{
-  position: fixed;
-  top:60%;
 }

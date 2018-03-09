@@ -8,7 +8,7 @@ Page({
     height: app.globalData.height,
   },
   createCard: function() {
-    wx.redirectTo({
+    wx.navigateTo({
       url: '../card/create'
     })
   },
@@ -41,7 +41,6 @@ Page({
     }
   },
   getUserInfo: function(e) {
-    console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
