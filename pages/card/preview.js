@@ -5,20 +5,23 @@ const util = require('../../utils/util.js')
 const app = getApp()
 Page({
   data: {
+    bgColor: app.globalData.bgImages[app.globalData.currentBg-1].color,
     width: app.globalData.width,
     height: app.globalData.height,
     content: ''
   },
   onLoad: function (options) {
-    console.log(options)
     this.setData({
+      bgColor: app.globalData.bgImages[app.globalData.currentBg-1].color,
       content: options.content,
     })
     
   },
 
   onShow: function () {
-    console.log(this.data.content)
+    this.setData({
+      bgColor: app.globalData.bgImages[app.globalData.currentBg-1].color,
+    })
     wx.showLoading({
       title: '正在生成图片',
       mask: true,
