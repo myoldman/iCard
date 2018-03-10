@@ -1,7 +1,11 @@
 <view>
 <canvas canvas-id='cardCanvas' style='background-color:{{bgColor}};top:0;height:{{canvasHeight}}px' id="cardCanvas" class="canvas_show"  >
+<cover-view bindtap='saveCard' class='zan-btn zan-btn--primary' style="position:absolute;width: 90%;margin-left:5%;height: 45px;line-height:45px;top:{{height-60}}px;">
+保存图片
+  
+  </cover-view>
 </canvas>
 
-  <button id="saveButton" style="position:fixed;width:90%;margin-left:5%;bottom:10px;" bindtap='saveCard' class="zan-btn zan-btn--primary">保存图片</button>
+
     <!-- <button id="backButton" style="position:fixed;width:90%;margin-left:5%;bottom:10px;" bindtap='editCard' class="'zan-btn">修改卡片</button>  -->
 </view>
