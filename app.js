@@ -34,11 +34,17 @@ App({
     })
   },
   globalData: {
+    defaultCanvasHeight:450,
     bgImages: [
       { width:56, height:28, data:"",color:"#FFF"},
       { width: 56, height: 28, data: "", color: "#F8F2E2" },
       { width: 56, height: 28, data: "", color: "#F3F2F7" },
     ],
+    footerText:"使用小程序\"卡片创作助手\"制作",
+    footerLineColor:"Gray",
+    footerLineWidth:1,
+    footerLineMargin:15,
+    footerHeight:100,
     currentBg: 1,
     maxBg: 3,
     userInfo: null,

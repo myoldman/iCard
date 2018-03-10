@@ -4,6 +4,17 @@
   display: block;
 }
 
+.previewImage{
+  width:90%;
+  margin-top: 40rpx;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.hidden {
+  display:none;
+}
+
 .bottom
 {
   position: fixed;
