@@ -8,7 +8,7 @@ Page({
     imageUrl: '',
     showImage: false,
     showCanvas: true,
-    bgColor: app.globalData.bgImages[app.globalData.currentBg-1].color,
+    bgColor: app.globalData.bgImages[app.globalData.currentBg - 1].color,
     width: app.globalData.width,
     height: app.globalData.height,
     canvasHeight: app.globalData.defaultCanvasHeight,
@@ -17,14 +17,14 @@ Page({
   },
   onLoad: function (options) {
     this.setData({
-      bgColor: app.globalData.bgImages[app.globalData.currentBg-1].color,
+      bgColor: app.globalData.bgImages[app.globalData.currentBg - 1].color,
       content: options.content,
     })
     this.setData({
       bgColor: app.globalData.bgImages[app.globalData.currentBg - 1].color,
     })
   },
-  onReady: function() {
+  onReady: function () {
     wx.showLoading({
       title: '正在生成图片',
       mask: true,
@@ -46,10 +46,10 @@ Page({
       ctx.fillRect(0, 0, totalWidth, this.data.canvasHeight)
     }
 
-    var fontSpace = 32;
-    ctx.setFillStyle('black')
+    var fontSpace = app.globalData.textSpace;
+    ctx.setFontSize(app.globalData.textSize)
+    ctx.setFillStyle(app.globalData.textColor)
     ctx.setTextAlign('start')
-    ctx.setFontSize(16)
     var initY = fontSpace;
 
     for (var k = 0; k < contents.length; k++) {
@@ -73,14 +73,15 @@ Page({
     }
 
     var footerTextWidth = ctx.measureText(app.globalData.footerText).width
-    var footerLineWidth = footerTextWidth + 2 * app.globalData.footerLineMargin
+    var footerLineWidth = footerTextWidth + 20
     ctx.setLineWidth(app.globalData.footerLineWidth)
     ctx.setStrokeStyle(app.globalData.footerLineColor)
     ctx.moveTo((totalWidth - footerLineWidth) / 2, this.data.canvasHeight - fontSpace - 18 - 2 * app.globalData.footerLineWidth)
     ctx.lineTo((totalWidth - footerLineWidth) / 2 + footerLineWidth, this.data.canvasHeight - fontSpace - 18 - 2 * app.globalData.footerLineWidth)
     ctx.stroke()
 
-    ctx.setFillStyle(app.globalData.footerLineColor)
+    ctx.setFontSize(app.globalData.footerTextSize)
+    ctx.setFillStyle(app.globalData.footerTextColor)
     ctx.setTextAlign('center')
     ctx.fillText(app.globalData.footerText, totalWidth / 2, this.data.canvasHeight - fontSpace)
 
@@ -103,13 +104,13 @@ Page({
     wx.hideLoading()
   },
 
-  calcCanvasHeight : function(contents, ctx) {
+  calcCanvasHeight: function (contents, ctx) {
     // 先循环一次计算总高度
-    ctx.setFillStyle('black')
+    ctx.setFillStyle(app.globalData.textColor)
     ctx.setTextAlign('start')
-    ctx.setFontSize(16)
+    ctx.setFontSize(app.globalData.textSize)
     var totalWidth = app.globalData.width
-    var fontSpace = 32
+    var fontSpace = app.globalData.textSpace
     var initY = fontSpace
     for (var k = 0; k < contents.length; k++) {
       var line = contents[k]
@@ -120,7 +121,7 @@ Page({
         lineWidth += ctx.measureText(line[z]).width;
         if (lineWidth > totalWidth - 2 * initX) {//减去initX,防止边界出现的问题
           line.substring(lastSubStrIndex, z),
-          initY += fontSpace
+            initY += fontSpace
           lineWidth = 0;
           lastSubStrIndex = z;
         }
@@ -138,24 +139,24 @@ Page({
       })
     }
   },
-  
+
   onShow: function () {
-    
+
   },
 
-  previewCard: function() {
+  previewCard: function () {
     var that = this
     wx.previewImage({
       current: this.data.imageUrl,
       urls: [this.data.imageUrl],
-      fail:function() {
+      fail: function () {
         //wx.showToast({
-          //title: "failt:" + res,
+        //title: "failt:" + res,
         //})
       },
-      success:function(res) {
+      success: function (res) {
         //wx.showToast({
-          //title: "success:" + res,
+        //title: "success:" + res,
         //})
       }
     })
@@ -175,22 +176,22 @@ Page({
     //   success: function (res) {
     //     console.log(res)
     //     var filepath = res.tempFilePath
-        wx.saveImageToPhotosAlbum({
-          filePath: this.data.imageUrl,
-          success:
-          function (data) {
-            wx.showToast({
-              title: '保存卡片成功',
-            })
-          },
-          fail:
-          function (err) {
-            wx.showToast({
-              title: '保存卡片失败:' + err,
-            })
-            console.log(err);
-          }
+    wx.saveImageToPhotosAlbum({
+      filePath: this.data.imageUrl,
+      success:
+      function (data) {
+        wx.showToast({
+          title: '图片保存成功',
         })
+      },
+      fail:
+      function (err) {
+        wx.showToast({
+          title: '图片保存出错:' + err,
+        })
+        console.log(err);
+      }
+    })
     //   }
     // })
   },

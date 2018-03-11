@@ -1,8 +1,9 @@
 <form bindsubmit='preivewCard'>
-<view id="current"  class="{{currentBgCss}} {{currentCss}}" style="{{currentStyle}}"></view>
-<view id="next"  class="{{nextBgCss}} {{nextCss}}" style="{{nextStyle}}"></view>
-<textarea bindtouchmove='handletouchmove' bindtouchstart='handletouchtart' bindtouchend='handletouchend' style='height:{{height-45-45}}px;' maxlength="-1" class="content" show-confirm-bar='{{showConfirm}}' name='content' placeholder="左右滑动切换模板，点击输入卡片内容。" placeholder-class='placeholder'></textarea>
+  <view id="current" class="{{currentBgCss}} {{currentCss}}" style="{{currentStyle}}"></view>
+  <view id="next" class="{{nextBgCss}} {{nextCss}}" style="{{nextStyle}}"></view>
+  <textarea bindtouchmove='handletouchmove' bindtouchstart='handletouchtart' bindtouchend='handletouchend' style='height:{{height-45-45}}px;' maxlength="-1" class="content" show-confirm-bar='{{showConfirm}}' name='content' placeholder="左右滑动切换模板，点击输入卡片内容。"
+    placeholder-class='placeholder'></textarea>
 
-<button id="genButton" style="position:fixed;width:90%;margin-left:5%;bottom:10px;"  form-type='submit' class="'zan-btn zan-btn--primary">生成图片</button>
+  <button id="genButton" style="position:fixed;width:90%;margin-left:5%;bottom:10px;" form-type='submit' class="'zan-btn zan-btn--primary">生成图片</button>
 
 </form>

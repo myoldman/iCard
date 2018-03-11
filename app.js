@@ -40,11 +40,21 @@ App({
       { width: 56, height: 28, data: "", color: "#F8F2E2" },
       { width: 56, height: 28, data: "", color: "#F3F2F7" },
     ],
+    textColor: '#282A2D',
+    textSize:16,
+    textSpace:32,
+    
     footerText:"使用小程序\"卡片创作助手\"制作",
-    footerLineColor:"Gray",
+    footerTextColor: '#B7BABF',
+    footerTextSize:13,
+    footerTextSpace:38,
+
+    footerLineColor: '#E4E5E7',
     footerLineWidth:1,
-    footerLineMargin:15,
-    footerHeight:100,
+    footerLineMargin:10,
+
+    footerHeight:60,
+
     currentBg: 1,
     maxBg: 3,
     userInfo: null,
