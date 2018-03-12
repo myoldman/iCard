@@ -37,11 +37,11 @@
 
 .zan-btn--primary {
   color: #fff;
-  background-color: #4b0;
+  background-color: #30CEAC;
 }
 
 .zan-btn--primary::after {
-  border-color: #0a0;
+  border-color: #30CEAC;
 }
 
 .zan-btn--warn {
