@@ -82,8 +82,9 @@ Page({
     ctx.lineTo((totalWidth - footerLineWidth) / 2 + footerLineWidth, this.data.canvasHeight - fontSpace - app.globalData.textSize - 2 * app.globalData.footerLineWidth)
     ctx.stroke()
 
-    ctx.setFillStyle(app.globalData.footerLineColor)
+    ctx.setFillStyle(app.globalData.footerTextColor)
     ctx.setTextAlign('center')
+    ctx.setFontSize(app.globalData.footerTextSize)
     ctx.fillText(app.globalData.footerText, totalWidth / 2, this.data.canvasHeight - fontSpace)
 
     var that = this
