@@ -43,6 +43,7 @@ App({
     textColor: '#282A2D',
     textSize:16,
     textSpace:32,
+    hMargin:20,
     
     footerText:"使用小程序\"卡片创作助手\"制作",
     footerTextColor: '#B7BABF',

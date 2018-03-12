@@ -47,24 +47,25 @@ Page({
       ctx.fillRect(0, 0, totalWidth, this.data.canvasHeight)
     }
 
-    var fontSpace = 32;
-    ctx.setFillStyle('black')
+    var fontSpace = app.globalData.textSpace;
+    ctx.setFillStyle(app.globalData.textColor)
     ctx.setTextAlign('start')
-    ctx.setFontSize(16)
+    ctx.setFontSize(app.globalData.textSize)
     var initY = fontSpace;
 
     for (var k = 0; k < contents.length; k++) {
       var line = contents[k]
       var lineWidth = 0;
-      var initX = 18
+      var initX = app.globalData.hMargin
       var lastSubStrIndex = 0;
       for (var z = 0; z < line.length; z++) {
         lineWidth += ctx.measureText(line[z]).width
-        if (lineWidth > totalWidth - 2.2 * initX) {//减去initX,防止边界出现的问题
-          ctx.fillText(line.substring(lastSubStrIndex, z), initX, initY)
+        if (lineWidth > (totalWidth - 2 * initX) ) {//减去initX,防止边界出现的问题
+          var tempText = line.substring(lastSubStrIndex, z + 1)
+          ctx.fillText(tempText, initX, initY)
           initY += fontSpace
           lineWidth = 0
-          lastSubStrIndex = z
+          lastSubStrIndex = z+1
         }
         if (z == line.length - 1) {
           ctx.fillText(line.substring(lastSubStrIndex, z + 1), initX, initY)
@@ -77,8 +78,8 @@ Page({
     var footerLineWidth = footerTextWidth + 2 * app.globalData.footerLineMargin
     ctx.setLineWidth(app.globalData.footerLineWidth)
     ctx.setStrokeStyle(app.globalData.footerLineColor)
-    ctx.moveTo((totalWidth - footerLineWidth) / 2, this.data.canvasHeight - fontSpace - 18 - 2 * app.globalData.footerLineWidth)
-    ctx.lineTo((totalWidth - footerLineWidth) / 2 + footerLineWidth, this.data.canvasHeight - fontSpace - 18 - 2 * app.globalData.footerLineWidth)
+    ctx.moveTo((totalWidth - footerLineWidth) / 2, this.data.canvasHeight - fontSpace - app.globalData.textSize - 2 * app.globalData.footerLineWidth)
+    ctx.lineTo((totalWidth - footerLineWidth) / 2 + footerLineWidth, this.data.canvasHeight - fontSpace - app.globalData.textSize - 2 * app.globalData.footerLineWidth)
     ctx.stroke()
 
     ctx.setFillStyle(app.globalData.footerLineColor)
@@ -104,9 +105,6 @@ Page({
         success: function (res) {
           console.log(res)
           var filepath = res.tempFilePath
-          for(var i=0;i< 1000;i++){
-            console.log(i);
-          }
           //wx.showToast({
           //  title: 'success:' + that.data.canvasHeight,
           //})
@@ -122,24 +120,24 @@ Page({
 
   calcCanvasHeight : function(contents, ctx) {
     // 先循环一次计算总高度
-    ctx.setFillStyle('black')
+    ctx.setFillStyle(app.globalData.textColor)
     ctx.setTextAlign('start')
-    ctx.setFontSize(16)
+    ctx.setFontSize(app.globalData.textSize)
     var totalWidth = app.globalData.width
-    var fontSpace = 32
+    var fontSpace = app.globalData.textSpace
     var initY = fontSpace
     for (var k = 0; k < contents.length; k++) {
       var line = contents[k]
       var lineWidth = 0;
-      var initX = 18
+      var initX = app.globalData.hMargin
       var lastSubStrIndex = 0;
       for (var z = 0; z < line.length; z++) {
         lineWidth += ctx.measureText(line[z]).width;
-        if (lineWidth > totalWidth - 2 * initX) {//减去initX,防止边界出现的问题
-          line.substring(lastSubStrIndex, z),
+        if (lineWidth > totalWidth - 2 * initX ) {//减去initX,防止边界出现的问题
+          line.substring(lastSubStrIndex, z + 1),
           initY += fontSpace
           lineWidth = 0;
-          lastSubStrIndex = z;
+          lastSubStrIndex = z + 1;
         }
         if (z == line.length - 1) {
           line.substring(lastSubStrIndex, z + 1)
