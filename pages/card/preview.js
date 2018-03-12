@@ -60,7 +60,7 @@ Page({
       var lastSubStrIndex = 0;
       for (var z = 0; z < line.length; z++) {
         lineWidth += ctx.measureText(line[z]).width
-        if (lineWidth > (totalWidth - 2 * initX) ) {//减去initX,防止边界出现的问题
+        if (lineWidth > (totalWidth  - app.globalData.textSize*0.6 - 2 * initX) ) {//减去initX,防止边界出现的问题
           var tempText = line.substring(lastSubStrIndex, z + 1)
           ctx.fillText(tempText, initX, initY)
           initY += fontSpace
@@ -134,7 +134,7 @@ Page({
       var lastSubStrIndex = 0;
       for (var z = 0; z < line.length; z++) {
         lineWidth += ctx.measureText(line[z]).width;
-        if (lineWidth > totalWidth - 2 * initX ) {//减去initX,防止边界出现的问题
+        if (lineWidth > totalWidth - app.globalData.textSize * 0.6 - 2 * initX ) {//减去initX,防止边界出现的问题
           line.substring(lastSubStrIndex, z + 1),
           initY += fontSpace
           lineWidth = 0;
