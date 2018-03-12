@@ -5,6 +5,7 @@ const util = require('../../utils/util.js')
 const app = getApp()
 Page({
   data: {
+    error : '',
     imageUrl: '',
     showImage: false,
     showCanvas: true,
@@ -89,18 +90,34 @@ Page({
       wx.canvasToTempFilePath({
         canvasId: 'cardCanvas',
         complete: function (res) {
-          console.log(res)
+          //console.log(res)
+          //var filepath = res.tempFilePath
+          //that.setData({ error: res.errMsg})
+          //wx.hideLoading()
+        },
+        fail: function (res) {
+          //console.log(res)
+          var filepath = res.tempFilePath
+          that.setData({ error: res.errMsg })
+          wx.hideLoading()
         },
         success: function (res) {
           console.log(res)
           var filepath = res.tempFilePath
+          for(var i=0;i< 1000;i++){
+            console.log(i);
+          }
+          //wx.showToast({
+          //  title: 'success:' + that.data.canvasHeight,
+          //})
           that.setData({ imageUrl: filepath, showImage: true, showCanvas: false })
+          wx.hideLoading()
         }
       })
       console.log('draw callback')
     })
 
-    wx.hideLoading()
+    
   },
 
   calcCanvasHeight : function(contents, ctx) {
@@ -146,7 +163,7 @@ Page({
   previewCard: function() {
     var that = this
     wx.previewImage({
-      current: this.data.imageUrl,
+      current: '',
       urls: [this.data.imageUrl],
       fail:function() {
         //wx.showToast({
@@ -155,8 +172,26 @@ Page({
       },
       success:function(res) {
         //wx.showToast({
-          //title: "success:" + res,
+        //  title: "success:" + res,
         //})
+        return;
+          wx.canvasToTempFilePath({
+            canvasId: 'cardCanvas',
+            complete: function (res) {
+              //console.log(res)
+              //var filepath = res.tempFilePath
+              //that.setData({ imageUrl: filepath })
+              //wx.showToast({
+              //  title: 'c:' + filepath,
+              //})
+            },
+            success: function (res) {
+              console.log(res)
+              wx.showToast({
+                title: 's:' + that.data.canvasHeight,
+              })
+            }
+          })
       }
     })
   },
