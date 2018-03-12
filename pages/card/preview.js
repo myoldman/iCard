@@ -51,7 +51,7 @@ Page({
     ctx.setFillStyle(app.globalData.textColor)
     ctx.setTextAlign('start')
     ctx.setFontSize(app.globalData.textSize)
-    var initY = fontSpace;
+    var initY = 50;
 
     for (var k = 0; k < contents.length; k++) {
       var line = contents[k]
@@ -126,7 +126,7 @@ Page({
     ctx.setFontSize(app.globalData.textSize)
     var totalWidth = app.globalData.width
     var fontSpace = app.globalData.textSpace
-    var initY = fontSpace
+    var initY = 50
     for (var k = 0; k < contents.length; k++) {
       var line = contents[k]
       var lineWidth = 0;

@@ -2,6 +2,6 @@
   <image src='../image/createCard.png' class='imageCreate' mode='aspectFit' bindtap='createCard'></image>
 </view>
 <view class="footer">
-  <p>卡片创作助手1.0</p>
-  <p>任何建议欢迎加微信 sisisimao 交流 </p>
+  <p>感谢使用卡片创作助手1.0</p>
+  <p>任何意见或建议加微信sisisimao交流</p>
  </view>
