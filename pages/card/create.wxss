@@ -3,6 +3,7 @@
   position: fixed;
   height: 100%;
   width: 100%;
+  background-repeat: repeat;
   background-color: #FFF;
 }
 
@@ -11,6 +12,7 @@
   position: fixed;
   height: 100%;
   width: 100%;
+  background-repeat: repeat;
   background-color: #F8F2E2;
 }
 
@@ -19,7 +21,17 @@
   position: fixed; 
   height: 100%;
   width: 100%;
-  background-color: #F3F2F7;
+  background-repeat: repeat;
+  background-image: url('http://www.worklean.cn/back3.png');
+}
+
+.main4{
+  top:0px;
+  position: fixed; 
+  height: 100%;
+  width: 100%;
+  background-repeat: repeat;
+  background-image: url('http://www.worklean.cn/back4.png');
 }
 
 .pre_left {

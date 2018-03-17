@@ -2,6 +2,7 @@
 App({
   onLaunch: function () {
     // 展示本地存储能力
+    console.log(wx.getSystemInfoSync())
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
@@ -15,6 +16,7 @@ App({
     // 获取用户信息
     wx.getSetting({
       success: res => {
+        console.log(res)
         if (res.authSetting['scope.userInfo']) {
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
           wx.getUserInfo({
@@ -29,6 +31,22 @@ App({
               }
             }
           })
+        } else {
+          wx.authorize({
+            scope: 'scope.userInfo',
+            success() {
+              console.log('授权成功')
+            }
+          })
+        }
+
+        if (!res.authSetting['scope.writePhotosAlbum']) {
+          wx.authorize({
+            scope: 'scope.writePhotosAlbum',
+            success() {
+              console.log('授权成功')
+            }
+          })
         }
       }
     })
@@ -36,9 +54,10 @@ App({
   globalData: {
     defaultCanvasHeight:450,
     bgImages: [
-      { width:56, height:28, data:"",color:"#FFF"},
-      { width: 56, height: 28, data: "", color: "#F8F2E2" },
-      { width: 56, height: 28, data: "", color: "#F3F2F7" },
+      { width: 56, height: 28, data: "", color: "FFF", bg: '', img:''},
+      { width: 56, height: 28, data: "", color: "F8F2E2", bg: '', img: ''},
+      { width: 56, height: 28, data: "", color: '', bg: "bg3.png", img: '' },
+      { width: 240, height: 240, data: "", color: '', bg: "bg4.png", img: 'bgimg4.png' },
     ],
     textColor: '#282A2D',
     textSize:16,
@@ -57,9 +76,10 @@ App({
     footerHeight:60,
 
     currentBg: 1,
-    maxBg: 3,
+    maxBg: 4,
     userInfo: null,
     width: wx.getSystemInfoSync().windowWidth,
     height: wx.getSystemInfoSync().windowHeight,
+    ratio: wx.getSystemInfoSync().pixelRatio,
   }
 })

@@ -7,25 +7,61 @@ Page({
   data: {
     error : '',
     imageUrl: '',
-    showImage: false,
-    showCanvas: true,
+    showImage: true,
+    showCanvas: false,
     bgColor: app.globalData.bgImages[app.globalData.currentBg-1].color,
+    bg: app.globalData.bgImages[app.globalData.currentBg - 1].bg,
+    bgImg: app.globalData.bgImages[app.globalData.currentBg - 1].img,
     width: app.globalData.width,
     height: app.globalData.height,
     canvasHeight: app.globalData.defaultCanvasHeight,
+    ratio: app.globalData.ratio,
     content: '',
     autoHeight: true
   },
   onLoad: function (options) {
-    this.setData({
-      bgColor: app.globalData.bgImages[app.globalData.currentBg-1].color,
-      content: options.content,
+    wx.showLoading({
+      title: '正在生成图片',
+      mask: true,
     })
     this.setData({
       bgColor: app.globalData.bgImages[app.globalData.currentBg - 1].color,
+      bg: app.globalData.bgImages[app.globalData.currentBg - 1].bg,
+      bgImg: app.globalData.bgImages[app.globalData.currentBg - 1].img,
+      content: options.content,
     })
+    console.log(this.data)
+    var that = this
+    wx.request({
+      url: 'https://www.worklean.cn/icard/transPng', //仅为示例，并非真实的接口地址
+      data: {
+        content: this.data.content,
+        bgcolor: this.data.bgColor,
+        bg: this.data.bg,
+        bgimg: this.data.bgImg,
+        width: this.data.width,
+        height: this.data.height,
+        ratio: this.data.ratio,
+      },
+      method: 'POST',
+      dataType: 'json',
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        console.log(res.data)
+        that.setData({
+          imageUrl: res.data.url,
+        })
+      },
+      complete:function(res) {
+        wx.hideLoading()
+      }
+    })
+    
   },
   onReady: function() {
+    return;
     wx.showLoading({
       title: '正在生成图片',
       mask: true,
@@ -164,34 +200,6 @@ Page({
     wx.previewImage({
       current: '',
       urls: [this.data.imageUrl],
-      fail:function() {
-        //wx.showToast({
-          //title: "failt:" + res,
-        //})
-      },
-      success:function(res) {
-        //wx.showToast({
-        //  title: "success:" + res,
-        //})
-        return;
-          wx.canvasToTempFilePath({
-            canvasId: 'cardCanvas',
-            complete: function (res) {
-              //console.log(res)
-              //var filepath = res.tempFilePath
-              //that.setData({ imageUrl: filepath })
-              //wx.showToast({
-              //  title: 'c:' + filepath,
-              //})
-            },
-            success: function (res) {
-              console.log(res)
-              wx.showToast({
-                title: 's:' + that.data.canvasHeight,
-              })
-            }
-          })
-      }
     })
   },
 
@@ -201,31 +209,38 @@ Page({
 
   saveCard: function (e) {
     var that = this
-    // wx.canvasToTempFilePath({
-    //   canvasId: 'cardCanvas',
-    //   complete: function (res) {
-    //     console.log(res)
-    //   },
-    //   success: function (res) {
-    //     console.log(res)
-    //     var filepath = res.tempFilePath
-        wx.saveImageToPhotosAlbum({
-          filePath: this.data.imageUrl,
-          success:
-          function (data) {
-            wx.showToast({
-              title: '保存卡片成功',
-            })
-          },
-          fail:
-          function (err) {
-            wx.showToast({
-              title: '保存卡片失败:' + err,
-            })
-            console.log(err);
-          }
-        })
-    //   }
-    // })
+    wx.showLoading({
+      title: '正在保存卡片',
+      mask: true,
+    })
+    wx.downloadFile({
+      url: that.data.imageUrl, 
+      success: function (res) {
+        if (res.statusCode === 200) {
+           wx.hideLoading()
+           var filePath = res.tempFilePath
+           console.log(res.tempFilePath)
+           wx.saveImageToPhotosAlbum({
+             filePath: filePath,
+             success:
+             function (data) {
+               wx.showToast({
+                 title: '保存卡片成功',
+               })
+             },
+             fail:
+             function (err) {
+               wx.showToast({
+                 title: '保存卡片失败:' + err,
+               })
+               console.log(err);
+             }
+           })
+        }
+      },
+      complete:function(res) {
+        wx.hideLoading()
+      }
+    })
   },
 })

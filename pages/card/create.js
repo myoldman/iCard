@@ -12,8 +12,13 @@ Page({
     currentStyle:'',
     nextStyle:'',
     currentBg: 'current',
+    bgImageUrl: '',
     width: app.globalData.width,
     height: app.globalData.height,
+    ratio: app.globalData.ratio,
+    bgImgWidth:0,
+    bgImageHeight:0,
+    bgImgUrl: "../image/" + app.globalData.bgImages[app.globalData.currentBg - 1].img,
     lastX: 0,
     lastY: 0,
     currentGesture: 0,
@@ -71,7 +76,7 @@ Page({
     });
   },
   leftScroll:function() {
-    var leftScrollStyle = 'transition: transform 500ms linear 0ms; transform: translateX(' + this.data.width + 'px); transform-origin: 50% 50% 0px;'
+    var leftScrollStyle = 'transition: transform 200ms linear 0ms; transform: translateX(' + this.data.width + 'px); transform-origin: 50% 50% 0px;'
     if (this.data.currentBg == 'current') {
       this.setData({
         currentBg: 'next',
@@ -106,7 +111,7 @@ Page({
   },
 
   rightScroll:function() {
-    var rightScrollStyle = 'transition: transform 500ms linear 0ms; transform: translateX(-' + this.data.width + 'px); transform-origin: 50% 50% 0px;'
+    var rightScrollStyle = 'transition: transform 200ms linear 0ms; transform: translateX(-' + this.data.width + 'px); transform-origin: 50% 50% 0px;'
     if (this.data.currentBg == 'current') {
       this.setData({
         currentBg: 'next',
@@ -165,6 +170,9 @@ Page({
     }
     this.data.currentGesture = 0
     this.setData({
+      bgImgWidth: app.globalData.bgImages[app.globalData.currentBg - 1].width,
+      bgImgHeight: app.globalData.bgImages[app.globalData.currentBg - 1].height,
+      bgImgUrl: "../image/" + app.globalData.bgImages[app.globalData.currentBg - 1].img,
       text: "没有滑动",
     });
   },
