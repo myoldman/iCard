@@ -13,6 +13,7 @@ Page({
     })
   },
   onLoad: function () {
+    console.log(app.globalData.userInfo)
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,

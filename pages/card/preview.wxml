@@ -6,6 +6,6 @@
 保存图片
   
   </cover-view> -->
- <button id="backButton" style="position:fixed;width:90%;margin-left:5%;bottom:10px;" bindtap='saveCard' class="'zan-btn zan-btn--primary">保存图片{{error}}</button>
+ <button id="backButton" style="position:fixed;width:90%;margin-left:5%;bottom:10px;" bindtap='saveCard' class="previewButton zan-btn zan-btn--primary">保存图片{{error}}</button>
     <!-- <button id="backButton" style="position:fixed;width:90%;margin-left:5%;bottom:10px;" bindtap='editCard' class="'zan-btn">修改卡片</button>  -->
 </view>

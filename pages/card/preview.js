@@ -17,6 +17,7 @@ Page({
     imgHeight: app.globalData.height - 45 -45,
     canvasHeight: app.globalData.defaultCanvasHeight,
     ratio: app.globalData.ratio,
+    userInfo: app.globalData.userInfo,
     content: '',
     autoHeight: true
   },

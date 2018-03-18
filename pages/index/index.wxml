@@ -1,5 +1,5 @@
 <view class="main" style='height:{{height-50}}px' >
-  <image src='../image/createCard.png' class='imageCreate' mode='aspectFit' bindtap='createCard'></image>
+  <image src='../image/createCard.png' id="createCard" class='imageCreate' mode='aspectFit' bindtap='createCard'></image>
 </view>
 <view class="footer">
   <p>感谢使用卡片创作助手1.0</p>
