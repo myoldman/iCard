@@ -18,13 +18,35 @@ Page({
     ratio: app.globalData.ratio,
     bgImgWidth:0,
     bgImageHeight:0,
-    bgImgUrl: "../image/" + app.globalData.bgImages[app.globalData.currentBg - 1].img,
+    bgImgUrl: '',
     lastX: 0,
     lastY: 0,
     currentGesture: 0,
   },
 
   onLoad: function () {
+    app.globalData.currentBg = 1
+    this.setData(
+      {
+        currentBgCss: 'main1',
+        nextBgCss: 'main1',
+        currentCss: '',
+        nextCss: 'next_right',
+        currentStyle: '',
+        nextStyle: '',
+        currentBg: 'current',
+        bgImageUrl: '',
+        width: app.globalData.width,
+        height: app.globalData.height,
+        ratio: app.globalData.ratio,
+        bgImgWidth: 0,
+        bgImageHeight: 0,
+        bgImgUrl: '',
+        lastX: 0,
+        lastY: 0,
+        currentGesture: 0,
+      }
+    )
   },
 
   onShow:function() {
@@ -169,10 +191,14 @@ Page({
       }
     }
     this.data.currentGesture = 0
+    var bgImgUrl = ''
+    if (app.globalData.bgImages[app.globalData.currentBg - 1].img && app.globalData.bgImages[app.globalData.currentBg - 1].img.length > 0) {
+      bgImgUrl = "../image/" + app.globalData.bgImages[app.globalData.currentBg - 1].img
+    }
     this.setData({
       bgImgWidth: app.globalData.bgImages[app.globalData.currentBg - 1].width,
       bgImgHeight: app.globalData.bgImages[app.globalData.currentBg - 1].height,
-      bgImgUrl: "../image/" + app.globalData.bgImages[app.globalData.currentBg - 1].img,
+      bgImgUrl: bgImgUrl,
       text: "没有滑动",
     });
   },

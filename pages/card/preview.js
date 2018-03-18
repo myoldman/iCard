@@ -14,6 +14,7 @@ Page({
     bgImg: app.globalData.bgImages[app.globalData.currentBg - 1].img,
     width: app.globalData.width,
     height: app.globalData.height,
+    imgHeight: app.globalData.height - 45 -45,
     canvasHeight: app.globalData.defaultCanvasHeight,
     ratio: app.globalData.ratio,
     content: '',
@@ -194,7 +195,14 @@ Page({
   onShow: function () {
     
   },
-
+  previewImageLoaded:function(event) {
+    console.log(event)
+    var imgHeight = event.detail.height
+    var imgWidth = event.detail.width
+    if(imgHeight/this.data.ratio < (this.data.height - 45 - 45)) {
+      this.setData({ imgHeight: imgHeight / this.data.ratio })
+    }
+  },
   previewCard: function() {
     var that = this
     wx.previewImage({
