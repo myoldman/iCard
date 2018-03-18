@@ -187,6 +187,8 @@ Page({
   },
 
   handletouchtart: function (event) {
+    console.log("start:" + event.touches[0].pageX)
+
     this.setData({
       lastX: event.touches[0].pageX,
       lastY: event.touches[0].pageY,
@@ -194,6 +196,7 @@ Page({
   },
 
   handletouchend: function (event) {
+    console.log("end:" + event)
     console.log("end:" + this.data.currentGesture)
     if (this.data.currentGesture == 1) {
       if (app.globalData.currentBg >= app.globalData.maxBg) {
