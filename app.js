@@ -57,7 +57,7 @@ App({
       { width: 56, height: 28, data: "", color: "FFF", bg: '', img:''},
       { width: 56, height: 28, data: "", color: "F8F2E2", bg: '', img: ''},
       { width: 56, height: 28, data: "", color: '', bg: "bg3.png", img: '' },
-      { width: 240, height: 240, data: "", color: '', bg: "bg4.png", img: 'bgimg4.png' },
+      { width: 210, height: 240, data: "", color: 'F1EEE7', bg: "", img: 'bgimg4.png' },
     ],
     textColor: '#282A2D',
     textSize:16,
