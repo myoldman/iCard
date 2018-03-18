@@ -60,6 +60,8 @@ Page({
   },
 
   handletouchmove: function (event) {
+    console.log("move:" + this.data.currentGesture)
+
     if (this.data.currentGesture != 0) {
       return
     }
@@ -72,29 +74,41 @@ Page({
     if (Math.abs(tx) > Math.abs(ty)) {
       if (tx < 0) {
         text = "向左滑动"
-        this.data.currentGesture = 1
+        this.setData(
+        {
+          currentGesture : 1,
+        })
       }
       else if (tx > 0) {
         text = "向右滑动"
-        this.data.currentGesture = 2
+        this.setData(
+        {
+            currentGesture: 2,
+        })
       }
     }
     //上下方向滑动
     else {
       if (ty < 0) {
         text = "向上滑动"
-        this.data.currentGesture = 3
+        this.setData(
+        {
+          currentGesture: 3,
+        })
       }
       else if (ty > 0) {
         text = "向下滑动"
-        this.data.currentGesture = 4
+        this.setData(
+        {
+          currentGesture: 4,
+        })
       }
     }
 
     //将当前坐标进行保存以进行下一次计算
-    this.data.lastX = currentX
-    this.data.lastY = currentY
     this.setData({
+      lastX: currentX,
+      lastY: currentY,
       text: text,
     });
   },
@@ -168,12 +182,19 @@ Page({
     }
   },
 
+  handletouchcancel: function(event) {
+    console.log("cancel:" + event)
+  },
+
   handletouchtart: function (event) {
-    this.data.lastX = event.touches[0].pageX
-    this.data.lastY = event.touches[0].pageY
+    this.setData({
+      lastX: event.touches[0].pageX,
+      lastY: event.touches[0].pageY,
+    });
   },
 
   handletouchend: function (event) {
+    console.log("end:" + this.data.currentGesture)
     if (this.data.currentGesture == 1) {
       if (app.globalData.currentBg >= app.globalData.maxBg) {
         app.globalData.currentBg = 1
@@ -191,12 +212,12 @@ Page({
         this.leftScroll();
       }
     }
-    this.data.currentGesture = 0
     var bgImgUrl = ''
     if (app.globalData.bgImages[app.globalData.currentBg - 1].img && app.globalData.bgImages[app.globalData.currentBg - 1].img.length > 0) {
       bgImgUrl = "../image/" + app.globalData.bgImages[app.globalData.currentBg - 1].img
     }
     this.setData({
+      currentGesture: 0,
       bgImgWidth: app.globalData.bgImages[app.globalData.currentBg - 1].width,
       bgImgHeight: app.globalData.bgImages[app.globalData.currentBg - 1].height,
       bgImgUrl: bgImgUrl,
