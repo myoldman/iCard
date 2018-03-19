@@ -46,6 +46,7 @@ Page({
         lastX: 0,
         lastY: 0,
         currentGesture: 0,
+        userInfo: app.globalData.userInfo,
       }
     )
   },

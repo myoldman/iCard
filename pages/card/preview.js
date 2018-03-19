@@ -31,6 +31,7 @@ Page({
       bg: app.globalData.bgImages[app.globalData.currentBg - 1].bg,
       bgImg: app.globalData.bgImages[app.globalData.currentBg - 1].img,
       content: options.content,
+      userInfo: app.globalData.userInfo,
     })
     console.log(this.data)
     var that = this
