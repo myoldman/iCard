@@ -3,8 +3,7 @@
   <view id="current" class="{{currentBgCss}} {{currentCss}}" style="{{currentStyle}};background-size:{{100/ratio}}%"></view>
   <view id="next" class="{{nextBgCss}} {{nextCss}}" style="{{nextStyle}};background-size:{{100/ratio}}%"></view>
   <image style="position:fixed;top:0px;right:0px;width:{{bgImgWidth/ratio}}px;height:{{bgImgHeight/ratio}}px;" mode='aspectFit' src="{{bgImgUrl}}"></image>
-  <textarea  bindtouchcancel='handletouchcancel' catchtouchmove='handletouchmove' bindtouchstart='handletouchtart' bindtouchend='handletouchend' style='height:{{height-45-45}}px;'  maxlength="-1" class="content" show-confirm-bar='{{showConfirm}}' name='content' placeholder="左右滑动切换模板，点击输入卡片内容。"
-    placeholder-class='placeholder'></textarea>
+  <textarea bindtouchcancel='handletouchcancel' bindtouchmove='handletouchmove' bindtouchstart='handletouchtart' bindtouchend='handletouchend' style='height:{{height-45-45}}px;' maxlength="-1" class="content" show-confirm-bar='{{showConfirm}}' name='content' placeholder="左右滑动切换模板，点击输入卡片内容。支持Markdown的# 标题、> 引用、- 列表、**加粗**语法。" placeholder-class='placeholder'></textarea>
 
   <button id="genButton" style="position:fixed;width:90%;margin-left:5%;bottom:10px;" form-type='submit' class="genButton zan-btn zan-btn--primary">生成图片</button>
 
