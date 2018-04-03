@@ -22,7 +22,7 @@
   height: 100%;
   width: 100%;
   background-repeat: repeat;
-  background-image: url('http://www.worklean.cn/back3.png');
+  background-image: url('http://www.worklean.cn/bg3.png');
 }
 
 .main4{
@@ -31,7 +31,8 @@
   height: 100%;
   width: 100%;
   background-repeat: repeat;
-  background-image: url('http://www.worklean.cn/back4.png');
+  background-color: #F1EEE7;
+  /* background-image: 'url('http://www.worklean.cn/back4.png');' */
 }
 
 .pre_left {
@@ -47,4 +48,17 @@
   margin-top: 40rpx;
   margin-left: 5%;
   margin-right: 5%;
+}
+
+.bottomBar{
+  display:flex;
+  /* position:fixed; */
+  width:100%;
+  bottom:0px;
+  background-color: white;
+  border-top:1px;
+  border-top-color: gray;
+}
+.bottomBarText {
+  text-align: center;
 }
