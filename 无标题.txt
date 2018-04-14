@@ -1,0 +1,9 @@
+Apr  4 16:41:05 [29480] DBG:core:db_allocate_columns: allocate 28 bytes for result columns at 0x7f51b87dd2b8
+Apr  4 16:41:05 [29480] DBG:db_oracle:get_columns: use DB_STR result type
+Apr  4 16:41:05 [29480] DBG:core:db_allocate_rows: allocate 48 bytes for result rows and values at 0x7f51b87dcff8
+Apr  4 16:41:05 [29480] DBG:core:db_free_columns: freeing result columns at 0x7f51b87dd2b8
+Apr  4 16:41:05 [29480] DBG:core:db_free_rows: freeing 1 rows
+Apr  4 16:41:05 [29480] DBG:core:db_free_row: freeing row values at 0x7f51b87dd008
+Apr  4 16:41:05 [29480] DBG:core:db_free_row: free VAL_STR[0] 'dummy_user' at 0x7f51b87e8928
+Apr  4 16:41:05 [29480] DBG:core:db_free_rows: freeing rows at 0x7f51b87dcff8
+Apr  4 16:41:05 [29480] DBG:core:db_free_result: freeing result set at 0x7f51b87e7a58

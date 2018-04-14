@@ -1,8 +1,7 @@
-<view class="main" style='height:{{height-50}}px' >
-  <image src='../image/createCard.png' id="createCard" class='imageCreate' mode='aspectFit' bindtap='createCard'></image>
+<view class="main" style='height:{{height-40}}px' >
+  <image style='display:{{createShow}}' src='../image/createCard.png' id="createCard" class='imageCreate' mode='aspectFit' bindtap='createCard'></image>
 </view>
 <view class="footer">
-  <p>感谢使用卡片创作助手1.2</p>
-  <p>任何意见或建议加微信sisisimao交流</p>
+  <p>欢迎您，第{{userId}}位朋友</p>
  </view>
  

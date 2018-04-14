@@ -1,55 +1,48 @@
 //app.js
+var WXBizDataCrypt = require('utils/RdWXBizDataCrypt.js');
+var AppId = 'wx6136481aa72e3ce3'
 App({
   onLaunch: function () {
     // 展示本地存储能力
-    console.log(wx.getSystemInfoSync())
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-
+    var that = this
     // 登录
     wx.login({
       success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      }
-    })
-    // 获取用户信息
-    wx.getSetting({
-      success: res => {
-        console.log(res)
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.getUserInfo({
-            success: res => {
-              // 可以将 res 发送给后台解码出 unionId
-              this.globalData.userInfo = res.userInfo
-
-              // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-              // 所以此处加入 callback 以防止这种情况
-              if (this.userInfoReadyCallback) {
-                this.userInfoReadyCallback(res)
+        //发起网络请求
+        wx.request({
+          url: 'https://www.worklean.cn/icardtest/userInfo',
+          data: {
+            js_code: res.code,
+          },
+          method: 'POST',
+          dataType: 'json',
+          header: {
+            'content-type': 'application/json' // 默认值
+          },
+          success: function (res) {
+            var pc = new WXBizDataCrypt(AppId, res.data.session_key)
+            wx.getUserInfo({
+              success: function (res) {
+                var data = pc.decryptData(res.encryptedData, res.iv)
+                delete data.watermark;
+                that.globalData.userInfo = data
+                // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+                // 所以此处加入 callback 以防止这种情况
+                if (that.userInfoReadyCallback) {
+                  that.userInfoReadyCallback(data)
+                }
               }
-            }
-          })
-        } else {
-          wx.authorize({
-            scope: 'scope.userInfo',
-            success() {
-              console.log('授权成功')
-            }
-          })
-        }
-
-        if (!res.authSetting['scope.writePhotosAlbum']) {
-          wx.authorize({
-            scope: 'scope.writePhotosAlbum',
-            success() {
-              console.log('授权成功')
-            }
-          })
-        }
+            })
+          },
+          fail: function (res) { },
+          complete: function (res) { }
+        });
       }
     })
+   
   },
   globalData: {
     defaultCanvasHeight:450,

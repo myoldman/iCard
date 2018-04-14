@@ -62,3 +62,12 @@
 .bottomBarText {
   text-align: center;
 }
+.bottomBarButton {
+  margin:0px;
+  padding:0px;
+  border-radius: 2px;
+  font-size: 15px;
+  color: #FFFFFF;
+  height: 45px;
+  line-height: 45px;
+}

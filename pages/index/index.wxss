@@ -28,14 +28,11 @@
 } 
 
 .footer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  position: fixed;
+  bottom: 20px;
   font-size: 13px;
   line-height: 23px;
   color: #B7BABF;
-  vertical-align: bottom;
 }
 
 .imageCreate{

@@ -5,6 +5,7 @@ const util = require('../../utils/util.js')
 const app = getApp()
 Page({
   data: {
+    cardId: 0,
     currentBgCss: 'main1',
     nextBgCss: 'main1',
     currentCss:  '',
@@ -16,6 +17,8 @@ Page({
     width: app.globalData.width,
     height: app.globalData.height,
     ratio: app.globalData.ratio,
+    genButtonWidth: Math.floor((app.globalData.width - 55 ) *0.55),
+    saveButtonWidth: Math.floor((app.globalData.width - 55) * 0.45),
     bgImgWidth:0,
     bgImageHeight:0,
     bgImgUrl: '',
@@ -23,12 +26,42 @@ Page({
     lastY: 0,
     currentGesture: 0,
     userInfo: app.globalData.userInfo,
+    content :'',
   },
-
-  onLoad: function () {
+  onLoad: function (options) {
     app.globalData.currentBg = 1
+    var cardId = options.cardId ? options.cardId: 0;
+    var that = this
+    if(cardId != 0) {
+      wx.showLoading({
+        title: '卡片加载中',
+      })
+      
+      wx.request({
+        url: 'https://www.worklean.cn/icardtest/userInfo/getUserCard',
+        data: {cardId: cardId},
+        method: 'POST',
+        dataType: 'json',
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
+        success: function (res) {
+          wx.hideLoading();
+          if (res.data.res == 0) {
+            that.setData({ content: res.data.card.content })
+          }
+        },
+        fail: function (res) {
+          wx.hideLoading();
+        },
+        complete: function (res) {
+          //wx.hideLoading();
+        }
+      });
+    }
     this.setData(
       {
+        cardId: cardId,
         currentBgCss: 'main1',
         nextBgCss: 'main1',
         currentCss: '',
@@ -55,9 +88,56 @@ Page({
   },
 
   preivewCard: function (e) {
-    wx.navigateTo({
-      url: 'preview?content=' + e.detail.value.content,
+    var that = this
+    if (!e.detail.value.content || e.detail.value.content.length <= 0 || e.detail.value.content.length > 2000){
+      wx.showToast({
+        title: '输入内容最少20\n最多1000个字符',
+        icon:'none',
+      })
+      return;
+    }
+    wx.showLoading({
+      title: '卡片保存中',
     })
+    var queryParam = { userid: app.globalData.userInfo.id, content: e.detail.value.content };
+    var queryUrl ='https://www.worklean.cn/icardtest/userInfo/saveUserCard'
+    if(this.data.cardId != 0) {
+      queryUrl = 'https://www.worklean.cn/icardtest/userInfo/updateUserCard'
+      queryParam = { cardId: this.data.cardId, content: e.detail.value.content };
+    } 
+    wx.request({
+      url: queryUrl,
+      data: queryParam,
+      method: 'POST',
+      dataType: 'json',
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        wx.hideLoading();
+        if (res.data.res == 0) {
+          wx.showToast({
+            title: '保存卡片成功',
+          })
+          if(that.data.cardId == 0)
+            that.setData({cardId: res.data.id})
+          if (e.detail.target.id == "genButton") {
+            wx.navigateTo({
+              url: 'preview?content=' + e.detail.value.content,
+            })
+          } else {
+            wx.navigateBack({
+            })
+          }
+        }
+      },
+      fail: function (res) {
+        wx.hideLoading();
+      },
+      complete: function (res) {
+        //wx.hideLoading();
+      }
+    });
   },
 
   handletouchmove: function (event) {

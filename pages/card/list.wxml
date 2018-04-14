@@ -1,0 +1,25 @@
+<image class="cardCreate" bindtap='createCard' style='height:{{186/ratio}}px;width:{{186/ratio}}px;' src="../image/plus.png"></image>
+<view bindtap='hidePopup' class="main" style='opacity:{{opacity}};top:0px;height:{{height}}px'>
+  <view class='group' wx:key="title" wx:for="{{cardList}}" wx:for-index="idx" wx:for-item="group">
+    <view class="{{ idx == 0? 'groupTitle':'groupTitleNoPadding'}}">{{group.title}}</view>
+    <view  id='{{card.id}}' class='content' wx:key="id"  wx:for="{{group.cards}}" wx:for-index="idy" wx:for-item="card">
+      <view data-id='{{card.id}}'  bindtap='editCard' data-index='{{idy}}' data-group='{{idx}}' bindtouchstart="cardTouchStart" bindtouchmove="cardTouchMove" bindtouchend="cardTouchEnd" class="contentLeft" style='{{card.txtStyle}};width:{{width-2*12}}px'>
+        <view class='cardTitle'>
+          <text>卡片 {{card.id}}</text>
+          <text class='cardSep'></text>
+          <text>{{card.create_date}}</text>
+        </view>
+        <view class='cardContent'>{{card.content}}</view>
+      </view>
+      <view class='contentRight' id='{{card.id}}' bindtap='deleteCard'>
+        <image src='../image/delete.png'  class="deleteCardImg"></image>
+      </view>
+    </view>
+ 
+  </view>
+  <view class="noData" hidden='{{!noData}}'>写张卡片，记录你的思考</view>
+  <view class="noMore" style='height:{{33/ratio}}px;' hidden='{{!noMore}}'><image src="../image/noMore.png" class="noMoreImg" mode='aspectFit' style='display:inline;height:{{33/ratio}}px;width:{{275/ratio}}px;'></image></view>
+  <image mode='center' hidden='{{!bottomLoading}}' class='bottomLoading' src="../image/loading.gif"></image>
+  </view>
+<view class="footer" hidden='{{!showFooter}}'>已有{{userInfo.id}}位用户使用助手创作卡片</view>
+ 

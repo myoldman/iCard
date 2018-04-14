@@ -1,14 +1,15 @@
 {
   "pages":[
-    "pages/index/index",
+    "pages/card/list",
     "pages/logs/logs",
     "pages/card/create",
     "pages/card/preview"
   ],
   "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
+    "backgroundTextStyle":"dark",
+    "backgroundColor": "#F6F6F7",        
+    "navigationBarBackgroundColor": "#30CEAC",
     "navigationBarTitleText": "卡片创作助手",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle":"white"
   }
 }
