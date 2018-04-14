@@ -89,7 +89,6 @@ Page({
         group.cards[i].rightWidth = 0;
       }
     }
-    console.log(cardList)
     this.setData({ cardList: cardList })  
   },
 
@@ -98,13 +97,7 @@ Page({
       url: 'create?cardId=' + e.currentTarget.dataset.id,
     })
   },
-  popupCard: function(e) {
-    console.log(e.currentTarget);
-    this.setData({ opacity:0.5, currentSelectedCard: e.currentTarget.id, popMenuShow:true});
-  },
-  showDeleteCard:function(e){
-    this.setData({ popMenuShow: false, confirmShow:true });
-  },
+
   loadCards:function() {
     var that = this
     wx.request({
@@ -131,7 +124,7 @@ Page({
           }
           that.setData({ cardList: origCardList });
         }
-        console.log(res.data)
+
         var totalCards = res.data.totalCards;
         var currentCards = res.data.cards;
         if (totalCards < 4 && totalCards > 0) {
@@ -222,11 +215,9 @@ Page({
         });
       }
     }
-    console.log("onload")
   },
 
   onShow: function () {
-    console.log("onShow")
     if (this.data.userInfo !=null && this.data.userInfo.id != null && this.data.userInfo.id > 0) {
       wx.startPullDownRefresh({
       })
@@ -239,7 +230,6 @@ Page({
   },
   onReachBottom: function() {
     if(this.data.noMore) {
-      console.log("noMore")
     } else {
       var that = this
       that.setData({
@@ -256,7 +246,6 @@ Page({
         //设置触摸起始点水平方向位置  
         startX: e.touches[0].clientX
       });
-      console.log(this.data.startX)
     }
   },
 
@@ -264,7 +253,6 @@ Page({
     if (e.touches.length == 1) {
       //手指移动时水平方向位置  
       var moveX = e.touches[0].clientX;
-      console.log(moveX)
       //手指起始点位置与移动期间的差值  
       var disX = this.data.startX - moveX;
       var delBtnWidth = this.data.delBtnWidth;
@@ -279,7 +267,6 @@ Page({
         }
       }
       //获取手指触摸的是哪一项 
-      console.log(txtStyle)
       var index = e.currentTarget.dataset.index;
       var group = e.currentTarget.dataset.group;
       var cardList = this.data.cardList;
@@ -291,8 +278,6 @@ Page({
       this.setData({
         cardList: cardList
       });
-
-      console.log(cardList)
     }
   },
 

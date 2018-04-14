@@ -1,5 +1,5 @@
 /**app.wxss**/
-@import "dist/index.wxss";
+/* @import "dist/index.wxss"; */
 
 page{
   font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
