@@ -60,7 +60,7 @@
   border: 1px solid rgba(210, 212, 215, 1);
 }
 .bottomGenBarButton{
-  font-size: 13px;
+  font-size: 26rpx;
   padding:0px;
   margin-left: 10px;
   margin-top: 12px;
@@ -78,7 +78,7 @@
   width: 80px;
   height: 40px;
   border-radius: 2px;
-  font-size: 15px;
+  font-size: 30rpx;
   line-height: 40px;
   color:#FFFFFF;
   background-color: rgba(48, 206, 172, 1);
@@ -96,7 +96,7 @@
   margin:0px;
   padding:0px;
   border-radius: 2px;
-  font-size: 15px;
+  font-size: 30rpx;
   color: #FFFFFF;
   height: 45px;
   line-height: 45px;

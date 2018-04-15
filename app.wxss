@@ -3,10 +3,10 @@
 
 page{
   font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
-  font-size: 16px;
+  font-size: 32rpx;
   line-height: 32px;
   color: #282A2D;
-      background-color: #F6F6F7;
+  background-color: #F6F6F7;
 }
 
 .placeholder {

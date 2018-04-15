@@ -30,7 +30,7 @@
 .footer {
   position: fixed;
   bottom: 20px;
-  font-size: 13px;
+  font-size: 26rpx;
   line-height: 23px;
   color: #B7BABF;
 }

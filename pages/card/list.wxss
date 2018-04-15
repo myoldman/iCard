@@ -7,19 +7,17 @@
 }
 .groupTitle{
   color: #B7BABF;
-    margin-left: 12px; 
+  margin-left: 12px; 
   /* padding-top:12px; */
-  font-family: 'PingFangSC-Regular';
-  font-size: 12px;
+  font-size: 24rpx;
   height:17px;
   line-height: 17px;
 }
 .groupTitleNoPadding {
-    margin-left: 12px; 
+  margin-left: 12px; 
   color: #B7BABF;
   padding-top:0px;
-  font-family: 'PingFangSC-Regular';
-  font-size: 12px;
+  font-size: 24rpx;
   height:17px;
   line-height: 17px;
 }
@@ -63,10 +61,11 @@
   width: 72px;
   height: 83px;
   padding: 0px;
+  margin-right:20px;
 }
 .cardContent{
   color: #282A2D;
-  font-size: 15px;
+  font-size: 30rpx;
   height: 21px;
   line-height: 21px;
   padding-top:10px;
@@ -76,7 +75,7 @@
 .cardTitle{
   height: 17px;
   line-height: 17px;
-  font-size: 12px;
+  font-size: 24rpx;
   color: #B7BABF;
   padding-top:15px;
   padding-left: 20px;
@@ -106,7 +105,7 @@
 }
 .noData{
   text-align: center;
-  font-size: 15px;
+  font-size: 30rpx;
   color: #B7BABF;
   padding-top:150px;
   line-height: 21px;
@@ -114,7 +113,7 @@
 }
 .noMore{
   text-align: center;
-  font-size: 12px;
+  font-size: 24rpx;
   color: #B7BABF;
   margin-top: 40px;
   padding: 0px;
@@ -137,8 +136,7 @@
   vertical-align: middle;
   height:53px;
   line-height: 53px;
-  font-family: PingFangSC-Regular;
-  font-size: 15px;
+  font-size: 30rpx;
   color: rgba(0,0,0,0.87);
   border-bottom: solid 1px #D8D8D8;
   padding-left: 25px;
@@ -147,8 +145,7 @@
   vertical-align: middle;
   height:52px;
   line-height: 52px;
-  font-family: PingFangSC-Regular;
-  font-size: 15px;
+  font-size: 30rpx;
   color: rgba(0,0,0,0.87);
   padding-left: 25px;
 }
@@ -166,8 +163,7 @@
   vertical-align: middle;
   height:62px;
   line-height: 62px;
-  font-family: PingFangSC-Regular;
-  font-size: 15px;
+  font-size: 30rpx;
   color: rgba(0,0,0,0.87);
   border-bottom: solid 1px #D8D8D8;
   text-align: center;
@@ -178,8 +174,7 @@
   vertical-align: middle;
   height:50px;
   line-height: 50px;
-  font-family: PingFangSC-Regular;
-  font-size: 15px;
+  font-size: 30rpx;
   color: rgba(0,0,0,0.87);
 }
 
@@ -193,7 +188,7 @@
   text-align: center;
   position: fixed;
   bottom: 20px;
-  font-size: 12px;
+  font-size: 24rpx;
   line-height: 17px;
   color: #B7BABF;
   width: 100%;
