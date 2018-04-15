@@ -25,7 +25,6 @@ App({
           success: function (res) {
             var pc = new WXBizDataCrypt(AppId, res.data.session_key)
             var openId = res.data.openid
-            console.log(res)
             wx.getUserInfo({
               // withCredentials: true,
               success: function (res) {
@@ -39,7 +38,7 @@ App({
                 }
               },
               fail:function(res) {
-                if (res.errMsg == "getUserInfo:fail auth deny") {
+                if (res.errMsg.indexOf("deny") >= 0) {
                   wx.request({
                     url: 'https://www.worklean.cn/icardtest/userInfo/checkAuthDeny',
                     data: {
