@@ -50,6 +50,7 @@
   width:100%;
   margin-right:12px;
   margin-left: 12px;
+  border-radius: 4px;
 }
 .contentRight {
   z-index: 4;
