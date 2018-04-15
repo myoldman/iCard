@@ -61,7 +61,6 @@
   width: 72px;
   height: 83px;
   padding: 0px;
-  margin-right:20px;
 }
 .cardContent{
   color: #282A2D;
@@ -71,6 +70,7 @@
   padding-top:10px;
   padding-left: 20px;
   overflow: hidden;
+  margin-right:20px;
 }
 .cardTitle{
   height: 17px;
