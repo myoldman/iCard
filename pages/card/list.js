@@ -1,7 +1,14 @@
 //logs.js
 
 const util = require('../../utils/util.js')
-
+function getGroup(groupList,groupTitle) {
+  for(var i = 0; i< groupList.length; i++) {
+    if(groupList[i].title == groupTitle){
+      return groupList[i]
+    }
+  }
+  return null
+}
 const app = getApp()
 Page({
   data: {
@@ -114,12 +121,13 @@ Page({
         if (res.data.res == 0 ) {
           for (var i = 0; i < res.data.cardList.length; i++){
             var group = res.data.cardList[i];
-            if(origCardList[group.title]) {
+            var existGroup = getGroup(origCardList, group.title)
+            if (existGroup) {
               for(var j = 0; j< group.cards.length; j ++) {
-                origCardList[group.title].push(group.cards[j])
+                existGroup.cards.push(group.cards[j])
               }
             } else {
-              origCardList.push(res.data.cardList[i])
+              origCardList.push(group)
             }
           }
           that.setData({ cardList: origCardList });
@@ -187,6 +195,18 @@ Page({
     } else {
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
+      app.useInfoDenyCallBack = res => {
+        wx.hideLoading()
+        this.setData({
+          userInfo: null,
+          hasUserInfo: false,
+        })
+        wx.showModal({
+          showCancel: false,
+          title: '获取用回信息失败',
+          content: '你拒绝了授权',
+        })
+      }
       app.userInfoReadyCallback = res => {
         this.setData({
           userInfo: res,
@@ -231,8 +251,7 @@ Page({
   onReachBottom: function() {
     if(this.data.noMore) {
     } else {
-      var that = this
-      that.setData({
+      this.setData({
         bottomLoading: true,
       });
       this.setData({pageIndex:this.data.pageIndex+1})

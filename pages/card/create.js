@@ -82,12 +82,12 @@ Page({
       this.setData({ showGenBar: false});
     }
   },
-  
+
   preivewCard: function (e) {
     var that = this
-    if (!e.detail.value.content || e.detail.value.content.length <= 0 || e.detail.value.content.length > 2000){
+    if (!e.detail.value.content || e.detail.value.content.length <= 20 || e.detail.value.content.length > 2000){
       wx.showToast({
-        title: '输入内容最少20\n最多1000个字符',
+        title: '请输入20-1000个字',
         icon:'none',
       })
       return;

@@ -220,7 +220,7 @@ Page({
   saveCard: function (e) {
     var that = this
     wx.showLoading({
-      title: '正在保存卡片',
+      title: '正在保存图片',
       mask: true,
     })
     wx.downloadFile({
@@ -235,7 +235,7 @@ Page({
              success:
              function (data) {
                wx.showToast({
-                 title: '保存卡片成功',
+                 title: '保存图片成功',
                })
              },
              fail:

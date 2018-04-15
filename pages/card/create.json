@@ -1,3 +1,5 @@
 {
-  "navigationBarTitleText": "写卡片"
+  "navigationBarTitleText": "写卡片",
+  "navigationBarBackgroundColor": "#FFFFFF",
+  "navigationBarTextStyle": "black"
 }

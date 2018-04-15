@@ -1,3 +1,5 @@
 {
-  "navigationBarTitleText": "卡片预览"
+  "navigationBarTitleText": "图片预览",
+  "navigationBarBackgroundColor": "#FFFFFF",
+  "navigationBarTextStyle": "black"
 }
