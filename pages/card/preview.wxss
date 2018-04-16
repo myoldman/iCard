@@ -19,7 +19,7 @@
   border-radius: 2px;
   background-color: #30CEAC;
   color: #FFFFFF;
-  font-size: 30rpx;
+  font-size: 15px;
 }
 
 .hidden {

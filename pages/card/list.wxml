@@ -15,11 +15,11 @@
         <image src='../image/delete.png'  class="deleteCardImg"></image>
       </view>
     </view>
- 
+
   </view>
   <view class="noData" hidden='{{!noData}}'>写张卡片，记录你的思考</view>
   <view class="noMore" style='height:{{33/3}}px;' hidden='{{!noMore}}'><image src="../image/noMore.png" class="noMoreImg" mode='aspectFit' style='display:inline;height:{{33/3}}px;width:{{276/3}}px;'></image></view>
-  <view class="loading" style='height:{{144/3}}px;' hidden='{{!bottomLoading}}'>
+  <view class="loading" style='height:{{72/3}}px;' hidden='{{!bottomLoading}}'>
   <image  class='bottomLoading' src="../image/loading.gif"></image></view>
   </view>
 <view class="footer" hidden='{{!showFooter}}'>已有{{userInfo.id}}位用户使用助手创作卡片</view>
