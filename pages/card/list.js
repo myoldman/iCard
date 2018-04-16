@@ -261,6 +261,7 @@ Page({
           wx.hideLoading();
           app.globalData.userInfo.id = res.data.id
           app.globalData.userInfo.cards = res.data.cards
+          app.globalData.userInfo.maxUser = res.data.maxUser
           that.setData({ userInfo: app.globalData.userInfo})
           wx.startPullDownRefresh({});
         },
@@ -299,6 +300,8 @@ Page({
             wx.hideLoading();
             app.globalData.userInfo.id = res.data.id
             app.globalData.userInfo.cards = res.data.cards
+            app.globalData.userInfo.maxUser = res.data.maxUser
+            console.log(res.data)
             that.setData({ userInfo: app.globalData.userInfo })
             wx.startPullDownRefresh({})
           },

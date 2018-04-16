@@ -5,7 +5,7 @@
     <view  id='{{card.id}}' class='content' wx:key="id"  wx:for="{{group.cards}}" wx:for-index="idy" wx:for-item="card">
       <view data-id='{{card.id}}'  bindtap='editCard' data-index='{{idy}}' data-group='{{idx}}' bindtouchstart="cardTouchStart" bindtouchmove="cardTouchMove" bindtouchend="cardTouchEnd" class="contentLeft" style='{{card.txtStyle}};width:{{width-2*12}}px'>
         <view class='cardTitle'>
-          <text>卡片 {{card.id}}</text>
+          <text>卡片 {{card.card_num}}</text>
           <text class='cardSep'></text>
           <text>{{card.create_date}}</text>
         </view>
@@ -22,5 +22,5 @@
   <view class="loading" style='height:{{72/3}}px;' hidden='{{!bottomLoading}}'>
   <image  class='bottomLoading' src="../image/loading.gif"></image></view>
   </view>
-<view class="footer" hidden='{{!showFooter}}'>已有{{userInfo.id}}位用户使用助手创作卡片</view>
+<view class="footer" hidden='{{!showFooter}}'>已有{{userInfo.maxUser}}位用户使用助手创作卡片</view>
  
