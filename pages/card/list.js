@@ -23,7 +23,7 @@ Page({
     popMenuShow: false,
     confirmShow: false,
     pageIndex:1,
-    pageCount: 5,
+    pageCount: 8,
     opacity:1,
     cardList:[
       // { title:"本月", cards:[
