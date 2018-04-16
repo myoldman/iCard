@@ -3,8 +3,8 @@
 
 page{
   font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
-  font-size: 32rpx;
-  line-height: 32px;
+  font-size: 15px;
+  line-height: 21px;
   color: #282A2D;
   background-color: #F6F6F7;
 }
