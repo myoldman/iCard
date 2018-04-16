@@ -39,62 +39,10 @@ App({
               },
               fail:function(res) {
                 if (res.errMsg.indexOf("deny") >= 0) {
-                  wx.request({
-                    url: 'https://www.worklean.cn/icardtest/userInfo/checkAuthDeny',
-                    data: {
-                      openId: openId,
-                    },
-                    method: 'POST',
-                    dataType: 'json',
-                    header: {
-                      'content-type': 'application/json' // 默认值
-                    },
-                    success: function (checkRes) {
-                      if(checkRes.data.alreadyDeny == false) {
-                        if (that.useInfoDenyCallBack) {
-                          that.useInfoDenyCallBack(checkRes)
-                        }
-                      } else {
-                        wx.openSetting({
-                          success: function (data) {
-                            if(data) {
-                              if (data.authSetting["scope.userInfo"] == true){
-                                wx.getUserInfo({
-                                  // withCredentials: true,
-                                  success: function (retryData) {
-                                    var data = pc.decryptData(retryData.encryptedData, retryData.iv)
-                                    delete data.watermark;
-                                    that.globalData.userInfo = data
-                                    // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-                                    // 所以此处加入 callback 以防止这种情况
-                                    if (that.userInfoReadyCallback) {
-                                      that.userInfoReadyCallback(data)
-                                    }
-                                  },
-                                  fail: function(retryData) {
-                                    if(that.useInfoDenyCallBack) {
-                                      that.useInfoDenyCallBack(retryData)
-                                    }
-                                  }
-                                });
-                              } else {
-                                if (that.useInfoDenyCallBack) {
-                                  that.useInfoDenyCallBack(data)
-                                }
-                              }
-                            }
-                          },
-                          fail: function () {
-                            console.info("设置失败返回数据");
-                          }
-                        })
-                      }
-                    }, 
-                    fail: function (checkRes) {
-                    }
-                  });
-                }
-                
+                  if (that.useInfoDenyCallBack) {
+                    that.useInfoDenyCallBack(null)
+                  }
+                } 
               }
             })
           },

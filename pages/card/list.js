@@ -1,5 +1,6 @@
 //logs.js
-
+var WXBizDataCrypt = require('../../utils/RdWXBizDataCrypt.js');
+var AppId = 'wx6136481aa72e3ce3'
 const util = require('../../utils/util.js')
 function getGroup(groupList,groupTitle) {
   for(var i = 0; i< groupList.length; i++) {
@@ -9,6 +10,14 @@ function getGroup(groupList,groupTitle) {
   }
   return null
 }
+
+function isEmptyObject(e) {
+  var t;
+  for (t in e)
+    return !1;
+  return !0
+}
+
 const app = getApp()
 Page({
   data: {
@@ -38,7 +47,76 @@ Page({
     bottomLoading: false,
     currentSelectedCard : 0,
   },
-  
+  checkStatus:function() {
+    var that = this;
+    // 判断是否是第一次授权，非第一次授权且授权失败则进行提醒
+    wx.getSetting({
+      success: function success(res) {
+        var authSetting = res.authSetting;
+        if (isEmptyObject(authSetting)) {
+          console.log('首次授权');
+        } else {
+          console.log('不是第一次授权', authSetting);
+          // 没有授权的提醒
+          if (authSetting['scope.userInfo'] === false) {
+            wx.hideLoading()
+            wx.showModal({
+              title: '用户未授权',
+              content: '如需正常使用卡片功能，请按确定并在授权管理中选中“用户信息”，然后点按确定。最后再重新进入小程序即可正常使用。',
+              showCancel: false,
+              success: function (res) {
+                if (res.confirm) {
+                  console.log('用户点击确定')
+                  wx.openSetting({
+                    success: function success(openSettingRes) {
+                      // 重新登录
+                      wx.login({
+                        success: res => {
+                          //发起网络请求
+                          wx.request({
+                            url: 'https://www.worklean.cn/icardtest/userInfo',
+                            data: {
+                              js_code: res.code,
+                            },
+                            method: 'POST',
+                            dataType: 'json',
+                            header: {
+                              'content-type': 'application/json' // 默认值
+                            },
+                            success: function (res) {
+                              var pc = new WXBizDataCrypt(AppId, res.data.session_key)
+                              var openId = res.data.openid
+                              wx.getUserInfo({
+                                // withCredentials: true,
+                                success: function (res) {
+                                  var data = pc.decryptData(res.encryptedData, res.iv)
+                                  delete data.watermark;
+                                  app.globalData.userInfo = data
+                                  that.setData({userinfo:data, hasuserInfo:true})
+                                  that.onLoad()
+                                },
+                                fail: function (res) {
+                                  console.log(res)
+                                }
+                              })
+                            },
+                            fail: function (res) { },
+                            complete: function (res) { }
+                          });
+                        }
+                      })
+                    }
+                  });
+                }
+              }
+            })
+          } else {
+
+          }
+        }
+      }
+    });
+  },
   createCard: function () {
     wx.navigateTo({
       url: '../card/create'
@@ -201,11 +279,8 @@ Page({
           userInfo: null,
           hasUserInfo: false,
         })
-        wx.showModal({
-          showCancel: false,
-          title: '获取用回信息失败',
-          content: '你拒绝了授权',
-        })
+        this.checkStatus()
+        app.useInfoDenyCallBack = null
       }
       app.userInfoReadyCallback = res => {
         this.setData({
@@ -241,6 +316,8 @@ Page({
     if (this.data.userInfo !=null && this.data.userInfo.id != null && this.data.userInfo.id > 0) {
       wx.startPullDownRefresh({
       })
+    }else if(this.data.userInfo == null) {
+      this.checkStatus()
     }
   },
 
