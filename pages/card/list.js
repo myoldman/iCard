@@ -2,9 +2,9 @@
 var WXBizDataCrypt = require('../../utils/RdWXBizDataCrypt.js');
 var AppId = 'wx6136481aa72e3ce3'
 const util = require('../../utils/util.js')
-function getGroup(groupList,groupTitle) {
-  for(var i = 0; i< groupList.length; i++) {
-    if(groupList[i].title == groupTitle){
+function getGroup(groupList, groupTitle) {
+  for (var i = 0; i < groupList.length; i++) {
+    if (groupList[i].title == groupTitle) {
       return groupList[i]
     }
   }
@@ -22,19 +22,19 @@ const app = getApp()
 Page({
   data: {
     initLeft: 12,
-    delBtnWidth: 20+20+32,
-    startX:0,
-    ratio:app.globalData.ratio,
-    width:app.globalData.width,
-    noMore:false,
-    noData:false,
-    showFooter:false,
+    delBtnWidth: 20 + 20 + 32,
+    startX: 0,
+    ratio: app.globalData.ratio,
+    width: app.globalData.width,
+    noMore: false,
+    noData: false,
+    showFooter: false,
     popMenuShow: false,
     confirmShow: false,
-    pageIndex:1,
+    pageIndex: 1,
     pageCount: 8,
-    opacity:1,
-    cardList:[
+    opacity: 1,
+    cardList: [
       // { title:"本月", cards:[
       //   {id:1, content:"# 张大春谈秋夜", update_date:"2018-04-06 10:11:12"},
       //   { id: 2, content: "# 张大春谈秋夜", update_date: "2018-04-06 9:11:12" }
@@ -45,9 +45,9 @@ Page({
     userInfo: app.globalData.userInfo,
     height: app.globalData.height,
     bottomLoading: false,
-    currentSelectedCard : 0,
+    currentSelectedCard: 0,
   },
-  checkStatus:function() {
+  checkStatus: function () {
     var that = this;
     // 判断是否是第一次授权，非第一次授权且授权失败则进行提醒
     wx.getSetting({
@@ -92,7 +92,7 @@ Page({
                                   var data = pc.decryptData(res.encryptedData, res.iv)
                                   delete data.watermark;
                                   app.globalData.userInfo = data
-                                  that.setData({userinfo:data, hasuserInfo:true})
+                                  that.setData({ userinfo: data, hasuserInfo: true })
                                   that.onLoad()
                                 },
                                 fail: function (res) {
@@ -123,11 +123,11 @@ Page({
     })
   },
 
-  hidePopup:function() {
-    this.setData({ opacity: 1, currentSelectedCard: 0, popMenuShow: false, confirmShow:false });
+  hidePopup: function () {
+    this.setData({ opacity: 1, currentSelectedCard: 0, popMenuShow: false, confirmShow: false });
   },
 
-  deleteCard:function(e){
+  deleteCard: function (e) {
     var cardId = e.currentTarget.id
     var that = this
     wx.showModal({
@@ -158,23 +158,23 @@ Page({
             }
           });
         } else if (res.cancel) {
-          
+
         }
       }
     })
-    
+
   },
 
-  initDisplay:function() {
+  initDisplay: function () {
     var cardList = this.data.cardList
     for (var i = 0; i < cardList.length; i++) {
       var group = cardList[i]
       for (var j = 0; j < group.cards.length; j++) {
-        group.cards[i].leftWidth = this.data.width-12*2;
+        group.cards[i].leftWidth = this.data.width - 12 * 2;
         group.cards[i].rightWidth = 0;
       }
     }
-    this.setData({ cardList: cardList })  
+    this.setData({ cardList: cardList })
   },
 
   editCard: function (e) {
@@ -183,11 +183,11 @@ Page({
     })
   },
 
-  loadCards:function() {
+  loadCards: function () {
     var that = this
     wx.request({
       url: 'https://www.worklean.cn/icardtest/userInfo/getUserCards',
-      data: { userid: app.globalData.userInfo.id, pageIndex: this.data.pageIndex, pageCount:this.data.pageCount},
+      data: { userid: app.globalData.userInfo.id, pageIndex: this.data.pageIndex, pageCount: this.data.pageCount },
       method: 'POST',
       dataType: 'json',
       header: {
@@ -196,12 +196,12 @@ Page({
       success: function (res) {
         wx.stopPullDownRefresh()
         var origCardList = that.data.cardList
-        if (res.data.res == 0 ) {
-          for (var i = 0; i < res.data.cardList.length; i++){
+        if (res.data.res == 0) {
+          for (var i = 0; i < res.data.cardList.length; i++) {
             var group = res.data.cardList[i];
             var existGroup = getGroup(origCardList, group.title)
             if (existGroup) {
-              for(var j = 0; j< group.cards.length; j ++) {
+              for (var j = 0; j < group.cards.length; j++) {
                 existGroup.cards.push(group.cards[j])
               }
             } else {
@@ -214,14 +214,14 @@ Page({
         var totalCards = res.data.totalCards;
         var currentCards = res.data.cards;
         if (totalCards < 4 && totalCards > 0) {
-          that.setData({ noMore: false, noData: false, showFooter:true });
+          that.setData({ noMore: false, noData: false, showFooter: true });
         } else if (currentCards < that.data.pageCount && totalCards > 0) {
           that.setData({ noMore: true, noData: false, showFooter: false });
         } else if (totalCards == 0) {
           that.setData({ noData: true, noMore: false, showFooter: true });
         }
         if (that.data.bottomLoading) {
-          that.setData({ bottomLoading:false});
+          that.setData({ bottomLoading: false });
         }
       },
       fail: function (res) {
@@ -262,7 +262,7 @@ Page({
           app.globalData.userInfo.id = res.data.id
           app.globalData.userInfo.cards = res.data.cards
           app.globalData.userInfo.maxUser = res.data.maxUser
-          that.setData({ userInfo: app.globalData.userInfo})
+          that.setData({ userInfo: app.globalData.userInfo })
           wx.startPullDownRefresh({});
         },
         fail: function (res) {
@@ -316,25 +316,25 @@ Page({
   },
 
   onShow: function () {
-    if (this.data.userInfo !=null && this.data.userInfo.id != null && this.data.userInfo.id > 0) {
+    if (this.data.userInfo != null && this.data.userInfo.id != null && this.data.userInfo.id > 0) {
       wx.startPullDownRefresh({
       })
-    }else if(this.data.userInfo == null) {
+    } else if (this.data.userInfo == null) {
       this.checkStatus()
     }
   },
 
-  onPullDownRefresh: function() {
-    this.setData({cardList:[], pageIndex:1, noMore:false});
+  onPullDownRefresh: function () {
+    this.setData({ cardList: [], pageIndex: 1, noMore: false });
     this.loadCards()
   },
-  onReachBottom: function() {
-    if(this.data.noMore) {
+  onReachBottom: function () {
+    if (this.data.noMore) {
     } else {
       this.setData({
         bottomLoading: true,
       });
-      this.setData({pageIndex:this.data.pageIndex+1})
+      this.setData({ pageIndex: this.data.pageIndex + 1 })
       this.loadCards();
     }
   },
@@ -369,7 +369,7 @@ Page({
       var index = e.currentTarget.dataset.index;
       var group = e.currentTarget.dataset.group;
       var cardList = this.data.cardList;
-      
+
       if (cardList[group]) {
         cardList[group].cards[index].txtStyle = txtStyle
       }
@@ -401,5 +401,12 @@ Page({
         cardList: cardList
       });
     }
-  }, 
+  },
+
+  onShareAppMessage: function () {
+    return {
+      title: '卡片创作助手',
+      path: '/pages/card/list'
+    }
+  },
 })
