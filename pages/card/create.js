@@ -34,7 +34,7 @@ Page({
         title: '卡片加载中',
       })
       wx.request({
-        url: 'https://www.worklean.cn/icardtest/userInfo/getUserCard',
+        url: 'https://www.worklean.cn/icard/userInfo/getUserCard',
         data: {cardId: cardId},
         method: 'POST',
         dataType: 'json',
@@ -102,9 +102,9 @@ Page({
       title: '卡片保存中',
     })
     var queryParam = { userid: app.globalData.userInfo.id, content: e.detail.value.content };
-    var queryUrl ='https://www.worklean.cn/icardtest/userInfo/saveUserCard'
+    var queryUrl ='https://www.worklean.cn/icard/userInfo/saveUserCard'
     if(this.data.cardId != 0) {
-      queryUrl = 'https://www.worklean.cn/icardtest/userInfo/updateUserCard'
+      queryUrl = 'https://www.worklean.cn/icard/userInfo/updateUserCard'
       queryParam = { cardId: this.data.cardId, content: e.detail.value.content };
     } 
     wx.request({

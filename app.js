@@ -13,7 +13,7 @@ App({
       success: res => {
         //发起网络请求
         wx.request({
-          url: 'https://www.worklean.cn/icardtest/userInfo',
+          url: 'https://www.worklean.cn/icard/userInfo',
           data: {
             js_code: res.code,
           },

@@ -32,7 +32,6 @@
   width: 100%;
   background-repeat: repeat;
   background-color: #F1EEE7;
-  /* background-image: 'url('http://www.worklean.cn/back4.png');' */
 }
 
 .pre_left {

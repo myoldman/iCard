@@ -74,7 +74,7 @@ Page({
                         success: res => {
                           //发起网络请求
                           wx.request({
-                            url: 'https://www.worklean.cn/icardtest/userInfo',
+                            url: 'https://www.worklean.cn/icard/userInfo',
                             data: {
                               js_code: res.code,
                             },
@@ -139,7 +139,7 @@ Page({
             title: '正在删除卡片',
           })
           wx.request({
-            url: 'https://www.worklean.cn/icardtest/userInfo/deleteUserCard',
+            url: 'https://www.worklean.cn/icard/userInfo/deleteUserCard',
             data: { cardId: cardId },
             method: 'POST',
             dataType: 'json',
@@ -186,7 +186,7 @@ Page({
   loadCards: function () {
     var that = this
     wx.request({
-      url: 'https://www.worklean.cn/icardtest/userInfo/getUserCards',
+      url: 'https://www.worklean.cn/icard/userInfo/getUserCards',
       data: { userid: app.globalData.userInfo.id, pageIndex: this.data.pageIndex, pageCount: this.data.pageCount },
       method: 'POST',
       dataType: 'json',
@@ -250,7 +250,7 @@ Page({
         hasUserInfo: true
       })
       wx.request({
-        url: 'https://www.worklean.cn/icardtest/userInfo/getIndexInfo',
+        url: 'https://www.worklean.cn/icard/userInfo/getIndexInfo',
         data: app.globalData.userInfo,
         method: 'POST',
         dataType: 'json',
@@ -289,7 +289,7 @@ Page({
           hasUserInfo: true
         })
         wx.request({
-          url: 'https://www.worklean.cn/icardtest/userInfo/getIndexInfo',
+          url: 'https://www.worklean.cn/icard/userInfo/getIndexInfo',
           data: res,
           method: 'POST',
           dataType: 'json',
