@@ -34,7 +34,7 @@ Page({
         title: '卡片加载中',
       })
       wx.request({
-        url: 'https://www.worklean.cn/icard/userInfo/getUserCard',
+        url: app.globalData.urlbase + 'userInfo/getUserCard',
         data: {cardId: cardId},
         method: 'POST',
         dataType: 'json',
@@ -102,9 +102,9 @@ Page({
       title: '卡片保存中',
     })
     var queryParam = { userid: app.globalData.userInfo.id, content: e.detail.value.content };
-    var queryUrl ='https://www.worklean.cn/icard/userInfo/saveUserCard'
+    var queryUrl = app.globalData.urlbase +'userInfo/saveUserCard'
     if(this.data.cardId != 0) {
-      queryUrl = 'https://www.worklean.cn/icard/userInfo/updateUserCard'
+      queryUrl = app.globalData.urlbase +'/userInfo/updateUserCard'
       queryParam = { cardId: this.data.cardId, content: e.detail.value.content };
     } 
     wx.request({
@@ -126,6 +126,14 @@ Page({
           if (e.detail.target.id == "genButton") {
             that.setData({ showGenBar: true});
           } else {
+            var pages = getCurrentPages()
+            var lastPage
+            if (pages.length > 1) {
+              lastPage = pages[pages.length - 2]
+            } else {
+              lastPage = pages[0]
+            }
+            lastPage.setData({searchText:''});
             wx.navigateBack({
             })
           }

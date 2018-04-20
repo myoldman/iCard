@@ -21,6 +21,8 @@ function isEmptyObject(e) {
 const app = getApp()
 Page({
   data: {
+    showClear:false,
+    searchText:'',
     initLeft: 12,
     delBtnWidth: 20 + 20 + 32,
     startX: 0,
@@ -31,9 +33,11 @@ Page({
     showFooter: false,
     popMenuShow: false,
     confirmShow: false,
+    searchFocus: false,
     pageIndex: 1,
     pageCount: 8,
     opacity: 1,
+    noDataText : '还没有卡片',
     cardList: [
       // { title:"本月", cards:[
       //   {id:1, content:"# 张大春谈秋夜", update_date:"2018-04-06 10:11:12"},
@@ -74,7 +78,7 @@ Page({
                         success: res => {
                           //发起网络请求
                           wx.request({
-                            url: 'https://www.worklean.cn/icard/userInfo',
+                            url: app.globalData.urlbase +'userInfo',
                             data: {
                               js_code: res.code,
                             },
@@ -139,7 +143,7 @@ Page({
             title: '正在删除卡片',
           })
           wx.request({
-            url: 'https://www.worklean.cn/icard/userInfo/deleteUserCard',
+            url: app.globalData.urlbase +'userInfo/deleteUserCard',
             data: { cardId: cardId },
             method: 'POST',
             dataType: 'json',
@@ -186,8 +190,8 @@ Page({
   loadCards: function () {
     var that = this
     wx.request({
-      url: 'https://www.worklean.cn/icard/userInfo/getUserCards',
-      data: { userid: app.globalData.userInfo.id, pageIndex: this.data.pageIndex, pageCount: this.data.pageCount },
+      url: app.globalData.urlbase +'userInfo/getUserCards',
+      data: { userid: app.globalData.userInfo.id, pageIndex: this.data.pageIndex, pageCount: this.data.pageCount, searchText: this.data.searchText },
       method: 'POST',
       dataType: 'json',
       header: {
@@ -218,7 +222,11 @@ Page({
         } else if (currentCards < that.data.pageCount && totalCards > 0) {
           that.setData({ noMore: true, noData: false, showFooter: false });
         } else if (totalCards == 0) {
-          that.setData({ noData: true, noMore: false, showFooter: true });
+          var noDataText = '还没有卡片'
+          if(that.data.searchText.length > 0 ){
+            noDataText = '没有搜索到卡片'
+          }
+          that.setData({ noDataText: noDataText, noData: true, noMore: false, showFooter: true });
         }
         if (that.data.bottomLoading) {
           that.setData({ bottomLoading: false });
@@ -250,7 +258,7 @@ Page({
         hasUserInfo: true
       })
       wx.request({
-        url: 'https://www.worklean.cn/icard/userInfo/getIndexInfo',
+        url: app.globalData.urlbase +'userInfo/getIndexInfo',
         data: app.globalData.userInfo,
         method: 'POST',
         dataType: 'json',
@@ -289,7 +297,7 @@ Page({
           hasUserInfo: true
         })
         wx.request({
-          url: 'https://www.worklean.cn/icard/userInfo/getIndexInfo',
+          url: app.globalData.urlbase +'userInfo/getIndexInfo',
           data: res,
           method: 'POST',
           dataType: 'json',
@@ -409,4 +417,40 @@ Page({
       path: '/pages/card/list'
     }
   },
+
+  bindKeyInput: function (e) {
+    this.setData({
+      searchText: e.detail.value
+    })
+    var inputLength = e.detail.value.length;
+    inputLength == 0 ? this.setData({ showClear: false }) : this.setData({ showClear: true })
+  },
+  // 清空输入框的内容
+  // 聚焦函数:如果字符串长度为0，则不显示清空图标，否则显示清空图标。
+  bindKeyFocus: function (e) {
+    var inputLength = e.detail.value.length;
+    inputLength == 0 ? this.setData({ showClear: false }) : this.setData({ showClear: true })
+    this.data.searchText == 0 ? this.setData({ showClear: false }) : this.setData({ showClear: true })
+  },
+  // 非聚焦函数：隐藏清空图标
+  bindKeyBlur: function (e) {
+    //this.setData({ showClear: false});
+    //if(e.detail.value.length > 0) {
+    //}
+  },
+  // 点击图标清空
+  clearInput: function (e) {
+    console.log("clear")
+    this.setData({ searchFocus: true, searchText: '', showClear: false})
+  },
+
+  searchCards:function(e) {
+    this.setData({
+      searchText: e.detail.value
+    })
+    //if (e.detail.value.length > 0) {
+     wx.startPullDownRefresh({
+     })
+    //}
+  }
 })

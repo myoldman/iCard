@@ -13,7 +13,7 @@ App({
       success: res => {
         //发起网络请求
         wx.request({
-          url: 'https://www.worklean.cn/icard/userInfo',
+          url: that.globalData.urlbase + 'userInfo',
           data: {
             js_code: res.code,
           },
@@ -83,5 +83,6 @@ App({
     width: wx.getSystemInfoSync().windowWidth,
     height: wx.getSystemInfoSync().windowHeight,
     ratio: wx.getSystemInfoSync().pixelRatio,
+    urlbase: 'https://www.worklean.cn/icardtest/',
   }
 })
