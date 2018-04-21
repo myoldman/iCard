@@ -21,8 +21,8 @@ function isEmptyObject(e) {
 const app = getApp()
 Page({
   data: {
-    showClear:false,
-    searchText:'',
+    showClear: false,
+    searchText: '',
     initLeft: 12,
     delBtnWidth: 20 + 20 + 32,
     startX: 0,
@@ -37,7 +37,7 @@ Page({
     pageIndex: 1,
     pageCount: 8,
     opacity: 1,
-    noDataText : '还没有卡片',
+    noDataText: '还没有卡片',
     cardList: [
       // { title:"本月", cards:[
       //   {id:1, content:"# 张大春谈秋夜", update_date:"2018-04-06 10:11:12"},
@@ -78,7 +78,7 @@ Page({
                         success: res => {
                           //发起网络请求
                           wx.request({
-                            url: app.globalData.urlbase +'userInfo',
+                            url: app.globalData.urlbase + 'userInfo',
                             data: {
                               js_code: res.code,
                             },
@@ -143,7 +143,7 @@ Page({
             title: '正在删除卡片',
           })
           wx.request({
-            url: app.globalData.urlbase +'userInfo/deleteUserCard',
+            url: app.globalData.urlbase + 'userInfo/deleteUserCard',
             data: { cardId: cardId },
             method: 'POST',
             dataType: 'json',
@@ -190,7 +190,7 @@ Page({
   loadCards: function () {
     var that = this
     wx.request({
-      url: app.globalData.urlbase +'userInfo/getUserCards',
+      url: app.globalData.urlbase + 'userInfo/getUserCards',
       data: { userid: app.globalData.userInfo.id, pageIndex: this.data.pageIndex, pageCount: this.data.pageCount, searchText: this.data.searchText },
       method: 'POST',
       dataType: 'json',
@@ -223,7 +223,7 @@ Page({
           that.setData({ noMore: true, noData: false, showFooter: false });
         } else if (totalCards == 0) {
           var noDataText = '还没有卡片'
-          if(that.data.searchText.length > 0 ){
+          if (that.data.searchText.length > 0) {
             noDataText = '没有搜索到卡片'
           }
           that.setData({ noDataText: noDataText, noData: true, noMore: false, showFooter: true });
@@ -258,7 +258,7 @@ Page({
         hasUserInfo: true
       })
       wx.request({
-        url: app.globalData.urlbase +'userInfo/getIndexInfo',
+        url: app.globalData.urlbase + 'userInfo/getIndexInfo',
         data: app.globalData.userInfo,
         method: 'POST',
         dataType: 'json',
@@ -297,7 +297,7 @@ Page({
           hasUserInfo: true
         })
         wx.request({
-          url: app.globalData.urlbase +'userInfo/getIndexInfo',
+          url: app.globalData.urlbase + 'userInfo/getIndexInfo',
           data: res,
           method: 'POST',
           dataType: 'json',
@@ -441,16 +441,16 @@ Page({
   // 点击图标清空
   clearInput: function (e) {
     console.log("clear")
-    this.setData({ searchFocus: true, searchText: '', showClear: false})
+    this.setData({ searchFocus: true, searchText: '', showClear: false })
   },
 
-  searchCards:function(e) {
+  searchCards: function (e) {
     this.setData({
       searchText: e.detail.value
     })
     //if (e.detail.value.length > 0) {
-     wx.startPullDownRefresh({
-     })
+    wx.startPullDownRefresh({
+    })
     //}
   }
 })

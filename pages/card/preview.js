@@ -5,16 +5,16 @@ const util = require('../../utils/util.js')
 const app = getApp()
 Page({
   data: {
-    error : '',
+    error: '',
     imageUrl: '',
     showImage: true,
     showCanvas: false,
-    bgColor: app.globalData.bgImages[app.globalData.currentBg-1].color,
+    bgColor: app.globalData.bgImages[app.globalData.currentBg - 1].color,
     bg: app.globalData.bgImages[app.globalData.currentBg - 1].bg,
     bgImg: app.globalData.bgImages[app.globalData.currentBg - 1].img,
     width: app.globalData.width,
     height: app.globalData.height,
-    imgHeight: app.globalData.height - 45 -45,
+    imgHeight: app.globalData.height - 45 - 45,
     canvasHeight: app.globalData.defaultCanvasHeight,
     ratio: app.globalData.ratio,
     userInfo: app.globalData.userInfo,
@@ -36,7 +36,7 @@ Page({
     console.log(this.data)
     var that = this
     wx.request({
-      url: app.globalData.urlbase +'transPng', //仅为示例，并非真实的接口地址
+      url: app.globalData.urlbase + 'transPng', //仅为示例，并非真实的接口地址
       data: {
         content: this.data.content,
         bgcolor: this.data.bgColor,
@@ -57,13 +57,13 @@ Page({
           imageUrl: res.data.url,
         })
       },
-      complete:function(res) {
+      complete: function (res) {
         wx.hideLoading()
       }
     })
-    
+
   },
-  onReady: function() {
+  onReady: function () {
     return;
     wx.showLoading({
       title: '正在生成图片',
@@ -99,12 +99,12 @@ Page({
       var lastSubStrIndex = 0;
       for (var z = 0; z < line.length; z++) {
         lineWidth += ctx.measureText(line[z]).width
-        if (lineWidth > (totalWidth  - app.globalData.textSize*0.6 - 2 * initX) ) {//减去initX,防止边界出现的问题
+        if (lineWidth > (totalWidth - app.globalData.textSize * 0.6 - 2 * initX)) {//减去initX,防止边界出现的问题
           var tempText = line.substring(lastSubStrIndex, z + 1)
           ctx.fillText(tempText, initX, initY)
           initY += fontSpace
           lineWidth = 0
-          lastSubStrIndex = z+1
+          lastSubStrIndex = z + 1
         }
         if (z == line.length - 1) {
           ctx.fillText(line.substring(lastSubStrIndex, z + 1), initX, initY)
@@ -155,10 +155,10 @@ Page({
       console.log('draw callback')
     })
 
-    
+
   },
 
-  calcCanvasHeight : function(contents, ctx) {
+  calcCanvasHeight: function (contents, ctx) {
     // 先循环一次计算总高度
     ctx.setFillStyle(app.globalData.textColor)
     ctx.setTextAlign('start')
@@ -173,9 +173,9 @@ Page({
       var lastSubStrIndex = 0;
       for (var z = 0; z < line.length; z++) {
         lineWidth += ctx.measureText(line[z]).width;
-        if (lineWidth > totalWidth - app.globalData.textSize * 0.6 - 2 * initX ) {//减去initX,防止边界出现的问题
+        if (lineWidth > totalWidth - app.globalData.textSize * 0.6 - 2 * initX) {//减去initX,防止边界出现的问题
           line.substring(lastSubStrIndex, z + 1),
-          initY += fontSpace
+            initY += fontSpace
           lineWidth = 0;
           lastSubStrIndex = z + 1;
         }
@@ -193,19 +193,19 @@ Page({
       })
     }
   },
-  
+
   onShow: function () {
-    
+
   },
-  previewImageLoaded:function(event) {
+  previewImageLoaded: function (event) {
     console.log(event)
     var imgHeight = event.detail.height
     var imgWidth = event.detail.width
-    if(imgHeight/this.data.ratio < (this.data.height - 45 - 45)) {
+    if (imgHeight / this.data.ratio < (this.data.height - 45 - 45)) {
       this.setData({ imgHeight: imgHeight / this.data.ratio })
     }
   },
-  previewCard: function() {
+  previewCard: function () {
     var that = this
     wx.previewImage({
       current: '',
@@ -224,31 +224,31 @@ Page({
       mask: true,
     })
     wx.downloadFile({
-      url: that.data.imageUrl, 
+      url: that.data.imageUrl,
       success: function (res) {
         if (res.statusCode === 200) {
-           wx.hideLoading()
-           var filePath = res.tempFilePath
-           console.log(res.tempFilePath)
-           wx.saveImageToPhotosAlbum({
-             filePath: filePath,
-             success:
-             function (data) {
-               wx.showToast({
-                 title: '保存图片成功',
-               })
-             },
-             fail:
-             function (err) {
-               wx.showToast({
-                 title: '保存卡片失败:' + err,
-               })
-               console.log(err);
-             }
-           })
+          wx.hideLoading()
+          var filePath = res.tempFilePath
+          console.log(res.tempFilePath)
+          wx.saveImageToPhotosAlbum({
+            filePath: filePath,
+            success:
+            function (data) {
+              wx.showToast({
+                title: '保存图片成功',
+              })
+            },
+            fail:
+            function (err) {
+              wx.showToast({
+                title: '保存卡片失败:' + err,
+              })
+              console.log(err);
+            }
+          })
         }
       },
-      complete:function(res) {
+      complete: function (res) {
         wx.hideLoading()
       }
     })

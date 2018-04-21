@@ -1,37 +1,36 @@
-.canvas_show{
-  width:100%;
+.canvas_show {
+  width: 100%;
   position: fixed;
   display: block;
 }
 
-.previewImage{
-  width:90%;
+.previewImage {
+  width: 90%;
   margin-top: 40rpx;
   margin-left: 5%;
   margin-right: 5%;
 }
 
-.previewButton{
-  margin-left:20px;
-  bottom:20px;
+.previewButton {
+  margin-left: 20px;
+  bottom: 20px;
   height: 45px;
   line-height: 45px;
   border-radius: 2px;
-  background-color: #30CEAC;
-  color: #FFFFFF;
+  background-color: #30ceac;
+  color: #fff;
   font-size: 15px;
 }
 
 .hidden {
-  display:none;
+  display: none;
 }
 
-.bottom
-{
+.bottom {
   position: fixed;
-  top:60%;
+  top: 60%;
 }
 
-button::after{
+button::after {
   border: none;
 }

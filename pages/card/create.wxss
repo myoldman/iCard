@@ -1,67 +1,68 @@
-.main1{
-  top:0px;
+.main1 {
+  top: 0px;
   position: fixed;
   height: 100%;
   width: 100%;
   background-repeat: repeat;
-  background-color: #FFF;
+  background-color: #fff;
 }
 
-.main2{
-  top:0px;
+.main2 {
+  top: 0px;
   position: fixed;
   height: 100%;
   width: 100%;
   background-repeat: repeat;
-  background-color: #F8F2E2;
+  background-color: #f8f2e2;
 }
 
-.main3{
-  top:0px;
-  position: fixed; 
+.main3 {
+  top: 0px;
+  position: fixed;
   height: 100%;
   width: 100%;
   background-repeat: repeat;
   background-image: url('http://www.worklean.cn/bg3.png');
 }
 
-.main4{
-  top:0px;
-  position: fixed; 
+.main4 {
+  top: 0px;
+  position: fixed;
   height: 100%;
   width: 100%;
   background-repeat: repeat;
-  background-color: #F1EEE7;
+  background-color: #f1eee7;
   /* background-image: 'url('http://www.worklean.cn/back4.png');' */
 }
 
 .pre_left {
-  left:-100%;
+  left: -100%;
 }
 
-.next_right{
-  left:100%;
+.next_right {
+  left: 100%;
 }
 
-.content{
-  width:90%;
+.content {
+  width: 90%;
   margin-top: 40rpx;
   margin-left: 5%;
   margin-right: 5%;
 }
-.bottomGenBar
-{
+
+.bottomGenBar {
   left: 10px;
-  position:fixed;
-  bottom:10px;
-  display:flex;
+  position: fixed;
+  bottom: 10px;
+  display: flex;
   height: 64px;
   border-radius: 4px;
   border: 1px solid rgba(210, 212, 215, 1);
 }
-.bottomGenBarButton{
+
+.bottomGenBarButton {
   font-size: 13px;
-  padding:0px;
+  padding: 0px;
   margin-left: 10px;
   margin-top: 12px;
   margin-right: 0px;
@@ -69,9 +70,10 @@
   height: 40px;
   line-height: 40px;
   border-radius: 4px;
-  color: #60646C;
+  color: #60646c;
   /* border: 2px solid rgba(41, 196, 181, 1); */
 }
+
 .bottomBarGenBarSaveButton {
   margin-top: 12px;
   padding: 0px;
@@ -80,28 +82,31 @@
   border-radius: 2px;
   font-size: 15px;
   line-height: 40px;
-  color:#FFFFFF;
+  color: #fff;
   background-color: rgba(48, 206, 172, 1);
 }
-.bottomBar{
-  position:fixed;
-  bottom:20px;
-  display:flex;
-  width:100%;
+
+.bottomBar {
+  position: fixed;
+  bottom: 20px;
+  display: flex;
+  width: 100%;
 }
+
 .bottomBarText {
   text-align: center;
 }
+
 .bottomBarButton {
-  margin:0px;
-  padding:0px;
+  margin: 0px;
+  padding: 0px;
   border-radius: 2px;
   font-size: 15px;
-  color: #FFFFFF;
+  color: #fff;
   height: 45px;
   line-height: 45px;
 }
 
-button::after{
+button::after {
   border: none;
 }
