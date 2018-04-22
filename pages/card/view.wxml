@@ -1,3 +1,6 @@
-<view class="wxParse">
-    <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+<import src="../../utils/mdParse.wxml"/> 
+
+<view id="current" class="{{currentBgCss}}" style="background-size:{{100/ratio}}%;width:{{width-16-40}}px;height:{{height-74}}px;">
+  <image style="position:fixed;top:0px;right:0px;width:{{bgImgWidth/3}}px;height:{{bgImgHeight/3}}px;" mode='aspectFit' src="{{bgImgUrl}}"></image>
+  <template is="mdParse" data="{{mdParseData:card}}"/>
 </view>

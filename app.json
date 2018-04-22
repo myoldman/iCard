@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/card/view",
     "pages/card/list",
     "pages/logs/logs",
     "pages/card/create",

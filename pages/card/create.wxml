@@ -1,15 +1,17 @@
 <form bindsubmit='preivewCard'>
-  <view id="current" class="{{currentBgCss}} {{currentCss}}" style="{{currentStyle}};background-size:{{100/ratio}}%"></view>
-  <!-- <view id="next" class="{{nextBgCss}} {{nextCss}}" style="{{nextStyle}};background-size:{{100/ratio}}%"></view> -->
-  <image style="position:fixed;top:0px;right:0px;width:{{bgImgWidth/3}}px;height:{{bgImgHeight/3}}px;" mode='aspectFit' src="{{bgImgUrl}}"></image>
-  <textarea bindtap="hideGenBar" value='{{content}}' style='height:{{height-45-45}}px;' maxlength="-1" class="content" show-confirm-bar='{{showConfirm}}' name='content' placeholder="点击输入内容" placeholder-class='placeholder'></textarea>
+  <view id="current" class="{{currentBgCss}} {{currentCss}}" style="{{currentStyle}};background-size:{{100/ratio}}%">
+  <textarea bindtap="hideGenBar" value='{{content}}' style='height:{{height-50-8*3}}px;width:{{width- 16 - 40}}px' maxlength="-1" class="content" show-confirm-bar='{{showConfirm}}' name='content' placeholder="点击输入内容" placeholder-class='placeholder'></textarea>
   <view id="bottomBar" hidden='{{showGenBar}}' class="bottomBar">
-    <button id="genButton" class="bottomBarButton" style="left:20px;width:{{genButtonWidth}}px;background: #FFFFFF;color:#29C4B5;left: 20px;border: 1px solid #29C4B5;" form-type='submit'>保存并生成分享图</button>
-    <button id="saveButton" class="bottomBarButton" style="left:35px;width:{{saveButtonWidth}}px;background: #30CEAC;" class="bottomBarButton" form-type='submit'>保存卡片</button>
+    <!-- <button id="genButton" class="bottomBarButton" style="left:20px;width:{{genButtonWidth}}px;background: #FFFFFF;color:#29C4B5;left: 20px;border: 1px solid #29C4B5;" form-type='submit'>保存并生成分享图</button> -->
+    <button id="saveButton" class="bottomBarButton" class="bottomBarButton" form-type='submit'>保存卡片</button>
   </view>
   <view id="bottomGenBar" class="bottomGenBar" style='width:{{width-20}}px;' hidden='{{!showGenBar}}'>
     <button class="bottomGenBarButton" bindtap="changeBackground" style='{{bgImg.buttonStyle}};{{currentBgImage.title==bgImg.title?"border: 2px solid #29C4B5;line-height:37px;":""}}' wx:key="title" wx:for="{{bgImages}}" data-index='{{idx}}' wx:for-index="idx"
       wx:for-item="bgImg">{{bgImg.title}}</button>
     <button id="genPicButton" class="bottomBarGenBarSaveButton" style="margin-left:{{width - 20 -50*4 - 80 - 10}}px" form-type='submit'>生成图片</button>
   </view>
+  </view>
+  <!-- <view id="next" class="{{nextBgCss}} {{nextCss}}" style="{{nextStyle}};background-size:{{100/ratio}}%"></view> -->
+  <image style="position:fixed;top:0px;right:0px;width:{{bgImgWidth/3}}px;height:{{bgImgHeight/3}}px;" mode='aspectFit' src="{{bgImgUrl}}"></image>
+  
 </form>

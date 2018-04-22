@@ -4,7 +4,7 @@
   height: 100%;
   width: 100%;
   background-repeat: repeat;
-  background-color: #fff;
+  background-color: #F6F6F7;
 }
 
 .main2 {
@@ -44,10 +44,14 @@
 }
 
 .content {
-  width: 90%;
-  margin-top: 40rpx;
-  margin-left: 5%;
-  margin-right: 5%;
+  margin-top: 8px;
+  margin-left: 8px;
+  background-color: #FFFFFF;
+  border-radius: 4px;
+  padding-top:20px;
+  padding-left:20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
 }
 
 .bottomGenBar {
@@ -87,7 +91,6 @@
 }
 
 .bottomBar {
-  position: fixed;
   bottom: 20px;
   display: flex;
   width: 100%;
@@ -98,13 +101,17 @@
 }
 
 .bottomBarButton {
-  margin: 0px;
   padding: 0px;
-  border-radius: 2px;
+  border-radius: 4px;
   font-size: 15px;
   color: #fff;
-  height: 45px;
-  line-height: 45px;
+  height: 50px;
+  line-height: 50px;
+  margin-left:8px;
+  margin-top:8px;
+  width:100%;
+  background:#30CEAC;
+  margin-right:8px;
 }
 
 button::after {

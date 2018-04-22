@@ -1,1 +1,88 @@
-/* pages/card/view.wxss */
+page{
+  background-repeat: repeat;
+  background-color: #F6F6F7;
+}
+
+.main1 {
+  margin-top: 8px;
+  margin-left: 8px;
+  border-radius: 4px;
+  background-repeat: repeat;
+  background-color: #FFFFFF;
+  overflow-y: scroll;
+  padding-top:20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.main2 {
+  margin-top: 8px;
+  margin-left: 8px;
+  border-radius: 4px;
+  background-repeat: repeat;
+  background-color: #f8f2e2;
+  overflow-y: scroll;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.main3 {
+  margin-top: 8px;
+  margin-left: 8px;
+  border-radius: 4px;
+  background-repeat: repeat;
+  background-image: url('http://www.worklean.cn/bg3.png');
+  overflow-y: scroll;
+ padding-left: 20px;
+ padding-right: 20px;
+}
+
+.main4 {
+  margin-top: 8px;
+  margin-left: 8px;
+  border-radius: 4px;
+  background-repeat: repeat;
+  background-color: #f1eee7;
+  overflow-y: scroll;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.paragraph {
+  font-size: 15px;
+  color: #282A2D;
+  line-height: 28px;
+}
+
+.mdTitle {
+  line-height: 32px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.mdList{
+
+}
+.mdEmpty{
+  height: 28px;
+}
+.mdQuote {
+  font-size: 13px;
+  color: #60646C;
+}
+
+.mdOrange{
+  color: #8B572A;
+}
+.mdBold{
+  font-weight: 600;
+}
+.dotImg{
+  width:6px;
+  height: 6px;
+  padding-bottom: 3px;
+}
+.quoteImg{
+  width:24px;
+  height: 16px;
+}

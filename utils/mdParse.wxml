@@ -1,0 +1,11 @@
+<template name="mdParse">
+  <view wx:for='{{mdParseData.items}}' class="paragraph {{item.type}}" wx:for-index="idx" wx:for-item="item" wx:key='{{idx}}'>
+  <block wx:if="{{item.type == 'mdList'}}">
+  <image mode='aspectFit' src="../image/dot.png" class="dotImg"></image>
+  </block>
+  <block wx:if="{{item.type == 'mdQuote'}}">
+  <image mode='aspectFit' src="../image/quote.png" class="quoteImg"></image>
+  </block>
+  <text wx:for='{{item.blocks}}' class='{{block.classStr}}' wx:for-index="idy" wx:for-item="block" wx:key='{{idy}}'>{{block.content}}</text>
+  </view>
+</template>
