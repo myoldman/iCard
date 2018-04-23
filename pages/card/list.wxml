@@ -14,7 +14,7 @@
   <view class='group' wx:key="title" wx:for="{{cardList}}" wx:for-index="idx" wx:for-item="group">
     <view class="{{ idx == 0? 'groupTitle':'groupTitleNoPadding'}}">{{group.title}}</view>
     <view id='{{card.id}}' class='content' wx:key="id" wx:for="{{group.cards}}" wx:for-index="idy" wx:for-item="card">
-      <view data-id='{{card.id}}' bindtap='editCard' data-index='{{idy}}' data-group='{{idx}}' bindtouchstart="cardTouchStart" bindtouchmove="cardTouchMove" bindtouchend="cardTouchEnd" class="contentLeft" style='{{card.txtStyle}};width:{{width-2*12}}px'>
+      <view data-id='{{card.id}}' bindtap='viewCard' data-index='{{idy}}' data-group='{{idx}}' bindtouchstart="cardTouchStart" bindtouchmove="cardTouchMove" bindtouchend="cardTouchEnd" class="contentLeft" style='{{card.txtStyle}};width:{{width-2*12}}px'>
         <view class='cardTitle'>
           <text>卡片 {{card.card_num}}</text>
           <text class='cardSep'></text>

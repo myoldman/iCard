@@ -82,6 +82,10 @@ function genCardData(content) {
         //line = line.replace(strMatch, appendTag + strMatch.substring(2, strMatch.length - 2) + "</text>");
         lastMatch = strMatch
       }
+      var lastblock = line.substring(line.indexOf(lastMatch) + lastMatch.length, line.length)
+      if (lastblock.length > 0 ){
+        item.blocks.push({ content: lastblock, classStr: '' })
+      }
     } else {
       if (line.length == 0) {
         itemType += " mdEmpty"

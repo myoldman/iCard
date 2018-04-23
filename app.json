@@ -1,10 +1,10 @@
 {
   "pages":[
-    "pages/card/view",
     "pages/card/list",
     "pages/logs/logs",
     "pages/card/create",
-    "pages/card/preview"
+    "pages/card/preview",
+    "pages/card/view"
   ],
   "window":{
     "backgroundTextStyle":"light",

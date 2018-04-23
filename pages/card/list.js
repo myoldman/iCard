@@ -181,6 +181,12 @@ Page({
     this.setData({ cardList: cardList })
   },
 
+  viewCard: function(e) {
+    wx.navigateTo({
+      url: 'view?cardId=' + e.currentTarget.dataset.id,
+    })
+  },
+
   editCard: function (e) {
     wx.navigateTo({
       url: 'create?cardId=' + e.currentTarget.dataset.id,
