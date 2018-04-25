@@ -11,7 +11,9 @@ wx.getSystemInfo({
     ratio = res.ratio
   }
 })
-
+function Trim(str) {
+    return str.replace(/(^\s*)|(\s*$)/g, "");
+}
 /**
  * 主函数入口区
  **/
@@ -32,26 +34,47 @@ function genCardData(content) {
   var transData = {items:[]}
   content = content.replace(/\r\n/g, "\n")
   var contents = content.split("\n")
+  // 前一个段落是否引用
+  var lastQuote = false
   for (var i = 0; i < contents.length; i++) {
     var item = {blocks:[]}
     var line = contents[i]
     var origLine = line
-    var itemType = 'mdNormal'
+    var itemType = 'normal'
+    var itemClass = 'mdNormal'
     var regTitle = /^#+/
     var regResult = regTitle.exec(line)
     // 段落为标题
     if (regResult) {
-      itemType = 'mdTitle'
+      itemType = 'title'
+      itemClass = 'mdTitle'
+      line = Trim(line.substring(regResult[0].length))
     }
     
     if (line.length > 0 && line[0] == '-') {
       // 段落为列表
       line = line.replace("-", ""); 
-      itemType = 'mdList'
+      line = Trim(line)
+      itemType = 'list'
+      itemClass = 'mdList'
     } else if (line.length > 0 && line[0] == '>') {
       // 段落为引用
-      line = line.replace(">", ""); 
-      itemType = 'mdQuote'
+      line = line.replace(">", "");
+      line = Trim(line)
+      itemType = 'quote'
+      itemClass = 'mdQuote'
+      if (lastQuote) {
+        item.showImage = false
+      } else {
+        itemClass += ' mdQuoteBegin'
+        item.showImage = true
+      }
+      lastQuote = true
+    } else {
+      if(lastQuote) {
+        transData.items[transData.items.length - 1].itemClass += ' mdQuoteEnd'
+      }
+      lastQuote = false
     }
 
     var regBold = /(([\*]{2})(.+?)([\*]{2}))/g
@@ -65,12 +88,9 @@ function genCardData(content) {
       }
       var lastMatch
       var classStr = "mdOrange"
-      if (itemType == 'mdList') {
-        classStr = "mdOrange mdBold"
-      }
       for (var j = 0; j < boldMatch.length; j++) {
         var strMatch = boldMatch[j]
-        
+  
         if(j == 0 ){
           var block = line.substring(0, line.indexOf(strMatch))
           item.blocks.push({content:block, classStr : ''})
@@ -88,12 +108,13 @@ function genCardData(content) {
       }
     } else {
       if (line.length == 0) {
-        itemType += " mdEmpty"
+        itemClass += " mdEmpty"
       }
       
       item.blocks.push({content: line, classStr:''})
     }
     item.type = itemType
+    item.itemClass = itemClass
     console.log(item.blocks)
     transData.items.push(item)
   }

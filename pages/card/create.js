@@ -121,21 +121,26 @@ Page({
           wx.showToast({
             title: '保存卡片成功',
           })
+          var orginalId = that.data.cardId
           if(that.data.cardId == 0)
             that.setData({cardId: res.data.id})
           if (e.detail.target.id == "genButton") {
             that.setData({ showGenBar: true});
           } else {
             var pages = getCurrentPages()
-            var lastPage
-            if (pages.length > 1) {
-              lastPage = pages[pages.length - 2]
+            console.log(pages)
+            var firstPage = pages[0]
+            firstPage.setData({searchText:''});
+            // 返回首页
+            if (orginalId <= 0) {
+              wx.navigateTo({
+                url: 'view?cardId=' + res.data.id,
+              })
             } else {
-              lastPage = pages[0]
+              wx.navigateBack({
+              })
             }
-            lastPage.setData({searchText:''});
-            wx.navigateBack({
-            })
+            
           }
         }
       },
@@ -147,19 +152,5 @@ Page({
     });
   },
 
-  changeBackground:function(e) {
-    var index = e.currentTarget.dataset.index
-    app.globalData.currentBg = index + 1
-    var bgImgUrl = ''
-    if (app.globalData.bgImages[index].img && app.globalData.bgImages[index].img.length > 0) {
-      bgImgUrl = "../image/" + app.globalData.bgImages[index].img
-    }
-    this.setData({
-      currentBgCss: 'main' + app.globalData.currentBg,
-      currentBgImage: app.globalData.bgImages[index],
-      bgImgWidth: app.globalData.bgImages[index].width,
-      bgImgHeight: app.globalData.bgImages[index].height,
-      bgImgUrl: bgImgUrl,
-    });
-  },
+  
 })

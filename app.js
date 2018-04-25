@@ -56,7 +56,7 @@ App({
   globalData: {
     defaultCanvasHeight:450,
     bgImages: [
-      { width: 56, height: 28, data: "", color: "FFF", bg: '', img: '', title: '默认', buttonStyle: 'background-color:#FFFFFF;', buttonBgColor:'#FFFFFF'},
+      { width: 56, height: 28, data: "", color: "FFF", bg: '', img: '', title: '默认', buttonStyle: 'background-color:#FFFFFF;border:1px solid #E4E5E7;', buttonBgColor:'#FFFFFF'},
       { width: 56, height: 28, data: "", color: "F8F2E2", bg: '', img: '', title: '黄色', buttonStyle: 'background-color:#F8F2E2;', buttonBgColor: '#F8F2E2'},
       { width: 56, height: 28, data: "", color: '', bg: "bg3.png", img: '', title: '纸张', buttonStyle: "background-image:url('http://www.worklean.cn/button_bg3.png');background-size:" + 100 + "%", buttonBgColor: '#F1F0F1'},
       { width: 210, height: 240, data: "", color: 'F1EEE7', bg: "", img: 'bgimg4.png', title: '复古', buttonStyle: "background-image:url('http://www.worklean.cn/button_bg4.png');background-size:" + 100 + "%", buttonBgColor: '#F1EEE7'},

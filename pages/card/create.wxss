@@ -103,15 +103,15 @@
 .bottomBarButton {
   padding: 0px;
   border-radius: 4px;
-  font-size: 15px;
+  font-size: 13px;
   color: #fff;
-  height: 50px;
-  line-height: 50px;
-  margin-left:8px;
-  margin-top:8px;
+  height: 40px;
+  line-height: 40px;
+  margin-left:10px;
+  margin-top:12px;
   width:100%;
   background:#30CEAC;
-  margin-right:8px;
+  margin-right:10px;
 }
 
 button::after {
