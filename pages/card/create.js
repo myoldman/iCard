@@ -118,9 +118,9 @@ Page({
       success: function (res) {
         wx.hideLoading();
         if (res.data.res == 0) {
-          wx.showToast({
-            title: '保存卡片成功',
-          })
+          // wx.showToast({
+          //   title: '保存卡片成功',
+          // })
           var orginalId = that.data.cardId
           if(that.data.cardId == 0)
             that.setData({cardId: res.data.id})

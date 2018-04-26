@@ -6,7 +6,7 @@
 <view class="viewBar" style='width:{{width-16}}px' hidden='{{showGenBar}}'>
   <button bindtap='editCard' class='barButton editButton' style='width:{{(width-16)/3 -1}}px;'>
     <image src="../image/edit.png" mode='aspectFit' class='editImg'></image>编辑</button>
-  <button class='barButton shareButton' style='width:{{(width-16)/3 -1}}px;'>
+  <button class='barButton shareButton' open-type='share' style='width:{{(width-16)/3 -1}}px;'>
     <image src="../image/share.png" mode='aspectFit' class='shareImg'></image>分享</button>
   <button bindtap='previewCard' class='barButton genButton' style='width:{{(width-16)/3}}px;'>生成图片</button>
 </view>
