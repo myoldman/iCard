@@ -18,6 +18,8 @@ Page({
     height: app.globalData.height,
     ratio: app.globalData.ratio,
     showGenBar: false,
+    showHomeBar: false,
+    showViewBar: true,
     content:'',
   },
 
@@ -41,11 +43,16 @@ Page({
           'content-type': 'application/json' // 默认值
         },
         success: function (res) {
+          
           wx.hideLoading();
           if (res.data.res == 0) {
             that.setData({ content: res.data.card.content })
             MdParse.mdParse('card', res.data.card.content, that, '#FFFFFF', '', '');
+            if (res.data.card.userid != app.globalData.userInfo.id){
+              that.setData({ showHomeBar: true, showViewBar: false, showGenBar: false })
+            }
           }
+         
         },
         fail: function (res) {
           wx.hideLoading();
@@ -86,6 +93,9 @@ Page({
           if (res.data.res == 0) {
             that.setData({ content: res.data.card.content })
             MdParse.mdParse('card', res.data.card.content, that, '#FFFFFF', '', '');
+            if (res.data.card.userid != app.globalData.userInfo.id) {
+              that.setData({ showHomeBar: true, showViewBar:false, showGenBar:false })
+            }
           }
         },
         fail: function (res) {
@@ -140,13 +150,20 @@ Page({
     })
   },
   previewCard:function() {
-    this.setData({ showGenBar: true})
+    this.setData({ showHomeBar: false, showViewBar: false, showGenBar: true })
   },
   genCard:function() {
     wx.navigateTo({
       url: 'preview?content=' + this.data.content,
     })
   },
+
+  backHome:function() {
+    wx.redirectTo({
+      url: 'list',
+    })
+  },
+
   changeBackground: function (e) {
     var index = e.currentTarget.dataset.index
     app.globalData.currentBg = index + 1

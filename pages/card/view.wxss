@@ -111,6 +111,20 @@ page{
   height: 16px;
 }
 
+.homeBar{
+  display: flex;
+  height: 50px;
+  margin-top:8px;
+  margin-left: 8px;
+  border-radius: 4px;
+  background-color: #ffffff;
+  border: 1px solid #E4E5E7;
+  line-height: 50px;
+  font-size: 15px;
+  color: #29C4B5;
+  align-items:center;
+  justify-content:center;
+}
 .viewBar
 {
   display: flex;
@@ -150,6 +164,13 @@ page{
   width:14px;
   height:14px;
   padding-right: 6px;
+}
+.homeImg{
+  width:15px;
+  height:15px;
+  padding-right: 4px;
+  padding-bottom:4px;
+
 }
 
 ::-webkit-scrollbar {

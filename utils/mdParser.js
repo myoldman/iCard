@@ -25,7 +25,6 @@ function mdParse(bindName, data, target, bgColor, bg, bgImg) {
   transData.bgColor = bgColor
   transData.bgImg = bgImg
   var bindData = {};
-  console.log(transData)
   bindData[bindName] = transData;
   that.setData(bindData)
 }
@@ -115,7 +114,6 @@ function genCardData(content) {
     }
     item.type = itemType
     item.itemClass = itemClass
-    console.log(item.blocks)
     transData.items.push(item)
   }
   return transData
