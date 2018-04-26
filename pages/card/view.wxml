@@ -1,7 +1,6 @@
 <import src="../../utils/mdParse.wxml" />
-
-<view id="current" class="{{currentBgCss}}" style="background-size:{{100/ratio}}%;width:{{width-16-40}}px;height:{{height-40-74}}px;">
-  <image style="position:fixed;top:0px;right:0px;width:{{bgImgWidth/3}}px;height:{{bgImgHeight/3}}px;" mode='aspectFit' src="{{bgImgUrl}}"></image>
+<view id="current" class="{{currentBgCss}}" style="background-size:{{bgImgWidth/3}}px {{bgImgHeight/3}}px;width:{{width-16-40}}px;height:{{height-40-74}}px;">
+  <!-- <image style="position:fixed;top:0px;right:0px;width:{{bgImgWidth/3}}px;height:{{bgImgHeight/3}}px;" mode='aspectFit' src="{{bgImgUrl}}"></image> -->
   <template is="mdParse" data="{{mdParseData:card}}" />
 </view>
 <view class="viewBar" style='width:{{width-16}}px' hidden='{{showGenBar}}'>

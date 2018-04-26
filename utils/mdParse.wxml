@@ -4,10 +4,12 @@
       <image mode='aspectFit' src="../image/dot.png" class="dotImg"></image>
     </block>
     <block wx:if="{{item.type == 'quote'}}">
+      <block wx:if="{{item.showImage}}">
       <view class='imageQuote'>
         <image mode='aspectFit' hidden='{{!item.showImage}}' src="../image/quote.png" class="quoteImg"></image>
       </view>
-      <view class='textQuote'>
+      </block>
+      <view class='textQuote' style='{{!item.showImage?"margin-left:30px;":""}}'>
         <text wx:for='{{item.blocks}}' class='{{block.classStr}}' wx:for-index="idy" wx:for-item="block" wx:key='{{idy}}'>{{block.content}}</text>
       </view>
     </block>

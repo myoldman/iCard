@@ -46,13 +46,16 @@ page{
   margin-top: 8px;
   margin-left: 8px;
   border-radius: 4px;
-  background-repeat: repeat;
+  background-repeat: no-repeat;
   background-color: #f1eee7;
   overflow-y: scroll;
   padding-left: 20px;
   padding-right: 20px;
     padding-bottom: 20px;
   padding-top: 20px;
+  background-image:  url('http://www.worklean.cn/bgimg4.png');
+  background-position:top right;
+  background-attachment: local;
 }
 
 .paragraph {

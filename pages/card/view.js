@@ -67,7 +67,34 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    var cardId = this.data.cardId
+    var that = this
+    if (cardId != 0) {
+      wx.showLoading({
+        title: '卡片加载中',
+      })
+      wx.request({
+        url: app.globalData.urlbase + 'userInfo/getUserCard',
+        data: { cardId: cardId },
+        method: 'POST',
+        dataType: 'json',
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
+        success: function (res) {
+          wx.hideLoading();
+          if (res.data.res == 0) {
+            that.setData({ content: res.data.card.content })
+            MdParse.mdParse('card', res.data.card.content, that, '#FFFFFF', '', '');
+          }
+        },
+        fail: function (res) {
+          wx.hideLoading();
+        },
+        complete: function (res) {
+        }
+      });
+    }
   },
 
   /**
