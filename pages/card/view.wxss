@@ -142,13 +142,13 @@ page{
   border-bottom-right-radius: 0px;
 }
 .editImg{
-  width:14px;
-  height:14px;
+  width:15px;
+  height:15px;
   padding-right: 6px;
 }
 .shareImg {
-  width:14px;
-  height:14px;
+  width:15px;
+  height:15px;
   padding-right: 6px;
 }
 

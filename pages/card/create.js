@@ -85,9 +85,9 @@ Page({
 
   preivewCard: function (e) {
     var that = this
-    if (!e.detail.value.content || e.detail.value.content.length < 5 || e.detail.value.content.length > 1000){
+    if (!e.detail.value.content || e.detail.value.content.length < 5 || e.detail.value.content.length > 2000){
       wx.showToast({
-        title: '请输入5-1000个字',
+        title: '请输入5-2000个字',
         icon:'none',
       })
       return;
