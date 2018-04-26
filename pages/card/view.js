@@ -129,7 +129,9 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+    return {
+      title: app.globalData.userInfo.nickName+"分享了一张卡片",
+    }
   },
 
   editCard:function() {
