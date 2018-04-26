@@ -3,7 +3,7 @@
   <textarea bindtap="hideGenBar" value='{{content}}' style='height:{{height-50 - 40 -8*3}}px;width:{{width- 16 - 40}}px' maxlength="-1" class="content" show-confirm-bar='{{showConfirm}}' name='content' placeholder="点击输入内容" placeholder-class='placeholder'></textarea>
   <view id="bottomBar" hidden='{{showGenBar}}' class="bottomBar">
     <!-- <button id="genButton" class="bottomBarButton" style="left:20px;width:{{genButtonWidth}}px;background: #FFFFFF;color:#29C4B5;left: 20px;border: 1px solid #29C4B5;" form-type='submit'>保存并生成分享图</button> -->
-    <button id="saveButton" class="bottomBarButton" class="bottomBarButton" form-type='submit'>保存卡片</button>
+    <button id="saveButton" class="bottomBarButton" form-type='submit'>保存卡片</button>
   </view>
   
   </view>
