@@ -4,7 +4,6 @@
     <view id="bottomBar" hidden='{{showGenBar}}' class="bottomBar">
       <button id="saveButton" class="bottomBarButton" form-type='submit'>保存卡片</button>
     </view>
-
   </view>
   <image style="position:fixed;top:0px;right:0px;width:{{bgImgWidth/3}}px;height:{{bgImgHeight/3}}px;" mode='aspectFit' src="{{bgImgUrl}}"></image>
 
