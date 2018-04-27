@@ -7,18 +7,18 @@
 
 <view class="viewBar" style='width:{{width-16}}px' hidden='{{!showViewBar}}'>
   <button bindtap='editCard' class='barButton editButton' style='width:{{(width-16)/3 -1}}px;'>
-    <image src="../image/edit.png" mode='aspectFit' class='editImg'></image>编辑</button>
+    <image id="editCard" src="../image/edit.png" mode='aspectFit' class='editImg'></image>编辑</button>
   <button class='barButton shareButton' open-type='share' style='width:{{(width-16)/3}}px;'>
-    <image src="../image/share.png" mode='aspectFit' class='shareImg'></image>分享</button>
-  <button bindtap='previewCard' class='barButton genButton' style='width:{{(width-16)/3}}px;'>生成图片</button>
+    <image id="shareCard" src="../image/share.png" mode='aspectFit' class='shareImg'></image>分享</button>
+  <button id="previewCard" bindtap='previewCard' class='barButton genButton' style='width:{{(width-16)/3}}px;'>生成图片</button>
 </view>
 
 <view class="homeBar" bindtap='backHome' style='width:{{width-16}}px' hidden='{{!showHomeBar}}'>
-  <image src="../image/home.png" mode='aspectFit' class='homeImg'></image>回到首页
+  <image id="backHome" src="../image/home.png" mode='aspectFit' class='homeImg'></image>回到首页
 </view>
 
 <view id="bottomGenBar" class="bottomGenBar" style='width:100%;' hidden='{{!showGenBar}}'>
   <button class="bottomGenBarButton" bindtap="changeBackground" style='{{bgImg.buttonStyle}};{{currentBgImage.title==bgImg.title?"border: 2px solid #29C4B5;line-height:37px;":""}}' wx:key="title" wx:for="{{bgImages}}" data-index='{{idx}}' wx:for-index="idx"
     wx:for-item="bgImg">{{bgImg.title}}</button>
-  <button id="genPicButton" class="bottomBarGenBarSaveButton" style="width:{{width - 60 - 40*4}}px" bindtap='genCard'>生成图片</button>
+  <button id="genCard" class="bottomBarGenBarSaveButton" style="width:{{width - 60 - 40*4}}px" bindtap='genCard'>生成图片</button>
 </view>

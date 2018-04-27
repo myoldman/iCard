@@ -1,4 +1,4 @@
-<image class="cardCreate" bindtap='createCard' style='height:{{186/3}}px;width:{{186/3}}px;' src="../image/plus.png"></image>
+<image id="createCard" class="cardCreate" bindtap='createCard' style='height:{{186/3}}px;width:{{186/3}}px;' src="../image/plus.png"></image>
 <view bindtap='hidePopup' class="main" style='opacity:{{opacity}};top:0px;height:{{height}}px'>
   <view class="searchView">
     <view class="searchIconView">

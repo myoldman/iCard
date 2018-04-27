@@ -1,4 +1,4 @@
 <view>
   <image hidden='{{!showImage}}' src="{{imageUrl}}" mode='aspectFit' bindtap='previewCard' style='height:{{imgHeight}}px;' class="previewImage" bindload='previewImageLoaded'></image>
-  <button id="previewButton" style="position:fixed;width:{{width-16}}px;" bindtap='saveCard' class="previewButton">保存图片{{error}}</button>
+  <button id="saveCard" style="position:fixed;width:{{width-16}}px;" bindtap='saveCard' class="previewButton">保存图片{{error}}</button>
 </view>
