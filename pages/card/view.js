@@ -65,7 +65,9 @@ Page({
               MdParse.mdParse('card', res.data.card.content, that, '#FFFFFF', '', '');
               if (app.globalData.userInfo == null || res.data.card.userid != app.globalData.userInfo.id) {
                 that.setData({ showCardDelete: false, showHomeBar: true, showViewBar:false, showGenBar:false })
-              }
+              } else {
+                that.setData({ showCardDelete: false, showHomeBar: false, showViewBar: true, showGenBar: false })
+              } 
             } else {
               that.setData({ showCardDelete:true, showHomeBar: true, showViewBar: false, showGenBar: false })
             }
