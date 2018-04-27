@@ -160,19 +160,18 @@ page{
 .editImg{
   width:15px;
   height:15px;
-  padding-right: 6px;
+  padding-right: 5px;
 }
 .shareImg {
   width:15px;
   height:15px;
-  padding-right: 6px;
+  padding-right: 5px;
 }
 .homeImg{
   width:15px;
   height:15px;
-  padding-right: 4px;
-  padding-bottom:4px;
-
+  padding-right: 5px;
+  padding-bottom: 4px;
 }
 
 ::-webkit-scrollbar {
