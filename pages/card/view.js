@@ -48,7 +48,7 @@ Page({
           if (res.data.res == 0) {
             that.setData({ content: res.data.card.content })
             MdParse.mdParse('card', res.data.card.content, that, '#FFFFFF', '', '');
-            if (res.data.card.userid != app.globalData.userInfo.id){
+            if (app.globalData.userInfo == null || res.data.card.userid != app.globalData.userInfo.id){
               that.setData({ showHomeBar: true, showViewBar: false, showGenBar: false })
             }
           }
@@ -93,7 +93,7 @@ Page({
           if (res.data.res == 0) {
             that.setData({ content: res.data.card.content })
             MdParse.mdParse('card', res.data.card.content, that, '#FFFFFF', '', '');
-            if (res.data.card.userid != app.globalData.userInfo.id) {
+            if (app.globalData.userInfo == null || res.data.card.userid != app.globalData.userInfo.id) {
               that.setData({ showHomeBar: true, showViewBar:false, showGenBar:false })
             }
           }
