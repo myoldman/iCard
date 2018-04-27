@@ -28,14 +28,19 @@ Page({
   onLoad: function (options) {
     app.globalData.currentBg = 1
     var cardId = options.cardId ? options.cardId: 0;
+    this.setData({ cardId: cardId })
+  },
+
+  onShow:function() {
+    var cardId = this.data.cardId
     var that = this
-    if(cardId != 0) {
+    if (cardId != 0) {
       wx.showLoading({
         title: '卡片加载中',
       })
       wx.request({
         url: app.globalData.urlbase + 'userInfo/getUserCard',
-        data: {cardId: cardId},
+        data: { cardId: cardId },
         method: 'POST',
         dataType: 'json',
         header: {
@@ -72,9 +77,6 @@ Page({
         showGenBar: false,
       }
     )
-  },
-
-  onShow:function() {
   },
   
   hideGenBar:function() {
@@ -133,8 +135,8 @@ Page({
             firstPage.setData({searchText:''});
             // 返回首页
             if (orginalId <= 0) {
-              wx.navigateTo({
-                url: 'view?cardId=' + res.data.id,
+              wx.navigateBack({
+                delta:99
               })
             } else {
               wx.navigateBack({

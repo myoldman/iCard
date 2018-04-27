@@ -28,39 +28,7 @@ Page({
    */
   onLoad: function (options) {
     var cardId = options.cardId ? options.cardId : 0;
-    var that = this
-    if (cardId != 0) {
-      this.setData({ cardId: cardId})
-      wx.showLoading({
-        title: '卡片加载中',
-      })
-      wx.request({
-        url: app.globalData.urlbase + 'userInfo/getUserCard',
-        data: { cardId: cardId },
-        method: 'POST',
-        dataType: 'json',
-        header: {
-          'content-type': 'application/json' // 默认值
-        },
-        success: function (res) {
-          
-          wx.hideLoading();
-          if (res.data.res == 0) {
-            that.setData({ content: res.data.card.content })
-            MdParse.mdParse('card', res.data.card.content, that, '#FFFFFF', '', '');
-            if (app.globalData.userInfo == null || res.data.card.userid != app.globalData.userInfo.id){
-              that.setData({ showHomeBar: true, showViewBar: false, showGenBar: false })
-            }
-          }
-         
-        },
-        fail: function (res) {
-          wx.hideLoading();
-        },
-        complete: function (res) {
-        }
-      });
-    }
+    this.setData({ cardId: cardId })
   },
 
   /**
@@ -174,8 +142,8 @@ Page({
     this.setData({
       currentBgCss: 'main' + app.globalData.currentBg,
       currentBgImage: app.globalData.bgImages[index],
-      bgImgWidth: app.globalData.bgImages[index].width,
-      bgImgHeight: app.globalData.bgImages[index].height,
+      bgImgWidth: index == 3 ? app.globalData.bgImages[index].width : 0,
+      bgImgHeight: index == 3 ? app.globalData.bgImages[index].height: 0,
       bgImgUrl: bgImgUrl,
     });
   },
