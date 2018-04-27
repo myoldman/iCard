@@ -215,3 +215,11 @@ button::after {
   color: #fff;
   background-color: #30CEAC;
 }
+
+.cardDeleted{
+  line-height: 21px;
+  color: #B7BABF;
+  font-size: 15px;
+  text-align: center;
+  padding-top: 130px;
+}

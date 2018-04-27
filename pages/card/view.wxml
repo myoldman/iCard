@@ -2,6 +2,7 @@
 <view id="current" class="{{currentBgCss}}" style="width:{{width-16-40}}px;height:{{height-40-74}}px;">
   <!-- <image style="position:fixed;top:0px;right:0px;width:{{bgImgWidth/3}}px;height:{{bgImgHeight/3}}px;" mode='aspectFit' src="{{bgImgUrl}}"></image> -->
   <template is="mdParse" data="{{mdParseData:card}}" />
+  <view class='cardDeleted' hidden='{{!showCardDelete}}'>卡片已删除</view>
 </view>
 <view class="viewBar" style='width:{{width-16}}px' hidden='{{!showViewBar}}'>
   <button bindtap='editCard' class='barButton editButton' style='width:{{(width-16)/3 -1}}px;'>

@@ -20,6 +20,7 @@ Page({
     showGenBar: false,
     showHomeBar: false,
     showViewBar: true,
+    showCardDelete: true,
     content:'',
   },
 
@@ -59,10 +60,14 @@ Page({
         success: function (res) {
           wx.hideLoading();
           if (res.data.res == 0) {
-            that.setData({ content: res.data.card.content })
-            MdParse.mdParse('card', res.data.card.content, that, '#FFFFFF', '', '');
-            if (app.globalData.userInfo == null || res.data.card.userid != app.globalData.userInfo.id) {
-              that.setData({ showHomeBar: true, showViewBar:false, showGenBar:false })
+            if(res.data.card != null) {
+              that.setData({ content: res.data.card.content })
+              MdParse.mdParse('card', res.data.card.content, that, '#FFFFFF', '', '');
+              if (app.globalData.userInfo == null || res.data.card.userid != app.globalData.userInfo.id) {
+                that.setData({ showCardDelete: false, showHomeBar: true, showViewBar:false, showGenBar:false })
+              }
+            } else {
+              that.setData({ showCardDelete:true, showHomeBar: true, showViewBar: false, showGenBar: false })
             }
           }
         },
