@@ -159,7 +159,7 @@ Page({
   },
 
   backHome:function() {
-    wx.redirectTo({
+    wx.reLaunch({
       url: 'list',
     })
   },
