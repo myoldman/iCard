@@ -161,11 +161,15 @@ page{
   width:15px;
   height:15px;
   padding-right: 5px;
+  padding-bottom: 4px;
+  vertical-align:middle;
 }
 .shareImg {
   width:15px;
   height:15px;
   padding-right: 5px;
+  padding-bottom: 4px;
+  vertical-align:middle;
 }
 .homeImg{
   width:15px;
