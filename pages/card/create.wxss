@@ -7,42 +7,6 @@
   background-color: #F6F6F7;
 }
 
-.main2 {
-  top: 0px;
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  background-repeat: repeat;
-  background-color: #f8f2e2;
-}
-
-.main3 {
-  top: 0px;
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  background-repeat: repeat;
-  background-image: url('http://www.worklean.cn/bg3.png');
-}
-
-.main4 {
-  top: 0px;
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  background-repeat: repeat;
-  background-color: #f1eee7;
-  /* background-image: 'url('http://www.worklean.cn/back4.png');' */
-}
-
-.pre_left {
-  left: -100%;
-}
-
-.next_right {
-  left: 100%;
-}
-
 .content {
   margin-top: 8px;
   margin-left: 8px;

@@ -39,12 +39,6 @@ Page({
     opacity: 1,
     noDataText: '还没有卡片',
     cardList: [
-      // { title:"本月", cards:[
-      //   {id:1, content:"# 张大春谈秋夜", update_date:"2018-04-06 10:11:12"},
-      //   { id: 2, content: "# 张大春谈秋夜", update_date: "2018-04-06 9:11:12" }
-      // ]},
-      // { title: "3月", cards: [{ id: 3, content: "# 张大春谈秋夜", update_date: "2018-03-06 10:11:12" },]},
-      // { title: "2月", cards: [{ id: 4, content: "# 张大春谈秋夜", update_date: "2018-02-06 10:11:12" },]},
     ],
     userInfo: app.globalData.userInfo,
     height: app.globalData.height,
@@ -167,18 +161,6 @@ Page({
       }
     })
 
-  },
-
-  initDisplay: function () {
-    var cardList = this.data.cardList
-    for (var i = 0; i < cardList.length; i++) {
-      var group = cardList[i]
-      for (var j = 0; j < group.cards.length; j++) {
-        group.cards[i].leftWidth = this.data.width - 12 * 2;
-        group.cards[i].rightWidth = 0;
-      }
-    }
-    this.setData({ cardList: cardList })
   },
 
   viewCard: function(e) {
@@ -454,9 +436,7 @@ Page({
     this.setData({
       searchText: e.detail.value
     })
-    //if (e.detail.value.length > 0) {
     wx.startPullDownRefresh({
     })
-    //}
   }
 })

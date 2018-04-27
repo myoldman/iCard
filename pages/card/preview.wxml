@@ -1,11 +1,4 @@
 <view>
   <image hidden='{{!showImage}}' src="{{imageUrl}}" mode='aspectFit' bindtap='previewCard' style='height:{{imgHeight}}px;' class="previewImage" bindload='previewImageLoaded'></image>
-  <!-- <canvas hidden='{{!showCanvas}}' canvas-id='cardCanvas' bindtap='previewCard' style='background-color:{{bgColor}};top:0;height:{{canvasHeight}}px' id="cardCanvas" class="canvas_show"  >
-</canvas> -->
-  <!-- <cover-view bindtap='saveCard' class='zan-btn zan-btn--primary' style="position:absolute;width: 90%;margin-left:5%;height: 45px;line-height:45px;top:{{height-60}}px;">
-保存图片
-
-  </cover-view> -->
   <button id="backButton" style="position:fixed;width:{{width-16}}px;" bindtap='saveCard' class="previewButton">保存图片{{error}}</button>
-  <!-- <button id="backButton" style="position:fixed;width:90%;margin-left:5%;bottom:10px;" bindtap='editCard' class="'zan-btn">修改卡片</button>  -->
 </view>

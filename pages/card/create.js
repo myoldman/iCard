@@ -10,19 +10,12 @@ Page({
     currentCss:  '',
     currentStyle:'',
     currentBg: 'current',
-    bgImageUrl: '',
     width: app.globalData.width,
     height: app.globalData.height,
     ratio: app.globalData.ratio,
     genButtonWidth: Math.floor((app.globalData.width - 55 ) *0.55),
     saveButtonWidth: Math.floor((app.globalData.width - 55) * 0.45),
-    bgImgWidth:0,
-    bgImageHeight:0,
-    bgImgUrl: '',
-    bgImages: app.globalData.bgImages,
-    currentBgImage: app.globalData.bgImages[0],
     userInfo: app.globalData.userInfo,
-    showGenBar: false,
     content :'',
   },
   onLoad: function (options) {
@@ -66,23 +59,12 @@ Page({
         currentCss: '',
         currentStyle: '',
         currentBg: 'current',
-        bgImageUrl: '',
         width: app.globalData.width,
         height: app.globalData.height,
         ratio: app.globalData.ratio,
-        bgImgWidth: 0,
-        bgImageHeight: 0,
-        bgImgUrl: '',
         userInfo: app.globalData.userInfo,
-        showGenBar: false,
       }
     )
-  },
-  
-  hideGenBar:function() {
-    if(this.data.showGenBar) {
-      this.setData({ showGenBar: false});
-    }
   },
 
   preivewCard: function (e) {
@@ -126,23 +108,19 @@ Page({
           var orginalId = that.data.cardId
           if(that.data.cardId == 0)
             that.setData({cardId: res.data.id})
-          if (e.detail.target.id == "genButton") {
-            that.setData({ showGenBar: true});
+          
+          var pages = getCurrentPages()
+          console.log(pages)
+          var firstPage = pages[0]
+          firstPage.setData({searchText:''});
+          // 返回首页
+          if (orginalId <= 0) {
+            wx.navigateBack({
+              delta:99
+            })
           } else {
-            var pages = getCurrentPages()
-            console.log(pages)
-            var firstPage = pages[0]
-            firstPage.setData({searchText:''});
-            // 返回首页
-            if (orginalId <= 0) {
-              wx.navigateBack({
-                delta:99
-              })
-            } else {
-              wx.navigateBack({
-              })
-            }
-            
+            wx.navigateBack({
+            })
           }
         }
       },
