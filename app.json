@@ -4,7 +4,8 @@
     "pages/logs/logs",
     "pages/card/create",
     "pages/card/preview",
-    "pages/card/view"
+    "pages/card/view",
+    "pages/card/createMd"
   ],
   "window":{
     "backgroundTextStyle":"light",

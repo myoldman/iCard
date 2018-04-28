@@ -30,13 +30,19 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 1,
 			"list": [
 				{
 					"id": -1,
 					"name": "测试无数据页面跳转",
 					"pathName": "pages/card/view",
 					"query": "cardId=482",
+					"scene": "1001"
+				},
+				{
+					"id": -1,
+					"name": "web端markdown页面",
+					"pathName": "pages/card/createMd",
 					"scene": "1001"
 				}
 			]
