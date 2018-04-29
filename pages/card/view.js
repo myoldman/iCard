@@ -121,7 +121,7 @@ Page({
 
   editCard:function() {
     wx.navigateTo({
-      url: 'create?cardId=' + this.data.cardId
+      url: 'createMd?cardId=' + this.data.cardId
     })
   },
   previewCard:function() {

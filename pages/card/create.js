@@ -130,7 +130,6 @@ Page({
             that.setData({ showGenBar: true});
           } else {
             var pages = getCurrentPages()
-            console.log(pages)
             var firstPage = pages[0]
             firstPage.setData({searchText:''});
             // 返回首页

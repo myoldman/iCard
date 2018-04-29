@@ -123,7 +123,7 @@ Page({
   },
   createCard: function () {
     wx.navigateTo({
-      url: '../card/create'
+      url: '../card/createMd'
     })
   },
 
@@ -186,13 +186,7 @@ Page({
       url: 'view?cardId=' + e.currentTarget.dataset.id,
     })
   },
-
-  editCard: function (e) {
-    wx.navigateTo({
-      url: 'create?cardId=' + e.currentTarget.dataset.id,
-    })
-  },
-
+  
   loadCards: function () {
     var that = this
     wx.request({
