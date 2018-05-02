@@ -5,7 +5,9 @@
     "pages/card/create",
     "pages/card/preview",
     "pages/card/view",
-    "pages/card/createMd"
+    "pages/card/createMd",
+    "pages/stat/index",
+    "pages/mine/index"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -13,5 +15,31 @@
     "navigationBarBackgroundColor": "#30CEAC",
     "navigationBarTitleText": "卡片创作助手",
     "navigationBarTextStyle":"white"
+  },
+  "tabBar": {
+    "color": "#D2D4D7",
+    "selectedColor": "#60646C",
+    "backgroundColor": "#F6F6F7",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/card/list",
+        "text": "卡片",
+        "iconPath": "pages/image/tab_card.png",
+        "selectedIconPath": "pages/image/tab_card_active.png"
+      },
+      {
+        "pagePath": "pages/stat/index",
+        "text": "统计",
+        "iconPath": "pages/image/tab_stat.png",
+        "selectedIconPath": "pages/image/tab_stat_active.png"
+      },
+      {
+        "pagePath": "pages/mine/index",
+        "text": "我的",
+        "iconPath": "pages/image/tab_mine.png",
+        "selectedIconPath": "pages/image/tab_mine_active.png"
+      }
+    ]
   }
 }
