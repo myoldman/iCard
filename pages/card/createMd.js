@@ -13,7 +13,9 @@ Page({
   },
   onLoad: function (options) {
     var cardId = options.cardId ? options.cardId : 0;
-    this.setData({ cardId: cardId })
+    // 如果有tabbar，app.js里面取到的高度会扣除tabbar的高度，所以非tabbar页面那需要重新获取当前页面高度
+    var sysInfo = wx.getSystemInfoSync()
+    this.setData({ cardId: cardId, height: sysInfo.windowHeight, width: sysInfo.windowWidth })
     if (this.data.userInfo == null)
       this.setData({ userInfo: app.globalData.userInfo })
   },
