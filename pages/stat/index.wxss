@@ -1,0 +1,7 @@
+@import '../../template/calendar/index.wxss';
+
+.calendar-wrap {
+	padding: 7px 2px 14px 2px;
+	height: 328px;
+  background-color: #FFFFFF;
+}
