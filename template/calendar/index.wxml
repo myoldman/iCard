@@ -1,17 +1,17 @@
 <template name="calendar">
 	<view class="flex box box-tb box-align-center">
-		<view class="calendar pink-color box box-tb">
-			<view class="top-handle fs28 box box-lr box-align-center box-pack-center">
-				<view class="prev box box-rl" bindtap="choosePrevMonth" data-handle="prev">
-					<view class="prev-handle box box-lr box-align-center box-pack-center">《</view>
+		<view class="calendar box box-tb">
+			<view class="top-handle box box-lr box-align-center box-pack-center">
+				<view class="prev box box-rl"  bindtap="choosePrevMonth" data-handle="prev">
+					<view class="prev-handle box box-lr box-align-center box-pack-center" style='width:{{windowwidth/7}}px'><image style="width:21px;height:21px;"  src='../image/arrow_left.png'></image></view>
 				</view>
-				<view class="date-area box box-lr box-align-center box-pack-center">{{curYear || "--"}} 年 {{curMonth || "--"}} 月</view>
+				<view style='width:{{windowwidth/7*5}}px' class="date-area fs30 fw500 gray-color box box-lr box-align-center box-pack-center">{{curYear || "--"}} 年 {{curMonth || "--"}} 月</view>
 				<view class="next box box-lr" bindtap="chooseNextMonth" data-handle="next">
-					<view class="next-handle box box-lr box-align-center box-pack-center">》</view>
+					<view class="next-handle box box-lr box-align-center box-pack-center" style='width:{{windowwidth/7}}px'><image src='../image/arrow_right.png' style="width:21px;height:21px;"></image></view>
 				</view>
 			</view>
-			<view class="weeks box box-lr box-pack-center box-align-center">
-				<view class="flex week fs28" wx:for="{{weeksCh}}" wx:key="{{index}}" data-idx="{{index}}">{{item}}</view>
+			<view class=" lightgray-color weeks box box-lr box-pack-center box-align-center">
+				<view class="flex week fs26" wx:for="{{weeksCh}}" wx:key="{{index}}" data-idx="{{index}}">{{item}}</view>
 			</view>
 			<view class="days box box-lr box-wrap" bindtouchstart="calendarTouchstart" bindtouchmove="calendarTouchmove">
 				<view wx:if="{{empytGrids}}" class="grid disable-day-color box box-align-center box-pack-center"
@@ -26,7 +26,7 @@
           data-disable="{{item.disable}}"
           data-idx="{{index}}"
           bindtap="tapDayItem">
-					  <view class="day border-radius {{item.choosed ? 'day-choosed-color pink-bg' : ''}} {{ item.disable ? 'disable-day-color disable-day-circle' : '' }} box box-align-center box-pack-center">{{item.day}}</view>
+					  <view class="day border-radius {{item.choosed ? 'day-choosed-color selected-bg' : 'normal-bg'}} {{ item.disable ? 'disable-day-color disable-day-circle' : '' }} box box-align-center box-pack-center">{{item.day}}</view>
 				</view>
 				<view class="grid disable-day-color box box-align-center box-pack-center"
           wx:for="{{lastEmptyGrids}}"

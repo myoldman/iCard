@@ -362,7 +362,10 @@ export default (config = {}) => {
   const weeksCh = [ '日', '一', '二', '三', '四', '五', '六' ];
   const self = _getCurrentPage();
   self.config = config;
+  var sysInfo = wx.getSystemInfoSync();
   self.setData({
+    'calendar.windowheight': sysInfo.windowHeight,
+    'calendar.windowwidth':sysInfo.windowWidth,
     'calendar.weeksCh': weeksCh,
   });
   conf.jumpToToday.call(self);

@@ -32,6 +32,7 @@ Page({
       //   console.log(event);
       // },
     });
+    console.log(this.data)
   },
   /**
    * 跳转至今天

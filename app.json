@@ -1,12 +1,12 @@
 {
   "pages":[
+        "pages/stat/index",        
     "pages/card/list",
     "pages/logs/logs",
     "pages/card/create",
     "pages/card/preview",
     "pages/card/view",
     "pages/card/createMd",
-    "pages/stat/index",
     "pages/mine/index"
   ],
   "window":{

@@ -35,7 +35,16 @@
 	background-image: linear-gradient(to bottom, #faefe7, #ffcbd7);
 	overflow: hidden;
 }
+.fw500 {
+  font-weight: 500;
+}
 
+.gray-color {
+  color: #60646C;
+}
+.lightgray-color {
+  color: #B7BABF;
+}
 .pink-color {
 	color: #ff629a;
 }
@@ -48,8 +57,16 @@
 	font-size: 12px;
 }
 
+.fs26 {
+	font-size: 13px;
+}
+
 .fs28 {
 	font-size: 14px;
+}
+
+fs30 {
+  font-size: 15px;
 }
 
 .fs32 {
@@ -61,37 +78,35 @@
 }
 
 .top-handle {
-	height: 40px;
+	height: 48px;
+
 }
 
 .prev {
 	text-align: right;
-	height: 40px;
+	height: 48px;
 }
 
 .next {
-	height: 40px;
+	height: 48px;
 }
 
 .prev-handle {
-	width: 40px;
 	height: 100%;
 }
 
 .next-handle {
-	width: 40px;
 	height: 100%;
 }
 
 .date-area {
-	width: 190px;
-	height: 40px;
+	height: 48px;
 	text-align: center;
 }
 
 .weeks {
-	height: 25px;
-	line-height: 25px;
+	height: 23px;
+	line-height: 23px;
 	opacity: 0.5;
 }
 
@@ -101,6 +116,7 @@
 
 .days {
 	height: 250px;
+  margin-bottom: 5px;
 }
 
 .grid {
@@ -108,14 +124,14 @@
 }
 
 .day {
-	width: 30px;
-	height: 30px;
+	width: 28px;
+	height: 28px;
 	font-size: 13px;
 	font-weight: 200;
 }
 
 .normal-day-color {
-	color: #88d2ac;
+	color: #93979F;
 }
 
 .day-choosed-color {
@@ -123,7 +139,8 @@
 }
 
 .disable-day-color {
-	color: #ddd;
+	/* color: #ddd; */
+  color: #ffffff;
 }
 
 .disable-day-circle {
@@ -135,6 +152,13 @@
 	position: relative;
 	left: 0;
 	top: 0;
+}
+.normal-bg{
+  background-color: #E4E5E7;
+}
+
+.selected-bg {
+  background-color: #30CEAC;
 }
 
 .pink-bg {

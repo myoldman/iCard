@@ -1,8 +1,6 @@
 <import src="../../template/calendar/index.wxml"/>
 
-<view class="calendar-wrap">
-   <template is="calendar" data="{{...calendar}}" />
-</view>
+<template is="calendar" data="{{...calendar}}" />
 
 <view class='staticPanel'>
 </view>
