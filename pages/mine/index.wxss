@@ -1,0 +1,138 @@
+.avatarView{
+  background-size: 64px 64px;
+  background-image: url("https://www.worklean.cn/avatar_bg.png");
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  margin-left: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.settingPanel{
+  height: 140px;
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+}
+
+.imagePanel{
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+}
+
+.myAccount{
+  margin-left: 10px;
+}
+
+.motto{
+  margin-top: 5px;
+  height: 18px;
+  line-height: 18px;
+  color: rgba(147, 151, 159, 1);
+  font-size: 13px;
+  text-align: left;
+}
+.nickName {
+  height: 25px;
+  line-height: 25px;
+  color: rgba(40, 42, 45, 1);
+  font-size: 18px;
+  text-align: left;
+}
+
+.firstView{
+  background-color: #ffffff;
+}
+
+.secondView{
+  background-color: #ffffff;
+}
+
+.backViewCard{
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  background-color: #ffffff;
+  height: 51px;
+  border-bottom: 1px solid rgba(228, 229, 231, 1);
+  margin-left: 15px;
+  margin-right: 16px;
+}
+
+.exportCard{
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  height: 51px;
+  margin-left: 15px;
+  margin-right: 16px;
+}
+
+.advise{
+  display: flex;
+  align-items: center;
+  margin-top: 9px;
+  background-color: #ffffff;
+  height: 51px;
+  border-bottom: 1px solid rgba(228, 229, 231, 1);
+  margin-left: 15px;
+  margin-right: 16px;
+}
+
+.about{
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  height: 51px;
+  margin-left: 15px;
+  margin-right: 16px;
+}
+.mineImage {
+  width: 20px;
+  height: 20px;
+}
+
+.footer {
+  text-align: center;
+  position: fixed;
+  bottom: 10px;
+  font-size: 12px;
+  line-height: 17px;
+  color: #b7babf;
+  width: 100%;
+}
+
+.backViewInner{
+  display: flex;
+  align-items: center;
+  justify-content:space-between;
+  width:100%;
+  margin-left: 8px;
+}
+.backViewText{
+  height: 21px;
+  line-height: 21px;
+  color: rgba(40, 42, 45, 1);
+  font-size: 15px;
+  text-align: left;
+}
+
+.pleaseWait
+{
+  height: 21px;
+  line-height: 21px;
+  color: rgba(183, 186, 191, 1);
+  font-size: 15px;
+  text-align: right;
+  font-family: PingFangSC-Regular;
+}
+
+.feedBackText{
+  height: 21px;
+  line-height: 21px;
+  color: rgba(41, 196, 181, 1);
+  font-size: 15px;
+  text-align: right;
+}

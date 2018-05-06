@@ -6,8 +6,9 @@
     "pages/card/preview",
     "pages/card/view",
     "pages/card/createMd",
-    "pages/mine/index",
-    "pages/stat/index"
+    "pages/stat/index",
+    "pages/mine/index"
+  
   ],
   "window":{
     "backgroundTextStyle":"light",

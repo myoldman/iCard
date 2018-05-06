@@ -1,0 +1,50 @@
+<view class="settingPanel">
+  <view class="avatarView">
+    <image src="{{userInfo.avatarUrl}}" class='imagePanel'></image>
+    </view>
+  <view class='myAccount'>
+    <view class='nickName'>{{userInfo.nickName}}</view>
+    <view class='motto'>坚持是一种态度</view>
+  </view>
+</view>
+<view class='firstView'>
+  <view class='backViewCard'>
+    <view class='mineImage'>
+      <image src='../image/mine_review.png' class='mineImage'></image>
+    </view>
+    <view class='backViewInner'>
+      <view class='backViewText'>回顾卡片</view>
+      <view class='pleaseWait'>敬请期待</view>
+    </view>
+  </view>
+  <view class='exportCard'>
+    <view class='mineImage'>
+      <image src='../image/mine_export.png' class='mineImage'></image>
+    </view>
+    <view class='backViewInner'>
+      <view class='backViewText'>导出卡片</view>
+      <view class='pleaseWait'>敬请期待</view>
+    </view>
+  </view>
+</view>
+<view class='secondView'>
+  <view class='advise'>
+    <view class='mineImage'>
+      <image src='../image/mine_feedback.png' class='mineImage'></image>
+    </view>
+    <view class='backViewInner'>
+      <view class='backViewText'>建议 · 反馈</view>
+      <view class='feedBackText' bindtap='feedBack'>我要反馈</view>
+    </view>
+  </view>
+  <view class='about'>
+    <view class='mineImage'>
+      <image src='../image/mine_about.png' class='mineImage'></image>
+    </view>
+    <view class='backViewInner'>
+      <view class='backViewText'>关于</view>
+      <view class='pleaseWait'>V1.70</view>
+    </view>
+  </view>
+</view>
+<view class="footer">- {{userInfo.maxUser}}位用户正在使用卡片助手 -</view>
