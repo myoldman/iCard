@@ -1,4 +1,4 @@
-<image id="createCard" class="cardCreate" bindtap='createCard' style='height:{{132/3}}px;width:{{132/3}}px;' src="../image/plus.png"></image>
+<image id="createCard" class="cardCreate" bindtap='createCard' style='height:{{150/3}}px;width:{{150/3}}px;' src="../image/plus.png"></image>
 <view bindtap='hidePopup' class="main" style='opacity:{{opacity}};top:0px;height:{{height}}px'>
   <view class="searchView">
     <view class="searchIconView">
@@ -39,4 +39,3 @@
     <image class='bottomLoading' src="../image/loading.gif"></image>
   </view>
 </view>
-<view class="footer" hidden='{{!showFooter}}'>- {{userInfo.maxUser}}位用户正在使用卡片助手 -</view>

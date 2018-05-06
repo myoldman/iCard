@@ -89,9 +89,10 @@
   margin-left: 15px;
   margin-right: 16px;
 }
+
 .mineImage {
-  width: 20px;
-  height: 20px;
+  width: 21px;
+  height: 21px;
 }
 
 .footer {
