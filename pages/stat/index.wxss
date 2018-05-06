@@ -165,21 +165,15 @@
   height: 8px;
   width: 8px;
 }
-.notText{
-  font-size: 15px;
+.statusText{
+  font-size: 13px;
   color: #93979F;
-  height: 21px;
-  line-height: 21p;
+  line-height: 18px;
+  height: 18px;
   margin-left: 10px;
+  margin-top: 2px;
+  vertical-align:middle;
 }
-.doneText{
-  margin-left: 10px;
-  font-size: 15px;
-  color: #93979F;
-  height: 21px;
-  line-height: 21p;
-}
-
 ::-webkit-scrollbar {
   width: 0;
   height: 0;

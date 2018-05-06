@@ -2,8 +2,8 @@
 
 <template is="calendar" data="{{...calendar}}" />
 <view class='tipView'>
-  <view class='notCircle'></view><view class='notText'>未写卡片</view>
-  <view class='doneCircle'></view><view class='doneText'>已写卡片</view>
+  <view class='notCircle'></view><view class='statusText'>未写卡片</view>
+  <view class='doneCircle'></view><view class='statusText'>已写卡片</view>
 </view>
 <view class='statPanel'>
   <view class='charLine'>
