@@ -73,7 +73,8 @@ Page({
   },
 
   onShow: function () {
-
+    var sysInfo = wx.getSystemInfoSync()
+    this.setData({ height: sysInfo.windowHeight, width: sysInfo.windowWidth })
   },
 
   previewImageLoaded: function (event) {

@@ -1,6 +1,36 @@
 <import src="../../template/calendar/index.wxml"/>
 
 <template is="calendar" data="{{...calendar}}" />
-
-<view class='staticPanel'>
+<view class='tipView'>
+  <view class='notCircle'></view><view class='notText'>未写卡片</view>
+  <view class='doneCircle'></view><view class='doneText'>已写卡片</view>
+</view>
+<view class='statPanel'>
+  <view class='charLine'>
+    <view class='totalChar'>
+      <view class='totalTitle'>累计字数</view>
+      <view class='totalCount'>
+        <view class='totalContent'>{{totalLength}}</view>
+        <view class='totalSuffix'>字</view>
+      </view>
+    </view>
+    <view class='todayChar'>
+      <view class='todayTitle'>今日字数</view>
+      <view class='todayCount'>
+        <view class='todayContent'>{{dayLength}}</view>
+        <view class='todaySuffix'>字</view>
+      </view>
+    </view>
+  </view>
+  <view class='totalDayPanel'>
+    <view class='dayTitle'>总坚持天数</view>
+    <view class='dayContent'>{{totalDays}} 天</view>
+  </view>
+  <view class='latestDayPanel'>
+    <view class='latestTitle'>最近连续坚持天数</view>
+    <view class='latestContent'>{{latestDays}} 天</view>
+  </view>
+</view>
+<view class='footerPanel'>
+<image src='../image/footer_note.png' style='width:286px;height:100px;'></image>
 </view>

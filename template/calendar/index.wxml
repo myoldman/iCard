@@ -25,8 +25,9 @@
           wx:key="{{index}}"
           data-disable="{{item.disable}}"
           data-idx="{{index}}"
-          bindtap="tapDayItem">
-					  <view class="day border-radius {{item.choosed ? 'day-choosed-color selected-bg' : 'normal-bg'}} {{ item.disable ? 'disable-day-color disable-day-circle' : '' }} box box-align-center box-pack-center">{{item.day}}</view>
+          bindtap=""
+          >
+					  <view class="day border-radius {{item.isToday ? (item.choosed ? 'today-choosed':'today'):''}} {{item.choosed ? 'day-choosed-color selected-bg' : 'normal-bg'}} {{ item.disable ? 'disable-day-color disable-day-circle' : '' }} box box-align-center box-pack-center">{{!item.isToday? item.day : '今'}}</view>
 				</view>
 				<view class="grid disable-day-color box box-align-center box-pack-center"
           wx:for="{{lastEmptyGrids}}"

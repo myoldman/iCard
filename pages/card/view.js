@@ -47,6 +47,9 @@ Page({
    */
   onShow: function () {
     var cardId = this.data.cardId
+    var sysInfo = wx.getSystemInfoSync()
+    this.setData({ height: sysInfo.windowHeight, width: sysInfo.windowWidth })
+
     var that = this
     if (cardId != 0) {
       wx.showLoading({

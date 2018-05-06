@@ -23,6 +23,9 @@ Page({
   onShow: function () {
     if (this.data.userInfo == null)
       this.setData({ userInfo: app.globalData.userInfo })
+      
+    var sysInfo = wx.getSystemInfoSync()
+    this.setData({height: sysInfo.windowHeight, width: sysInfo.windowWidth })
     var cardId = this.data.cardId
     this.setData({ webviewUrl: app.globalData.urlbase + "userInfo/markdownEdit?height=" + this.data.height + "&width=" + this.data.width + "&ratio=" + this.data.ratio + "&cardId=" + this.data.cardId + "&userId=" + this.data.userInfo.id })
   },

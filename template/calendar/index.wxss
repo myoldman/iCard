@@ -123,11 +123,18 @@ fs30 {
 	width: 14.285714285714285%;
 }
 
+.today{
+  box-shadow: 0 0 0 3px rgba(228, 229, 231, 0.3);
+}
+.today-choosed{
+  box-shadow: 0 0 0 3px rgba(48, 206, 172, 0.3);
+}
+
 .day {
 	width: 28px;
 	height: 28px;
 	font-size: 13px;
-	font-weight: 200;
+	font-weight: 500;
 }
 
 .normal-day-color {

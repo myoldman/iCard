@@ -163,13 +163,28 @@ const conf = {
       year,
       month,
     }];
+    const date = new Date();
+    const todayYear = date.getFullYear();
+    const todayMonth = date.getMonth() + 1;
+    const todayDate = date.getDate();
+
     for (let i = 1; i <= thisMonthDays; i++) {
-      days.push({
-        day: i,
-        choosed: false,
-        year,
-        month,
-      });
+      if (todayYear == year && todayMonth == month && todayDate == i   ) {
+        days.push({
+          day: i,
+          choosed: false,
+          isToday: true,
+          year,
+          month,
+        });
+      } else {
+        days.push({
+          day: i,
+          choosed: false,
+          year,
+          month,
+        });
+      }
     }
     days.map(item => {
       selectedDay.forEach(d => {
@@ -293,14 +308,15 @@ const conf = {
     this.setData({
       'calendar.curYear': curYear,
       'calendar.curMonth': curMonth,
-      'calendar.selectedDay': [{
-        day: curDate,
-        choosed: true,
-        year: curYear,
-        month: curMonth,
-      }],
+      // 'calendar.selectedDay': [{
+      //   day: curDate,
+      //   choosed: true,
+      //   year: curYear,
+      //   month: curMonth,
+      // }],
       'calendar.todayTimestamp': timestamp,
     });
+
     conf.calculateEmptyGrids.call(this, curYear, curMonth);
     conf.calculateDays.call(this, curYear, curMonth, curDate);
   },
