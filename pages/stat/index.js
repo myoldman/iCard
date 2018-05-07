@@ -33,6 +33,7 @@ function GetDateStr(AddDayCount) {
 Page({
   data: {
     userInfo: app.globalData.userInfo,
+    loading : true,
   },
   onLoad: function (options) {
     wx.showLoading({
@@ -120,9 +121,11 @@ Page({
             that.setData({ latestDays:0, totalDays: 0, totalLength: 0, dayLength: 0, "calendar.selectedDay": [] })
           }
           wx.hideLoading();
+          that.setData({ loading: false})
         },
         fail: function (res) {
           wx.hideLoading();
+          that.setData({ loading: false })
         },
         complete: function (res) {
         }

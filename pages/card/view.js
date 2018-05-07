@@ -49,7 +49,6 @@ Page({
     var cardId = this.data.cardId
     var sysInfo = wx.getSystemInfoSync()
     this.setData({ height: sysInfo.windowHeight, width: sysInfo.windowWidth })
-
     var that = this
     if (cardId != 0) {
       wx.showLoading({
@@ -77,6 +76,7 @@ Page({
             } else {
               that.setData({ showCardDelete:true, showHomeBar: true, showViewBar: false, showGenBar: false })
             }
+            that.setData({ height: sysInfo.windowHeight, width: sysInfo.windowWidth })
           }
         },
         fail: function (res) {
