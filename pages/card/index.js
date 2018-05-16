@@ -17,6 +17,7 @@ Page({
     authImages : [1,2,3,4],
     authImageWidth :0,
     authImageHeight: 0,
+    authButtonStyle:'',
   },
   onLoad: function (options) {
     // 如果有tabbar，app.js里面取到的高度会扣除tabbar的高度，所以非tabbar页面那需要重新获取当前页面高度
@@ -115,10 +116,11 @@ Page({
           var authImageSize = res.data.authImageSize.value.split('x')
           var authImageWidth = parseInt(authImageSize[0]);
           var authImageHeight = parseInt(authImageSize[1]);
+          var authButtonStyle = res.data.authButtonStyle.value
           for (var i = 0; i < authImageCount; i++) {
             authImages.push((i+1))
           }
-          that.setData({authImages: authImages, authImageWidth: authImageWidth, authImageHeight: authImageHeight})
+          that.setData({ authImages: authImages, authImageWidth: authImageWidth, authImageHeight: authImageHeight, authButtonStyle: authButtonStyle})
         }
         wx.hideLoading();
       },

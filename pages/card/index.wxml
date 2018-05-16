@@ -12,7 +12,7 @@
 
 </view>
 <view style='margin-top:0px'>
-<button class='loginButton' open-type="getUserInfo" bindgetuserinfo="getUserInfo">开始使用</button>
+<button style='{{authButtonStyle}}' class='loginButton' open-type="getUserInfo" bindgetuserinfo="getUserInfo">开始使用</button>
 </view>
 </view>
 
