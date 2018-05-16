@@ -113,6 +113,8 @@ Page({
         console.log("app.js run first")
         that.setData({ needAuth: app.globalData.needAuth })
         wx.hideLoading();
+      } else {
+        this.setData({ webviewUrl: app.globalData.urlbase + "userInfo/index?height=" + this.data.height + "&width=" + this.data.width + "&ratio=" + this.data.ratio + "&userId=-1" })
       }
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
