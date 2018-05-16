@@ -15,6 +15,8 @@ Page({
     webviewUrl: '',
     title: '青芒卡片',
     authImages : [1,2,3,4],
+    authImageWidth :0,
+    authImageHeight: 0,
   },
   onLoad: function (options) {
     // 如果有tabbar，app.js里面取到的高度会扣除tabbar的高度，所以非tabbar页面那需要重新获取当前页面高度
@@ -96,7 +98,37 @@ Page({
       }
     });
   },
-
+  showAuthImage :function() {
+    var that = this
+    wx.request({
+      url: app.globalData.urlbase + 'userInfo/getAuthConfig',
+      data: {},
+      method: 'POST',
+      dataType: 'json',
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        if(res.data.res == 0) {
+          var authImages = []
+          var authImageCount = parseInt(res.data.authImageCount.value)
+          var authImageSize = res.data.authImageSize.value.split('x')
+          var authImageWidth = parseInt(authImageSize[0]);
+          var authImageHeight = parseInt(authImageSize[1]);
+          for (var i = 0; i < authImageCount; i++) {
+            authImages.push((i+1))
+          }
+          that.setData({authImages: authImages, authImageWidth: authImageWidth, authImageHeight: authImageHeight})
+        }
+        wx.hideLoading();
+      },
+      fail: function (res) {
+        wx.hideLoading();
+      },
+      complete: function (res) {
+      }
+    });
+  },
   onShow: function () {
     wx.showLoading({
       title: '页面加载中',
@@ -108,11 +140,11 @@ Page({
     if (app.globalData.userInfo == null) {
       // 如果需要认证并且还未认证
       if (this.data.needAuth) {
-        wx.hideLoading();
+        this.showAuthImage()
       } else if (app.globalData.needAuth) {
         console.log("app.js run first")
         that.setData({ needAuth: app.globalData.needAuth })
-        wx.hideLoading();
+        this.showAuthImage()
       } else {
         this.setData({ webviewUrl: app.globalData.urlbase + "userInfo/index?height=" + this.data.height + "&width=" + this.data.width + "&ratio=" + this.data.ratio + "&userId=-1" })
       }
@@ -136,7 +168,7 @@ Page({
             app.globalData.userInfo.maxUser = res.data.maxUser
             that.setData({ userInfo: app.globalData.userInfo })
             if (that.data.webviewUrl.length <= 0) {
-              that.setData({ webviewUrl: app.globalData.urlbase + "userInfo/index?height=" + that.data.height + "&width=" + that.data.width + "&ratio=" + that.data.ratio + "&userId=" + that.data.userInfo.id })
+              that.setData({ webviewUrl: app.globalData.urlbase + "userInfo/index?height=" + that.data.height + "&width=" + that.data.width + "&ratio=" + that.data.ratio + "&userId=" + that.data.userInfo.id + "&aaa=" })
             }
             wx.hideLoading();
           },
@@ -151,6 +183,7 @@ Page({
         wx.hideLoading();
         if (app.globalData.needAuth) {
           that.setData({ needAuth: app.globalData.needAuth })
+          that.showAuthImage()
         }
       }
     } else {

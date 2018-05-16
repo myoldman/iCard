@@ -5,7 +5,7 @@
 <swiper style='height:{{height-50}}px;width:{{width}}px;'>
 <block wx:key="{{i}}" wx:for="{{authImages}}" wx:for-item="i">
 <swiper-item>
-<image width="{{width}}" height="{{height-50}}" style='height:{{height-50}}px;width:{{width}}px'  mode="aspectFit top" src='http://image.worklean.cn/guide_{{i}}.png'></image>
+<image style='height:{{(width < authImageWidth/3) ? ((width/(authImageWidth/3)) * (authImageHeight/3) ) : authImageHeight/3 }}px;width:{{width < authImageWidth/3 ? width : authImageWidth/3 }}px'  mode="aspectFit " src='http://image.worklean.cn/guide_{{i}}.png'></image>
 </swiper-item>
 </block>
 </swiper>
