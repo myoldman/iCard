@@ -38,13 +38,6 @@
 					"pathName": "pages/card/index",
 					"query": "webviewUrl=https://www.worklean.cn/icardtest/userInfo/markdown?height=504&width=320&ratio=2&userId=-1",
 					"scene": "1001"
-				},
-				{
-					"id": -1,
-					"name": "web端markdown页面",
-					"pathName": "pages/card/createMd",
-					"query": "",
-					"scene": "1001"
 				}
 			]
 		}
