@@ -23,4 +23,10 @@
   color: rgba(255, 255, 255, 1);
   font-size: 18px;
   text-align: center;
+  width:100%;
+  border:0px;
+  padding: 0px;
+}
+button::after{
+  border: none;
 }

@@ -1,7 +1,6 @@
 {
   "pages":[
-    "pages/card/index",
-    "pages/card/empty"        
+    "pages/card/index"
   ],
 
   "window":{

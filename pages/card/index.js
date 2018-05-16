@@ -231,9 +231,9 @@ Page({
           app.globalData.userInfo.cards = res.data.cards
           app.globalData.userInfo.maxUser = res.data.maxUser
           that.setData({ userInfo: app.globalData.userInfo })
-          if (that.data.webviewUrl.length <= 0) {
+          //if (that.data.webviewUrl.length <= 0) {
             that.setData({ webviewUrl: app.globalData.urlbase + "userInfo/index?height=" + that.data.height + "&width=" + that.data.width + "&ratio=" + that.data.ratio + "&userId=" + that.data.userInfo.id, needAuth:false })
-          }
+          //}
         },
         fail: function (res) {
         },
