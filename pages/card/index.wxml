@@ -1,6 +1,6 @@
 <!-- wxml -->
 
-<view class="auth" style='height:{{height}}px;' wx:if="{{canIUse && needAuth}}">
+<view class="auth" style='height:{{height}}px;' wx:if="{{canIUse && showAuth}}">
 <view class='topFirst' style='height:{{height-50}}px;width:{{width}}px;'>
 <swiper style='height:{{height-50}}px;width:{{width}}px;'>
 <block wx:key="{{i}}" wx:for="{{authImages}}" wx:for-item="i">
@@ -17,4 +17,4 @@
 </view>
 
 <!-- 指向微信公众平台首页的web-view -->
-<web-view wx:if="{{!needAuth}}" src="{{webviewUrl}}" bindmessage="recvMessage"></web-view>
+<web-view wx:if="{{!showAuth}}" src="{{webviewUrl}}" bindmessage="recvMessage"></web-view>

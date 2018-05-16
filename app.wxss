@@ -8,7 +8,3 @@ page{
   color: #282A2D;
   background-color: #F6F6F7;
 }
-
-.placeholder {
-  color: #B7BABF;
-}

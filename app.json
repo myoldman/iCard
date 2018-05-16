@@ -4,7 +4,6 @@
   ],
 
   "window":{
-    "backgroundColor": "#30CEAC",        
     "navigationBarBackgroundColor": "#FFFFFF",
     "navigationBarTitleText": "青芒卡片",
     "navigationBarTextStyle": "black"
