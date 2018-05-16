@@ -2,7 +2,7 @@
 
 <view class="auth" style='height:{{height}}px;' wx:if="{{canIUse && needAuth}}">
 <view class='topFirst' style='height:{{height-50}}px;width:{{width}}px;'>
-<swiper indicator-dots="{{true}}" style='height:{{height-50}}px;width:{{width}}px;'>
+<swiper style='height:{{height-50}}px;width:{{width}}px;'>
 <block wx:for="{{authImages}}" wx:for-item="i">
 <swiper-item>
 <image width="{{width}}" height="{{height-50}}" style='height:{{height-50}}px;width:{{width}}px'  mode="aspectFit top" src='http://www.worklean.cn/guide_{{i}}.png'></image>
