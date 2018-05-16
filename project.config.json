@@ -9,8 +9,8 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "1.9.91",
-	"appid": "wx6136481aa72e3ce3",
-	"projectname": "iCard",
+	"appid": "wxa3c3f18080c0567d",
+	"projectname": "iCardWeb",
 	"isGameTourist": false,
 	"condition": {
 		"search": {
@@ -33,10 +33,10 @@
 			"current": -1,
 			"list": [
 				{
-					"id": -1,
+					"id": 0,
 					"name": "测试无数据页面跳转",
-					"pathName": "pages/card/view",
-					"query": "cardId=482",
+					"pathName": "pages/card/index",
+					"query": "webviewUrl=https://www.worklean.cn/icardtest/userInfo/markdown?height=504&width=320&ratio=2&userId=-1",
 					"scene": "1001"
 				},
 				{

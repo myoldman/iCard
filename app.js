@@ -1,6 +1,6 @@
 //app.js
 var WXBizDataCrypt = require('utils/RdWXBizDataCrypt.js');
-var AppId = 'wx6136481aa72e3ce3'
+var AppId = 'wxa3c3f18080c0567d'
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -25,8 +25,11 @@ App({
           success: function (res) {
             var pc = new WXBizDataCrypt(AppId, res.data.session_key)
             var openId = res.data.openid
+            that.globalData.needAuth  = res.data.needAuth
+            that.globalData.openId = res.data.openid
+            that.globalData.session_key = res.data.session_key
             wx.getUserInfo({
-              // withCredentials: true,
+              withCredentials: true,
               success: function (res) {
                 var data = pc.decryptData(res.encryptedData, res.iv)
                 delete data.watermark;
@@ -38,11 +41,11 @@ App({
                 }
               },
               fail:function(res) {
-                if (res.errMsg.indexOf("deny") >= 0) {
+                //if (res.errMsg.indexOf("deny") >= 0) {
                   if (that.useInfoDenyCallBack) {
                     that.useInfoDenyCallBack(null)
                   }
-                } 
+                //}
               }
             })
           },
@@ -76,7 +79,7 @@ App({
     footerLineMargin:10,
 
     footerHeight:60,
-
+    needAuth: false,
     currentBg: 1,
     maxBg: 4,
     userInfo: null,
