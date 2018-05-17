@@ -26,6 +26,7 @@ Page({
   onLoad: function (options) {
     // 如果有tabbar，app.js里面取到的高度会扣除tabbar的高度，所以非tabbar页面那需要重新获取当前页面高度
     if (options && options.webviewUrl) {
+      console.log(decodeURIComponent(options.webviewUrl))
       this.setData({ webviewUrl: decodeURIComponent(options.webviewUrl) })
 
     }
@@ -189,10 +190,10 @@ Page({
   },
 
   onShareAppMessage() {
-    console.log('/pages/card/index?webviewUrl=' + encodeURIComponent(this.data.webviewUrl));
+    console.log('/pages/card/index?webviewUrl=' + encodeURIComponent(this.data.webviewUrl+"&fromshare=yes"));
     return {
       title: this.data.title,
-      path: '/pages/card/index?webviewUrl=' + encodeURIComponent(this.data.webviewUrl) // 分享出去后打开的页面地址
+      path: '/pages/card/index?webviewUrl=' + encodeURIComponent(this.data.webviewUrl +"&fromshare=yes") // 分享出去后打开的页面地址
     }
   },
 
