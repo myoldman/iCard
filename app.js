@@ -11,5 +11,5 @@ App({
     ratio: wx.getSystemInfoSync().pixelRatio,
     urlbase: 'https://www.worklean.cn/icardweb/',
   }
-  
+
 })
