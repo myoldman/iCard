@@ -1,5 +1,6 @@
 //logs.js
 var WXBizDataCrypt = require('../../utils/RdWXBizDataCrypt.js');
+//var AppId = 'wx6136481aa72e3ce3'
 var AppId = 'wx6136481aa72e3ce3'
 const util = require('../../utils/util.js')
 function getGroup(groupList, groupTitle) {
@@ -51,76 +52,7 @@ Page({
     bottomLoading: false,
     currentSelectedCard: 0,
   },
-  checkStatus: function () {
-    var that = this;
-    // 判断是否是第一次授权，非第一次授权且授权失败则进行提醒
-    wx.getSetting({
-      success: function success(res) {
-        var authSetting = res.authSetting;
-        if (isEmptyObject(authSetting)) {
-          console.log('首次授权');
-        } else {
-          console.log('不是第一次授权', authSetting);
-          // 没有授权的提醒
-          if (authSetting['scope.userInfo'] === false) {
-            wx.hideLoading()
-            wx.showModal({
-              title: '用户未授权',
-              content: '如需正常使用卡片功能，请按确定并在授权管理中选中“用户信息”，然后点按确定。最后再重新进入小程序即可正常使用。',
-              showCancel: false,
-              success: function (res) {
-                if (res.confirm) {
-                  console.log('用户点击确定')
-                  wx.openSetting({
-                    success: function success(openSettingRes) {
-                      // 重新登录
-                      wx.login({
-                        success: res => {
-                          //发起网络请求
-                          wx.request({
-                            url: app.globalData.urlbase + 'userInfo',
-                            data: {
-                              js_code: res.code,
-                            },
-                            method: 'POST',
-                            dataType: 'json',
-                            header: {
-                              'content-type': 'application/json' // 默认值
-                            },
-                            success: function (res) {
-                              var pc = new WXBizDataCrypt(AppId, res.data.session_key)
-                              var openId = res.data.openid
-                              wx.getUserInfo({
-                                // withCredentials: true,
-                                success: function (res) {
-                                  var data = pc.decryptData(res.encryptedData, res.iv)
-                                  delete data.watermark;
-                                  app.globalData.userInfo = data
-                                  that.setData({ userinfo: data, hasuserInfo: true })
-                                  that.onLoad()
-                                },
-                                fail: function (res) {
-                                  console.log(res)
-                                }
-                              })
-                            },
-                            fail: function (res) { },
-                            complete: function (res) { }
-                          });
-                        }
-                      })
-                    }
-                  });
-                }
-              }
-            })
-          } else {
 
-          }
-        }
-      }
-    });
-  },
   createCard: function () {
     wx.navigateTo({
       url: '../card/createMd'
@@ -248,88 +180,106 @@ Page({
   },
 
   onLoad: function () {
-    wx.showLoading({
-      title: '登录中',
-    })
+    var sysInfo = wx.getSystemInfoSync()
+    this.setData({ height: sysInfo.windowHeight, width: sysInfo.windowWidth })
+  },
+  getCompleteUserInfo: function (userInfo, hideLoading) {
     var that = this
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-      wx.request({
-        url: app.globalData.urlbase + 'userInfo/getIndexInfo',
-        data: app.globalData.userInfo,
-        method: 'POST',
-        dataType: 'json',
-        header: {
-          'content-type': 'application/json' // 默认值
-        },
-        success: function (res) {
+    wx.request({
+      url: app.globalData.urlbase + 'userInfo/getIndexInfo',
+      data: userInfo,
+      method: 'POST',
+      dataType: 'json',
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        userInfo.id = res.data.id
+        userInfo.cards = res.data.cards
+        userInfo.maxUser = res.data.maxUser
+        app.globalData.userInfo = userInfo;
+        wx.startPullDownRefresh({})
+        if (hideLoading)
           wx.hideLoading();
-          app.globalData.userInfo.id = res.data.id
-          app.globalData.userInfo.cards = res.data.cards
-          app.globalData.userInfo.maxUser = res.data.maxUser
-          that.setData({ userInfo: app.globalData.userInfo })
-          wx.startPullDownRefresh({});
-        },
-        fail: function (res) {
+      },
+      fail: function (res) {
+        if (hideLoading)
           wx.hideLoading();
-        },
-        complete: function (res) {
-        }
-      });
-    } else {
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.useInfoDenyCallBack = res => {
-        wx.hideLoading()
-        this.setData({
-          userInfo: null,
-          hasUserInfo: false,
-        })
-        this.checkStatus()
-        app.useInfoDenyCallBack = null
+      },
+      complete: function (res) {
       }
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res,
-          hasUserInfo: true
-        })
+    });
+  },
+  getDecryptUserInfo: function (userInfo) {
+    // 登录
+    var that = this
+    wx.login({
+      success: res => {
+        //发起网络请求
         wx.request({
-          url: app.globalData.urlbase + 'userInfo/getIndexInfo',
-          data: res,
+          url: app.globalData.urlbase + 'userInfo',
+          data: {
+            js_code: res.code,
+          },
           method: 'POST',
           dataType: 'json',
           header: {
             'content-type': 'application/json' // 默认值
           },
           success: function (res) {
-            wx.hideLoading();
-            app.globalData.userInfo.id = res.data.id
-            app.globalData.userInfo.cards = res.data.cards
-            app.globalData.userInfo.maxUser = res.data.maxUser
-            console.log(res.data)
-            that.setData({ userInfo: app.globalData.userInfo })
-            wx.startPullDownRefresh({})
+            var pc = new WXBizDataCrypt(AppId, res.data.session_key)
+            console.log(res);
+            var session_key = res.data.session_key
+            if (userInfo == null) {
+              // userInfo 为空，从页面加载处调用的，需要调用wx.getUserInfo尝试获取用户信息
+              wx.getUserInfo({
+                withCredentials: true,
+                success: function (res) {
+                  
+                  var data = pc.decryptData(res.encryptedData, res.iv)
+                  delete data.watermark;
+                  that.getCompleteUserInfo(data, true)
+                },
+                fail: function (res) {
+                  //获取用户信息失败
+                  if (that.data.needAuth) {
+                    //如果需要授权则显示授权页面
+                    that.setData({ showAuth: true })
+                    wx.hideLoading()
+                  } else {
+                    // 不需要授权的话，应该直接进入固定图片列表页面了，这里不需要处理
+                  }
+                }
+              })
+            } else {
+              //如果userInfo不为空则是用户按钮事件回调
+              var data = pc.decryptData(userInfo.encryptedData, userInfo.iv)
+              that.getCompleteUserInfo(data, false)
+            }
           },
-          fail: function (res) {
-            wx.hideLoading();
-          },
-          complete: function (res) {
-          }
+          fail: function (res) { },
+          complete: function (res) { }
         });
       }
-    }
+    })
   },
-
+  
   onShow: function () {
-    if (this.data.userInfo != null && this.data.userInfo.id != null && this.data.userInfo.id > 0) {
-      wx.startPullDownRefresh({
-      })
-    } else if (this.data.userInfo == null) {
-      this.checkStatus()
+    wx.showLoading({
+      title: '页面加载中',
+      mask: true,
+    })
+    var sysInfo = wx.getSystemInfoSync()
+    var that = this
+    this.setData({ height: sysInfo.windowHeight, width: sysInfo.windowWidth })
+    if (this.data.userInfo == null) {
+      // 如果还未获取用户信息
+      that.getDecryptUserInfo(null);
+    } else {
+      wx.startPullDownRefresh({})
+      wx.hideLoading();
     }
+
   },
 
   onPullDownRefresh: function () {

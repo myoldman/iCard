@@ -4,6 +4,7 @@ var AppId = 'wx6136481aa72e3ce3'
 App({
   onLaunch: function () {
     // 展示本地存储能力
+    /*
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
@@ -51,7 +52,7 @@ App({
         });
       }
     })
-   
+   */
   },
   globalData: {
     defaultCanvasHeight:450,
@@ -83,6 +84,6 @@ App({
     width: wx.getSystemInfoSync().windowWidth,
     height: wx.getSystemInfoSync().windowHeight,
     ratio: wx.getSystemInfoSync().pixelRatio,
-    urlbase: 'https://www.worklean.cn/icardtest/',
+    urlbase: 'https://www.worklean.cn/icard/',
   }
 })
