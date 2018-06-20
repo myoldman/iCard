@@ -1,0 +1,32 @@
+.topFirst{
+  top:0px;
+  margin: 0px;
+  display: flex !important;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: center;
+}
+
+.topSecond {
+  margin-top: 5px;
+  height: 19px;
+  line-height: 19px;
+  color: rgba(147, 151, 159, 1);
+  font-size: 16px;
+  text-align: center;
+}
+.loginButton{
+  height: 50px;
+  line-height: 50px;
+  background-color: rgba(48, 206, 172, 1);
+  border-radius: 0px;
+  color: rgba(255, 255, 255, 1);
+  font-size: 18px;
+  text-align: center;
+  width:100%;
+  border:0px;
+  padding: 0px;
+}
+button::after{
+  border: none;
+}
