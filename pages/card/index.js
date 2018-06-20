@@ -21,6 +21,7 @@ Page({
     authImageWidth: 0,
     authImageHeight: 0,
     authButtonStyle: '',
+    timestamp: new Date().getTime()
   },
 
   onLoad: function (options) {
@@ -29,6 +30,8 @@ Page({
       console.log(decodeURIComponent(options.webviewUrl))
       this.setData({ webviewUrl: decodeURIComponent(options.webviewUrl) })
 
+      //console.log(options.webviewUrl)
+      //this.setData({ webviewUrl: (options.webviewUrl) })
     }
     var sysInfo = wx.getSystemInfoSync()
     this.setData({ height: sysInfo.windowHeight, width: sysInfo.windowWidth })
@@ -51,6 +54,10 @@ Page({
         that.setData({ userInfo: userInfo , showAuth:false})
         if (that.data.webviewUrl.length <= 0) {
           that.setData({ webviewUrl: app.globalData.urlbase + "userInfo/index?height=" + that.data.height + "&width=" + that.data.width + "&ratio=" + that.data.ratio + "&userId=" + that.data.userInfo.id })
+        } else {
+          var newWebUrl = that.data.webviewUrl;
+          newWebUrl = newWebUrl.replace(/userId=(\d+)/, "userId=" + that.data.userInfo.id);
+          that.setData({ webviewUrl: newWebUrl })
         }
         if (hideLoading)
           wx.hideLoading();
@@ -123,7 +130,7 @@ Page({
     })
     var sysInfo = wx.getSystemInfoSync()
     var that = this
-    this.setData({ height: sysInfo.windowHeight, width: sysInfo.windowWidth })
+    this.setData({ height: sysInfo.windowHeight, width: sysInfo.windowWidth, timestamp: new Date().getTime() })
     if (this.data.userInfo == null) {
       // 如果还未获取用户信息
 
@@ -178,6 +185,10 @@ Page({
       //如果已经获取用户信息完毕已经授权，就直接跳转到用户首页
       if (this.data.webviewUrl.length <= 0) {
         this.setData({ showAuth: false, webviewUrl: app.globalData.urlbase + "userInfo/index?height=" + this.data.height + "&width=" + this.data.width + "&ratio=" + this.data.ratio + "&userId=" + this.data.userInfo.id })
+      } else {
+        var newWebUrl = that.data.webviewUrl;
+        newWebUrl = newWebUrl.replace(/userId=(\d+)/, "userId=" + that.data.userInfo.id);
+        that.setData({ webviewUrl: newWebUrl })
       }
       wx.hideLoading();
     }

@@ -6,7 +6,6 @@
   align-items: flex-start;
   text-align: center;
 }
-
 .topSecond {
   margin-top: 5px;
   height: 19px;

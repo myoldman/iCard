@@ -9,6 +9,7 @@ App({
     width: wx.getSystemInfoSync().windowWidth,
     height: wx.getSystemInfoSync().windowHeight,
     ratio: wx.getSystemInfoSync().pixelRatio,
-    urlbase: 'https://www.worklean.cn/icardtest/',
+    urlbase: 'https://www.worklean.cn/icardweb/',
   }
+  
 })

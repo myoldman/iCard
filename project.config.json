@@ -36,7 +36,7 @@
 					"id": 0,
 					"name": "测试无数据页面跳转",
 					"pathName": "pages/card/index",
-					"query": "webviewUrl=https://www.worklean.cn/icardtest/userInfo/markdown?height=504&width=320&ratio=2&userId=-1",
+					"query": "webviewUrl=https://www.worklean.cn/icardtest/userInfo/markdownShow?height%3d504%26width%3d320%26ratio%3d2%26userId%3d408%26cardId%3d7561%26fromshare%3dyes",
 					"scene": "1001"
 				}
 			]
